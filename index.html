@@ -32,6 +32,39 @@ img, span {
   display: inline-block;
   vertical-align: middle;
 }
+
+.thumbnail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 30px;
+  margin-top: 0px;
+}
+
+.thumbnail-grid img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.thumbnail-grid img:hover {
+  transform: scale(1.05);
+}
+
+.grid-section {
+  margin-top: 50px;
+}
+
+.grid-title {
+  font-family: 'Comfortaa';
+  font-size: 24px;
+  margin-left: 30px;
+  margin-bottom: 0px;
+  color: #ffdab8;
+}
   </style>
   
 </head>
@@ -44,7 +77,8 @@ img, span {
   <h1>visuals for your vibe</h1>
   <p>
     Discover and experience the latest generative AI visuals from the greatest artists.
-    Install infinidream on your Mac to get the best experience.
+    <br/>Install infinidream on your Mac to get the best experience,
+    but any web browser will give basic access.
   <p/>
   <h1><em>coming soon!</em></h1>
   <p>
@@ -52,5 +86,57 @@ img, span {
     Request an invitation to the <a href="https://forms.gle/2u5w5fFN98EKPLC5A">private alpha</a>.<br/>
     Join us on <a href="https://discord.gg/FFDTWwBgBe">Discord</a>.
   </p>
+
+  <div class="grid-section">
+    <div class="grid-title">Infinite Animated Ambient Visuals</div>
+    <div class="thumbnail-grid">
+      <img src="thumbnails/00002-5d41d3c5-da1f-4040-884a-4f1c5bf3c0a1.jpg" alt="AI Visual 3">
+      <img src="thumbnails/00011-e8958970-501b-42e8-8005-e9768e951603.jpg" alt="AI Visual 12">
+      <img src="thumbnails/00008-d4bfc7da-6c13-407e-b80b-ed8b91ac5b44.jpg" alt="AI Visual 9">
+      
+
+      <img src="thumbnails-ranked/00001-e45d0e8c-ac8d-47c4-b32b-c615066d3663.jpg" alt="Top Visual 2">
+      <img src="thumbnails-ranked/00002-86b76afd-5a63-40af-a1e5-c1c5230c6d12.jpg" alt="Top Visual 3">
+      <img src="thumbnails-ranked/00003-c54b8e31-2a6a-4a5d-8bf0-16530bce7e58.jpg" alt="Top Visual 4">
+      <img src="thumbnails-ranked/00004-2d0a0ba5-22ca-4d99-bb47-9765f7084fa0.jpg" alt="Top Visual 5">
+      <img src="thumbnails-ranked/00005-13489b20-cc0b-4923-8ea8-3f64015fe389.jpg" alt="Top Visual 6">
+      <img src="thumbnails-ranked/00006-c08047fb-8133-46ca-b9dd-5292b821eb56.jpg" alt="Top Visual 7">
+      <img src="thumbnails-ranked/00007-9b9917f7-b17e-4c82-b80a-8ffc5295cc3f.jpg" alt="Top Visual 8">
+      <img src="thumbnails-ranked/00008-e2723fbb-c855-43db-bf63-3a74211277fd.jpg" alt="Top Visual 9">
+      <img src="thumbnails-ranked/00009-3641351b-10eb-4153-a8c4-cfa30fc57c16.jpg" alt="Top Visual 10">
+      <img src="thumbnails-ranked/00010-0a9466e9-ef96-48c2-b933-008e065eadf4.jpg" alt="Top Visual 11">
+      <img src="thumbnails-ranked/00011-01c0c747-adb7-4457-a91c-f19e60bace53.jpg" alt="Top Visual 12">
+      <img src="thumbnails-ranked/00013-21b39e9f-fd09-481a-b7d5-cfd0c951bc94.jpg" alt="Top Visual 14">
+
+      <img src="thumbnails/00001-2936f37a-8ee6-4d29-be97-928d61cc1d3d.jpg" alt="AI Visual 2">
+      <img src="thumbnails/00003-d7154de6-d570-4ade-97dc-1e463ba07f8c.jpg" alt="AI Visual 4">
+      <img src="thumbnails/00004-f25d3d38-b700-4f13-898f-e294836c84c4.jpg" alt="AI Visual 5">
+      <img src="thumbnails/00006-9c352143-d163-4c1e-948d-836eda24392c.jpg" alt="AI Visual 7">
+      <img src="thumbnails/00007-5e75cd59-fb2d-4926-95df-622d9680937a.jpg" alt="AI Visual 8">
+      <img src="thumbnails/00009-8d9cc836-23c3-4b6e-8ab6-45833231695f.jpg" alt="AI Visual 10">
+      <img src="thumbnails/00012-2b88ba6a-0e70-4b76-8cd1-69268d785daf.jpg" alt="AI Visual 13">
+
+      <img src="thumbnails-ranked/00014-912af337-ffad-45ef-8f3d-6aad08ee7f52.jpg" alt="Top Visual 15">
+      <img src="thumbnails-ranked/00015-531907ed-74ac-4149-a20f-e91fad5d70a6.jpg" alt="Top Visual 16">
+      <img src="thumbnails-ranked/00016-9c460739-c92a-4e86-8b19-4ceaa7fc52f3.jpg" alt="Top Visual 17">
+      <img src="thumbnails-ranked/00017-afc88c24-9904-4c6f-bf81-1e496af2304e.jpg" alt="Top Visual 18">
+      <img src="thumbnails-ranked/00018-80223a0b-56b2-4d9a-a32a-d46531262b6a.jpg" alt="Top Visual 19">
+      <img src="thumbnails-ranked/00019-671bac1f-e106-473d-b817-6800924ed6cf.jpg" alt="Top Visual 20">
+      <img src="thumbnails-ranked/00020-2d0421e0-8acd-4740-b97b-3b53a9cea7aa.jpg" alt="Top Visual 21">
+      <img src="thumbnails-ranked/00021-9bcf5821-96d0-44ce-8dd8-a8bb928e651a.jpg" alt="Top Visual 22">
+      <img src="thumbnails-ranked/00022-c91bac92-5f38-4807-abaf-11f9d349d565.jpg" alt="Top Visual 23">
+      <img src="thumbnails-ranked/00023-ae550e99-f460-4510-9904-021ac40ea347.jpg" alt="Top Visual 24">
+      <img src="thumbnails-ranked/00024-1a9f05ee-655e-4bb2-a664-395c90f8e99d.jpg" alt="Top Visual 25">
+      <img src="thumbnails-ranked/00025-153a8b9b-5db1-4c10-ab74-a4be1a48db86.jpg" alt="Top Visual 26">
+      <img src="thumbnails-ranked/00026-9ede9977-764e-4637-a064-4c63df793eaa.jpg" alt="Top Visual 27">
+      <img src="thumbnails-ranked/00027-b2164567-683e-4422-9fb6-dd706b1ccb46.jpg" alt="Top Visual 28">
+      <img src="thumbnails-ranked/00028-4fc05086-b043-461c-830b-88c474f7a0c4.jpg" alt="Top Visual 29">
+      <img src="thumbnails-ranked/00029-432547a1-1bd5-443d-91e1-adbb296cc495.jpg" alt="Top Visual 30">
+      <img src="thumbnails-ranked/00030-ae07e6db-e5d8-4945-8ccd-da16c709e1d0.jpg" alt="Top Visual 31">
+      <img src="thumbnails-ranked/00031-d6f798a1-b6e1-4851-ab12-d2b40233ab70.jpg" alt="Top Visual 32">
+      <img src="thumbnails-ranked/00032-5acfe5ec-fa31-4177-a5d9-84798643507f.jpg" alt="Top Visual 33">
+      <img src="thumbnails-ranked/00033-142f0b08-0288-45fe-a812-8a55b16f3f22.jpg" alt="Top Visual 34">
+    </div>
+  </div>
 </body>
 </html>
