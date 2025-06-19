@@ -7,6 +7,7 @@
   <link rel="icon" href="/favicon.ico"/>
   <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet'>
   <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css">
   <style>
 body {
     font-family: 'Comfortaa';font-size: 50px;
@@ -36,6 +37,9 @@ a:link {
 }
 a:visited {
     color: #ffdab8;
+}
+a:hover {
+    color: rgb(0,208,219);
 }
 img, span {
   display: inline-block;
@@ -74,6 +78,30 @@ img, span {
   margin-bottom: 0px;
   color: #ffdab8;
 }
+.copyright {
+  font-family: 'Lato';
+  font-size: 12px;
+  color: #888;
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+.social-buttons {
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.social-buttons a {
+  display: inline-block;
+  margin: 0 15px;
+  color: #ffdab8;
+  text-decoration: none;
+  font-size: 24px;
+  transition: color 0.3s ease;
+}
+.social-buttons a:hover {
+  color: rgb(0,208,219);
+}
   </style>
   
 </head>
@@ -95,8 +123,17 @@ img, span {
   <ul>
     <li>Contact us by email at <a href="mailto: support@e-dream.ai">support@e-dream.ai</a>.</li>
     <li>Request an invitation to the <a href="https://forms.gle/2u5w5fFN98EKPLC5A">private alpha</a>.</li>
-    <li>Join us on <a href="https://discord.gg/FFDTWwBgBe">Discord</a>.</li>
+    <li>Join us on <a href="https://discord.gg/FFDTWwBgBe">Discord</a> or other social media:</li>
   </ul>
+
+  <div class="social-buttons">
+    <a href="https://bsky.app/profile/infinidream.ai" title="Bluesky"><i class="fab fa-bluesky"></i></a>
+    <a href="https://discord.gg/FFDTWwBgBe" title="Discord"><i class="fab fa-discord"></i></a>
+    <a href="https://github.com/e-dream-ai" title="GitHub"><i class="fab fa-github"></i></a>
+    <a href="https://www.facebook.com/groups/infinidream/" title="Facebook"><i class="fab fa-facebook"></i></a>
+    <a href="https://www.threads.com/@infinidream_ai" title="Threads"><i class="fab fa-threads"></i></a>
+    <a href="https://x.com/infinidream_ai" title="Twitter"><i class="fab fa-twitter"></i></a>
+  </div>
 
   <div class="grid-section">
     <div class="grid-title">Infinite Animated Ambient Visuals</div>
@@ -188,6 +225,9 @@ img, span {
       <img src="thumbnails-new/00018-fe826117-a2ba-41d6-87e9-9780ad4d8fa6.jpg" alt="New AI Visual 45">
       <img src="thumbnails-new/00020-5792c2e7-b03b-4f5c-843e-6c86919814ea.jpg" alt="New AI Visual 46">
     </div>
+  </div>
+  <div class="copyright">
+    &copy; 2025 e-dream, inc.
   </div>
 </body>
 </html>
