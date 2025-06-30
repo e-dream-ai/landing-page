@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css">
   <style>
 body {
-    font-family: 'Comfortaa';font-size: 50px;
+    font-family: 'Comfortaa';font-size: 25px;
 }
 p {
     font-family: 'Lato';font-size: 16px;
@@ -202,6 +202,33 @@ img, span {
   background-color: rgba(255, 218, 184, 0.15);
   border-color: rgba(255, 218, 184, 0.5);
   box-shadow: 0 8px 25px rgba(0, 208, 219, 0.2);
+}
+@media (max-width: 600px) {
+  h1.hero {
+      font-size: 25px;
+  }
+  .header .logo-section span {
+    font-size: 40px;
+  }
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px 20px;
+  }
+  .header > div:last-child {
+    margin-top: 10px;
+    align-self: flex-end;
+    display: flex;
+    gap: 10px;
+  }
+  .header .cta-button {
+    font-size: 14px;
+    padding: 10px 15px;
+    margin-left: 0;
+  }
+  .main-content {
+    margin-top: 160px;
+  }
 }
   </style>
   
