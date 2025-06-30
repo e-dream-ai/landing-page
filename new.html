@@ -117,6 +117,54 @@ img, span {
 .social-buttons a:hover {
   color: rgb(0,208,219);
 }
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #000000;
+  z-index: 1000;
+  padding: 20px 30px;
+  border-bottom: 1px solid rgba(255, 218, 184, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header .logo-section {
+  display: flex;
+  align-items: center;
+}
+.header .logo-section img {
+  margin-right: 15px;
+}
+.header .logo-section span {
+  font-family: 'Comfortaa';
+  font-size: 50px;
+  color: #ffdab8;
+}
+.header .cta-button {
+  position: static;
+  margin: 0;
+}
+.main-content {
+  margin-top: 140px;
+  position: relative;
+}
+.main-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  pointer-events: none;
+  z-index: 1;
+}
+.main-content > * {
+  position: relative;
+  z-index: 2;
+}
 .cta-button {
   position: absolute;
   top: 60px;
@@ -179,10 +227,16 @@ img, span {
 
 
 <body bgcolor="#000000" text="#ffdab8">
-  <a href="https://alpha.infinidream.ai" class="cta-button">open the alpha</a>
-  <img src="logo.png" width="80" height="80"/>
-  <span>infinidream</span>
-  <h1 class="hero">visuals for your vibe</h1>
+  <div class="header">
+    <div class="logo-section">
+      <img src="logo.png" width="80" height="80"/>
+      <span>infinidream</span>
+    </div>
+    <a href="https://alpha.infinidream.ai" class="cta-button">open the alpha</a>
+  </div>
+  
+  <div class="main-content">
+    <h1 class="hero">visuals for your vibe</h1>
   
   <div class="thumbnail-grid">
     <img src="thumbnails/00002-5d41d3c5-da1f-4040-884a-4f1c5bf3c0a1.jpg" alt="AI Visual">
@@ -206,32 +260,43 @@ img, span {
     <div class="feature-box">
       Install the remote on your phone to control your Infinidream from anywhere.
     </div>
+  </div>
+  
+  <div class="thumbnail-grid">
+    <img src="thumbnails-new/00001-45a5a547-d366-41ff-9fec-15eb4f30e409.jpg" alt="AI Visual">
+    <img src="thumbnails-new/00002-41e402e7-f4ed-49c1-ab6c-611ff1e07d18.jpg" alt="AI Visual">
+    <img src="thumbnails-new/00003-0b71a325-84c6-4bcb-882e-b8f37d6ad856.jpg" alt="AI Visual">
+  </div>
+
+  <div class="feature-grid">
     <div class="feature-box">
-      <a href="https://discord.gg/FFDTWwBgBe">Discord</a> is our main channel for support and development,
-      but you can find us on many networks:
+      <a href="https://discord.gg/FFDTWwBgBe">Discord</a> is our main channel for support and development.
+      <div class="social-buttons">
+	<a href="https://discord.gg/FFDTWwBgBe" title="Discord"><i class="fab fa-discord"></i></a>
+      </div>
+    </div>
+    <div class="feature-box">
       <div class="social-buttons">
         <a href="https://bsky.app/profile/infinidream.ai" title="Bluesky"><i class="fab fa-bluesky"></i></a>
 	<a href="https://discord.gg/FFDTWwBgBe" title="Discord"><i class="fab fa-discord"></i></a>
 	<a href="https://github.com/e-dream-ai" title="GitHub"><i class="fab fa-github"></i></a>
-	<br/>
 	<a href="https://www.facebook.com/groups/infinidream/" title="Facebook"><i class="fab fa-facebook"></i></a>
 	<a href="https://www.threads.com/@infinidream_ai" title="Threads"><i class="fab fa-threads"></i></a>
 	<a href="https://x.com/infinidream_ai" title="Twitter"><i class="fab fa-x-twitter"></i></a>
       </div>
     </div>
+    <div class="feature-box">
+      Contact us by email at <a href="mailto: support@e-dream.ai">support@e-dream.ai</a>.
+    </div>
+    <div class="feature-box">
+      <a href="https://forms.gle/2u5w5fFN98EKPLC5A">Request an invitation</a> to the alpha.
+    </div>
   </div>
 
     </div>
 
   </div>
 
-  <ul>
-    <li>Contact us by email at <a href="mailto: support@e-dream.ai">support@e-dream.ai</a>.</li>
-    <li><a href="https://forms.gle/2u5w5fFN98EKPLC5A">Request an invitation</a> to the alpha.</li>
-  </ul>
-  
-
-  
   <div class="thumbnail-grid">
     <img src="thumbnails-ranked/00002-86b76afd-5a63-40af-a1e5-c1c5230c6d12.jpg" alt="AI Visual">
     <img src="thumbnails-ranked/00003-c54b8e31-2a6a-4a5d-8bf0-16530bce7e58.jpg" alt="AI Visual">
@@ -406,6 +471,7 @@ img, span {
   </div>
   <div class="copyright">
     &copy; 2025 e-dream, inc.
+  </div>
   </div>
 </body>
 </html>
