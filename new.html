@@ -50,224 +50,224 @@
     color: rgb(0,208,219);
   }
   img, span {
-  display: inline-block;
-  vertical-align: middle;
+    display: inline-block;
+    vertical-align: middle;
   }
 
   .thumbnail-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
-  padding: 30px;
-  margin-top: 0px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 30px;
+    margin-top: 0px;
   }
 
   .thumbnail-grid img {
-  width: 100%;
-  aspect-ratio: 16/9;
-  object-fit: cover;
-  border-radius: 8px;
-  transition: transform 0.3s ease;
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
   }
 
   .thumbnail-grid img:hover {
-  transform: scale(1.05);
+    transform: scale(1.05);
   }
 
   .grid-section {
-  margin-top: 50px;
+    margin-top: 50px;
   }
 
   .grid-title {
-  font-family: 'Comfortaa';
-  font-size: 24px;
-  margin-left: 30px;
-  margin-bottom: 0px;
-  color: #ffdab8;
+    font-family: 'Comfortaa';
+    font-size: 24px;
+    margin-left: 30px;
+    margin-bottom: 0px;
+    color: #ffdab8;
   }
   .copyright {
-  font-family: 'Lato';
-  font-size: 12px;
-  color: #888;
-  text-align: center;
-  margin-top: 50px;
-  margin-bottom: 30px;
+    font-family: 'Lato';
+    font-size: 12px;
+    color: #888;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 30px;
   }
   .social-buttons {
-  text-align: center;
-  margin-top: 10px;
-  margin-bottom: 10px;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
   .social-button-row {
-  line-height: 1.0;
+    line-height: 1.0;
   }
   .social-buttons a {
-  display: inline-block;
-  margin: 10px 15px;
-  color: #ffdab8;
-  text-decoration: none;
-  font-size: 24px;
-  transition: color 0.3s ease;
+    display: inline-block;
+    margin: 10px 15px;
+    color: #ffdab8;
+    text-decoration: none;
+    font-size: 24px;
+    transition: color 0.3s ease;
   }
   .social-buttons a:hover {
-  color: rgb(0,208,219);
+    color: rgb(0,208,219);
   }
   .header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  background-color: #000000;
-  z-index: 1000;
-  padding: 20px 30px;
-  border-bottom: 1px solid rgba(255, 218, 184, 0.2);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #000000;
+    z-index: 1000;
+    padding: 20px 30px;
+    border-bottom: 1px solid rgba(255, 218, 184, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
   .header .logo-section {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
   }
   .header .logo-section img {
-  margin-right: 15px;
+    margin-right: 15px;
   }
   .header .logo-section span {
-  font-family: 'Comfortaa';
-  font-size: 50px;
-  color: #ffdab8;
+    font-family: 'Comfortaa';
+    font-size: 50px;
+    color: #ffdab8;
   }
   .header .cta-button {
-  position: static;
-  margin: 0;
+    position: static;
+    margin: 0;
   }
   .header > div:last-child {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  }
-  .main-content {
-  margin-top: 140px;
-  position: relative;
-  }
-  .main-content::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.75);
-  pointer-events: none;
-  z-index: 1;
-  }
-  .main-content > * {
-  position: relative;
-  z-index: 2;
-  }
-  .cta-button {
-  position: absolute;
-  top: 60px;
-  right: 15%;
-  background-color: rgb(0,208,219);
-  color: #000000 !important;
-  font-family: 'Lato';
-  font-size: 18px;
-  font-weight: bold;
-  text-transform: uppercase;
-  padding: 15px 25px;
-  border: none;
-  border-radius: 8px;
-  text-decoration: none;
-  display: inline-block;
-  cursor: pointer;
-  z-index: 1000;
-  }
-  .cta-button:hover {
-  background-color: rgb(0,188,199);
-  transform: translateY(-2px);
-  }
-  .feature-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-  margin: 30px;
-  }
-  .feature-box {
-  background-color: rgba(255, 218, 184, 0.1);
-  border: 1px solid rgba(255, 218, 184, 0.3);
-  border-radius: 8px;
-  padding: 20px;
-  font-family: 'Lato';
-  font-size: 16px;
-  color: #ffdab8;
-  transition: all 0.3s ease;
-  }
-  .feature-box:hover {
-  transform: translateY(-5px);
-  background-color: rgba(255, 218, 184, 0.15);
-  border-color: rgba(255, 218, 184, 0.5);
-  box-shadow: 0 8px 25px rgba(0, 208, 219, 0.2);
-  }
-  .cta-button-inbox {
-  background-color: rgb(0,208,219);
-  color: #000000 !important;
-  font-family: 'Lato';
-  font-size: 18px;
-  font-weight: bold;
-  text-transform: uppercase;
-  padding: 15px 25px;
-  border: none;
-  border-radius: 8px;
-  text-decoration: none;
-  display: inline-block;
-  cursor: pointer;
-  transform: none !important;
-  position: relative;
-  }
-  .feature-box:has(.cta-button-inbox) {
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  }
-  .feature-box:has(.social-button-row) {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  }
-  .cta-button-inbox:hover {
-  background-color: rgb(0,188,199);
-  transform: none !important;
-  }
-  @media (max-width: 600px) {
-  h1.hero {
-      font-size: 25px;
-  }
-  .header .logo-section span {
-    font-size: 40px;
-  }
-  .header {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 15px 20px;
-  }
-  .header > div:last-child {
-    margin-top: 10px;
-    align-self: flex-end;
     display: flex;
     gap: 10px;
-  }
-  .header .cta-button {
-    font-size: 14px;
-    padding: 10px 15px;
-    margin-left: 0;
+    flex-wrap: wrap;
+    justify-content: flex-end;
   }
   .main-content {
-    margin-top: 180px;
+    margin-top: 140px;
+    position: relative;
   }
+  .main-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .main-content > * {
+    position: relative;
+    z-index: 2;
+  }
+  .cta-button {
+    position: absolute;
+    top: 60px;
+    right: 15%;
+    background-color: rgb(0,208,219);
+    color: #000000 !important;
+    font-family: 'Lato';
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    z-index: 1000;
+  }
+  .cta-button:hover {
+    background-color: rgb(0,188,199);
+    transform: translateY(-2px);
+  }
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin: 30px;
+  }
+  .feature-box {
+    background-color: rgba(255, 218, 184, 0.1);
+    border: 1px solid rgba(255, 218, 184, 0.3);
+    border-radius: 8px;
+    padding: 20px;
+    font-family: 'Lato';
+    font-size: 16px;
+    color: #ffdab8;
+    transition: all 0.3s ease;
+  }
+  .feature-box:hover {
+    transform: translateY(-5px);
+    background-color: rgba(255, 218, 184, 0.15);
+    border-color: rgba(255, 218, 184, 0.5);
+    box-shadow: 0 8px 25px rgba(0, 208, 219, 0.2);
+  }
+  .cta-button-inbox {
+    background-color: rgb(0,208,219);
+    color: #000000 !important;
+    font-family: 'Lato';
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    transform: none !important;
+    position: relative;
+  }
+  .feature-box:has(.cta-button-inbox) {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .feature-box:has(.social-button-row) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .cta-button-inbox:hover {
+    background-color: rgb(0,188,199);
+    transform: none !important;
+  }
+  @media (max-width: 600px) {
+    h1.hero {
+      font-size: 25px;
+    }
+    .header .logo-section span {
+      font-size: 40px;
+    }
+  .header {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 15px 20px;
+    }
+    .header > div:last-child {
+      margin-top: 10px;
+      align-self: flex-end;
+      display: flex;
+      gap: 10px;
+    }
+    .header .cta-button {
+      font-size: 14px;
+      padding: 10px 15px;
+      margin-left: 0;
+    }
+    .main-content {
+      margin-top: 180px;
+    }
   }
   </style>
   <script type='text/javascript'>
