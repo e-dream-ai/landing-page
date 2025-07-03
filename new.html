@@ -14,7 +14,7 @@
   "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css"
   type='text/css'>
   <style type='text/css'>
-body {
+  body {
     font-family: 'Comfortaa';font-size: 25px;
   }
   p {
@@ -99,11 +99,11 @@ body {
   margin-bottom: 10px;
   }
   .social-button-row {
-  line-height: 1.5;
+  line-height: 1.0;
   }
   .social-buttons a {
   display: inline-block;
-  margin: 0 15px;
+  margin: 10px 15px;
   color: #ffdab8;
   text-decoration: none;
   font-size: 24px;
@@ -233,6 +233,11 @@ body {
   justify-content: center;
   flex-direction: column;
   }
+  .feature-box:has(.social-button-row) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  }
   .cta-button-inbox:hover {
   background-color: rgb(0,188,199);
   transform: none !important;
@@ -347,26 +352,22 @@ function getEmail() {
 
     <div class="feature-grid">
       <div class="feature-box">
-        <a href="https://discord.gg/FFDTWwBgBe">Discord</a> is our main
-        channel for support and development.
+        <a href="https://discord.gg/FFDTWwBgBe">Discord</a> is our main channel for support and development.
 
         <div class="social-buttons">
-          <a href="https://discord.gg/FFDTWwBgBe" title="Discord"></a>
+          <a href="https://discord.gg/FFDTWwBgBe" title="Discord"><i class="fab fa-discord"></i></a>
         </div>
       </div>
 
       <div class="feature-box">
         <div class="social-buttons social-button-row">
-          <a href="https://bsky.app/profile/infinidream.ai" title=
-          "Bluesky"></a> <a href="https://discord.gg/FFDTWwBgBe" title=
-          "Discord"></a> <a href="https://github.com/e-dream-ai" title=
-          "GitHub"></a> <a href=
-          "https://www.facebook.com/groups/infinidream/" title=
-          "Facebook"></a> <a href=
-          "https://www.threads.com/@infinidream_ai" title="Threads"></a>
-          <a href="https://www.instagram.com/infinidream_ai" title=
-          "Instagram"></a> <a href="https://x.com/infinidream_ai" title=
-          "X"></a>
+          <a href="https://bsky.app/profile/infinidream.ai" title="Bluesky"><i class="fab fa-bluesky"></i></a>
+	  <a href="https://discord.gg/FFDTWwBgBe" title="Discord"><i class="fab fa-discord"></i></a>
+	  <a href="https://github.com/e-dream-ai" title="GitHub"><i class="fab fa-github"></i></a>
+	  <a href="https://www.facebook.com/groups/infinidream/" title="Facebook"><i class="fab fa-facebook"></i></a>
+	  <a href="https://www.threads.com/@infinidream_ai" title="Threads"><i class="fab fa-threads"></i></a>
+	  <a href="https://www.instagram.com/infinidream_ai" title="Instagram"><i class="fab fa-instagram"></i></a>
+	  <a href="https://x.com/infinidream_ai" title="X"><i class="fab fa-x-twitter"></i></a>
         </div>
       </div>
 
