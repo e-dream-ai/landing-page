@@ -262,6 +262,24 @@ img, span {
 }
   </style>
   
+  <script>
+  function getEmail() {
+    const parts = ['support', 'e-dream', 'ai'];
+    return parts[0] + '@' + parts[1] + '.' + parts[2];
+  }
+  
+  function contactEmail() {
+    window.location.href = 'mailto:' + getEmail();
+  }
+  
+  window.onload = function() {
+    const emailDisplay = document.getElementById('email-display');
+    if (emailDisplay) {
+      emailDisplay.textContent = getEmail();
+    }
+  }
+  </script>
+  
 </head>
 
 
@@ -333,7 +351,8 @@ img, span {
       </div>
     </div>
     <div class="feature-box">
-      Contact us by email at<br><a href="mailto: support@e-dream.ai">support@e-dream.ai</a>.
+      Contact us by email at<br><br>
+      <a href="#" onclick="contactEmail()" class="cta-button-inbox" id="email-display">Email Us</a>
     </div>
   </div>
 
@@ -385,6 +404,9 @@ img, span {
   </p>
   <div class="feature-grid">
     <div class="feature-box">
+      Hosted cloud generation driven by AI and crowd signals. Put an "edit" button on each dream and allow you to change the prompts, restyle, and make your own version.
+    </div>
+    <div class="feature-box">
       Running on more platforms such as Windows, Android, iOS, tvOS, and directly on TVs and set-top boxes.
     </div>
     <div class="feature-box">
@@ -392,9 +414,6 @@ img, span {
     </div>
     <div class="feature-box">
       Social control: allowing the people around a screen to control it, not just the owner. Put a QR code next to a screen to make a video jukebox, or invent your own game.
-    </div>
-    <div class="feature-box">
-      Hosting our own cloud generation and make it driven by AI and crowd signals. Imagine putting an "edit" button on each dream and allowing you to change the prompts and make your own version.
     </div>
     <div class="feature-box">
       Using the microphone to make playback audioreactive, detect the ambient activity level, and even ID any song. Add realtime effects, more mixing, and become an AI VJ.
@@ -423,10 +442,12 @@ img, span {
       <em><a href="https://magixworld.com/">Miklós Nagy</a></em> Multidisciplinary creative, VFX, and Open Source <a href="https://github.com/XmYx">Deforum developer</a>.
     </div>
     <div class="feature-box">
-      The artists who made all the dreams depicted here and shown in Infinidream: <em>Surrealism Today</em>, <em>Hueman Instrumentality</em>, <em>Safety Marc</em>, <em>Jeremy Torman</em>, <em>Mordunkus</em>, <em>R0b0tn1k</em> and more.
+      The artists who made the samples depicted here: <em>Surrealism Today</em>, <em>Hueman Instrumentality</em>, <em>Safety Marc</em>, <em>Jeremy Torman</em>, <em>Mordunkus</em>, <em>R0b0tn1k</em>, and more.
     </div>
     <div class="feature-box">
-      <a href="https://discord.gg/FFDTWwBgBe" class="cta-button-inbox">Join us</a>
+      <a href="https://discord.gg/FFDTWwBgBe" class="cta-button-inbox">Chat on Discord</a>
+      <br>
+      <a href="#" onclick="contactEmail()" class="cta-button-inbox">Email Us</a>
     </div>
   </div>
 
