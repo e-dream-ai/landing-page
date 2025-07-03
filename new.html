@@ -219,11 +219,17 @@ img, span {
   border: none;
   border-radius: 8px;
   text-decoration: none;
-  display: block;
+  display: inline-block;
   cursor: pointer;
-  margin: 0 auto;
   transform: none !important;
   position: relative;
+}
+.feature-box:has(.cta-button-inbox) {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 .cta-button-inbox:hover {
   background-color: rgb(0,188,199);
@@ -269,7 +275,7 @@ img, span {
       <span>infinidream</span>
     </div>
     <div>
-      <a href="https://forms.gle/2u5w5fFN98EKPLC5A" class="cta-button">request an invite</a>
+      <a href="https://forms.gle/3gdV6YFEyYDmVNdn7" class="cta-button">request an invite</a>
       <a href="https://alpha.infinidream.ai" class="cta-button">open the app</a>
     </div>
   </div>
@@ -364,7 +370,8 @@ img, span {
       Human artists and AI have complementary strengths and work best together as part of a <em>collective intelligence</em>.
     </div>
     <div class="feature-box">
-      Join our creators program and get paid.
+      Join our creators program and get paid.<br><br>
+      <a href="https://alpha.infinidream.ai/rc" class="cta-button-inbox">Creators Program</a>
     </div>
   </div>
   
@@ -421,7 +428,7 @@ img, span {
       The artists who made all the dreams depicted here and shown in Infinidream: <em>Surrealism Today</em>, <em>Hueman Instrumentality</em>, <em>Safety Marc</em>, <em>Jeremy Torman</em>, <em>Mordunkus</em>, <em>R0b0tn1k</em> and more.
     </div>
     <div class="feature-box">
-      Join us!
+      <a href="https://discord.gg/FFDTWwBgBe" class="cta-button-inbox">Join us</a>
     </div>
   </div>
 
