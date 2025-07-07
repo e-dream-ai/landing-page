@@ -1,0 +1,826 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+  <title>infinidream</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/favicon.ico">
+  <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" type='text/css'>
+  <style type='text/css'>
+  body {
+    font-family: 'Comfortaa';
+    font-size: 25px;
+  }
+  p {
+    font-family: 'Lato';
+    font-size: 16px;
+    margin-left: 30px;
+    margin-top: 30px;
+    margin-bottom: 0px;
+  }
+  ul {
+    font-family: 'Lato';
+    font-size: 16px;
+    margin-left: 30px;
+    margin-top: 30px;
+    margin-bottom: 0px;
+  }
+  li {
+    margin-bottom: 5px;
+  }
+  h1 {
+    font-family: 'Comfortaa';
+    font-size: 30px;
+    margin-left: 30px;
+    margin-top: 30px;
+  }
+  h1.hero {
+    font-size: 30px;
+  }
+  a:link {
+    color: #ffdab8;
+  }
+  a:visited {
+    color: #ffdab8;
+  }
+  a:hover {
+    color: rgb(0,208,219);
+  }
+  img, span {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .thumbnail-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 30px;
+    margin-top: 0px;
+  }
+
+  .thumbnail-grid img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+  }
+
+  .thumbnail-grid img:hover {
+    transform: scale(1.05);
+  }
+
+  .thumbnail-container {
+    position: relative;
+    display: inline-block;
+  }
+
+  .thumbnail-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .thumbnail-container:hover video {
+    opacity: 1;
+  }
+
+  .thumbnail-container:hover img {
+    opacity: 0;
+  }
+
+  .grid-section {
+    margin-top: 50px;
+  }
+
+  .grid-title {
+    font-family: 'Comfortaa';
+    font-size: 24px;
+    margin-left: 30px;
+    margin-bottom: 0px;
+    color: #ffdab8;
+  }
+  .copyright {
+    font-family: 'Lato';
+    font-size: 12px;
+    color: #888;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 30px;
+  }
+  .social-buttons {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .social-button-row {
+    line-height: 1.0;
+  }
+  .social-buttons a {
+    display: inline-block;
+    margin: 10px 15px;
+    color: #ffdab8;
+    text-decoration: none;
+    font-size: 24px;
+    transition: color 0.3s ease;
+  }
+  .social-buttons a:hover {
+    color: rgb(0,208,219);
+  }
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #000000;
+    z-index: 1000;
+    padding: 20px 30px;
+    border-bottom: 1px solid rgba(255, 218, 184, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .header .logo-section {
+    display: flex;
+    align-items: center;
+  }
+  .header .logo-section img {
+    margin-right: 15px;
+  }
+  .header .logo-section span {
+    font-family: 'Comfortaa';
+    font-size: 50px;
+    color: #ffdab8;
+  }
+  .header .cta-button {
+    position: static;
+    margin: 0;
+  }
+  .header > div:last-child {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  .main-content {
+    margin-top: 140px;
+    position: relative;
+  }
+  .main-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .main-content > * {
+    position: relative;
+    z-index: 2;
+  }
+  .team-name {
+    font-style: italic;
+    font-size: 18px;
+  }
+  .cta-button {
+    position: absolute;
+    top: 60px;
+    right: 15%;
+    background-color: rgb(0,208,219);
+    color: #000000 !important;
+    font-family: 'Lato';
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    z-index: 1000;
+  }
+  .cta-button:hover {
+    background-color: rgb(0,188,199);
+    transform: translateY(-2px);
+  }
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin: 30px;
+  }
+  .feature-box {
+    background-color: rgba(255, 218, 184, 0.1);
+    border: 1px solid rgba(255, 218, 184, 0.3);
+    border-radius: 8px;
+    padding: 20px;
+    font-family: 'Lato';
+    font-size: 16px;
+    color: #ffdab8;
+    transition: all 0.3s ease;
+  }
+  .feature-box:hover {
+    transform: translateY(-5px);
+    background-color: rgba(255, 218, 184, 0.15);
+    border-color: rgba(255, 218, 184, 0.5);
+    box-shadow: 0 8px 25px rgba(0, 208, 219, 0.2);
+  }
+  .cta-button-inbox {
+    background-color: rgb(0,208,219);
+    color: #000000 !important;
+    font-family: 'Lato';
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    transform: none !important;
+    position: relative;
+  }
+  .feature-box:has(.cta-button-inbox) {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .feature-box:has(.social-button-row) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .cta-button-inbox:hover {
+    background-color: rgb(0,188,199);
+    transform: none !important;
+  }
+  @media (max-width: 600px) {
+    h1 {
+      font-size: 25px;
+    }
+    .header .logo-section span {
+      font-size: 40px;
+    }
+    .header {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 15px 20px;
+    }
+    .header > div:last-child {
+      margin-top: 10px;
+      align-self: flex-end;
+      display: flex;
+      gap: 10px;
+    }
+    .header .cta-button {
+      font-size: 14px;
+      padding: 10px 15px;
+      margin-left: 0;
+    }
+    .main-content {
+      margin-top: 180px;
+    }
+  }
+  </style>
+  <script type='text/javascript'>
+function getEmail() {
+    const parts = ['support', 'e-dream', 'ai'];
+    return parts[0] + '@' + parts[1] + '.' + parts[2];
+  }
+
+  function contactEmail() {
+    window.location.href = 'mailto:' + getEmail();
+  }
+
+  // UUID mapping for thumbnails-ranked directory
+  const uuidMapping = {
+    "21b39e9f-fd09-481a-b7d5-cfd0c951bc94": "9602c3fa-7263-416f-93bd-be0bdf307941",
+    "2d0421e0-8acd-4740-b97b-3b53a9cea7aa": "156cd9cd-f58b-4460-9a51-9997b651aefc",
+    "9ede9977-764e-4637-a064-4c63df793eaa": "6e196918-61de-41d7-860b-819e70d1ea22",
+    "bd5615c2-5a68-4e33-b9c1-6649fb09dc03": "7e397b5e-6e48-467d-915b-09bbaa567d56",
+    "4fc05086-b043-461c-830b-88c474f7a0c4": "eb107f71-77b6-4079-8afc-6cf30355c403",
+    "d6f798a1-b6e1-4851-ab12-d2b40233ab70": "df5cc6a3-2487-43d9-bc37-d3ef6a9635eb",
+    "c91bac92-5f38-4807-abaf-11f9d349d565": "7e87171a-8d5e-457f-8d6f-773bc6e38594",
+    "e45d0e8c-ac8d-47c4-b32b-c615066d3663": "eb107f71-77b6-4079-8afc-6cf30355c403",
+    "80223a0b-56b2-4d9a-a32a-d46531262b6a": "7650ddb2-8401-45b9-90e9-7efabd59e161",
+    "0a9466e9-ef96-48c2-b933-008e065eadf4": "098a39bb-6e13-44ca-bd38-ed63add13f08",
+    "432547a1-1bd5-443d-91e1-adbb296cc495": "670fcdb7-c557-49cc-b58a-6610c14b9fb0",
+    "01c0c747-adb7-4457-a91c-f19e60bace53": "45f00939-06b6-4fca-851d-e5b2a96bfd21",
+    "86b76afd-5a63-40af-a1e5-c1c5230c6d12": "f844e1bc-8885-4b8d-987e-f3349db75f4f",
+    "1a9f05ee-655e-4bb2-a664-395c90f8e99d": "a46d7a0c-86b4-4726-a5ec-bd806b6da375",
+    "9b9917f7-b17e-4c82-b80a-8ffc5295cc3f": "8ef308e1-626b-4dcd-8c9e-2163b86b039e",
+    "3641351b-10eb-4153-a8c4-cfa30fc57c16": "919ce239-31be-43e3-9e0a-436352be8f03",
+    "531907ed-74ac-4149-a20f-e91fad5d70a6": "f7970cbb-6205-4a11-be4b-a0e70c68c843",
+    "afc88c24-9904-4c6f-bf81-1e496af2304e": "1ec37552-2f5b-47e0-a599-4fb5ed3515eb",
+    "ae550e99-f460-4510-9904-021ac40ea347": "3cd842d5-8fbc-4cf7-ba6b-5d3ece5090cf",
+    "9bcf5821-96d0-44ce-8dd8-a8bb928e651a": "de50f70d-0604-40f5-ad79-8ab0f02e78ff",
+    "c08047fb-8133-46ca-b9dd-5292b821eb56": "dbaeb60a-ba06-4a86-be91-cca15417b47d",
+    "b2164567-683e-4422-9fb6-dd706b1ccb46": "abd349d1-dd79-47bd-a106-0cf213cfb269",
+    "671bac1f-e106-473d-b817-6800924ed6cf": "2040bc41-fc9a-4c91-9706-b124181aa93a",
+    "9c460739-c92a-4e86-8b19-4ceaa7fc52f3": "02009afc-0541-4d0b-bdd5-369b3e50652a",
+    "142f0b08-0288-45fe-a812-8a55b16f3f22": "09907ea2-4ec8-49ac-bed6-4a439b236d3c",
+    "13489b20-cc0b-4923-8ea8-3f64015fe389": "09907ea2-4ec8-49ac-bed6-4a439b236d3c",
+    "5acfe5ec-fa31-4177-a5d9-84798643507f": "f2a2fb0e-d922-4dad-8f82-966887753cd7",
+    "912af337-ffad-45ef-8f3d-6aad08ee7f52": "09907ea2-4ec8-49ac-bed6-4a439b236d3c",
+    "ae07e6db-e5d8-4945-8ccd-da16c709e1d0": "322bf289-4a93-4789-ba29-6541149aa82c",
+    "e2723fbb-c855-43db-bf63-3a74211277fd": "678b9361-b383-4ff9-b7b5-614feb9743e2",
+    "153a8b9b-5db1-4c10-ab74-a4be1a48db86": "a510ab54-6ac6-4c72-985f-527a7643400c",
+    "c54b8e31-2a6a-4a5d-8bf0-16530bce7e58": "8478419f-a54a-43c5-8143-1792f2e1cbff",
+    "2d0a0ba5-22ca-4d99-bb47-9765f7084fa0": "a8e8ee74-6321-4e61-9529-514d9ac12518"
+  };
+
+  function getVideoPath(thumbnailSrc) {
+    // Extract UUID from thumbnail filename
+    const parts = thumbnailSrc.split('/');
+    const filename = parts[parts.length - 1];
+    const uuid = filename.split('-').slice(1).join('-').replace('.jpg', '');
+    
+    // Check if this is from thumbnails-ranked directory
+    if (thumbnailSrc.includes('thumbnails-ranked/')) {
+      // Use UUID mapping for thumbnails-ranked
+      const mappedUuid = uuidMapping[uuid];
+      if (mappedUuid) {
+        return `processed-videos/processed_${mappedUuid}.mp4`;
+      }
+    }
+    
+    // Default behavior for thumbnails and thumbnails-new
+    return `processed-videos/processed_${uuid}.mp4`;
+  }
+
+  function createVideoElement(thumbnailImg) {
+    const container = document.createElement('div');
+    container.className = 'thumbnail-container';
+    
+    const videoSrc = getVideoPath(thumbnailImg.src);
+    const CROSSFADE_DURATION = 3.0; // seconds
+    
+    // Create two video elements for crossfading
+    const video1 = document.createElement('video');
+    video1.muted = true;
+    video1.loop = false;
+    video1.preload = 'none';
+    video1.src = videoSrc;
+    video1.style.opacity = '0';
+    video1.style.transition = `opacity ${CROSSFADE_DURATION}s ease-in-out`;
+    
+    const video2 = document.createElement('video');
+    video2.muted = true;
+    video2.loop = false;
+    video2.preload = 'none';
+    video2.src = videoSrc;
+    video2.style.opacity = '0';
+    video2.style.transition = `opacity ${CROSSFADE_DURATION}s ease-in-out`;
+    
+    // Copy img attributes to container
+    container.style.width = '100%';
+    container.style.aspectRatio = '16/9';
+    
+    // Insert container before img and move img inside
+    thumbnailImg.parentNode.insertBefore(container, thumbnailImg);
+    container.appendChild(thumbnailImg);
+    container.appendChild(video1);
+    container.appendChild(video2);
+    
+    let currentVideo = video1;
+    let nextVideo = video2;
+    let isPlaying = false;
+    let crossfadeTriggered = false;
+    
+    function startCrossfade() {
+      if (!isPlaying || crossfadeTriggered) return;
+      
+      crossfadeTriggered = true;
+      
+      // Start the next video from the beginning
+      nextVideo.currentTime = 0;
+      nextVideo.play().catch(e => console.log('Video play failed:', e));
+      
+      // Fade out current video and fade in next video
+      currentVideo.style.opacity = '0';
+      nextVideo.style.opacity = '1';
+      
+      // Swap the videos
+      const temp = currentVideo;
+      currentVideo = nextVideo;
+      nextVideo = temp;
+      
+      // Reset crossfade flag after the crossfade completes
+      setTimeout(() => {
+        crossfadeTriggered = false;
+      }, CROSSFADE_DURATION * 1000);
+    }
+    
+    // Add crossfade effect when video approaches end
+    function handleTimeUpdate() {
+      if (this.duration && this.currentTime > this.duration - CROSSFADE_DURATION && !crossfadeTriggered) {
+        startCrossfade();
+      }
+    }
+    
+    video1.addEventListener('timeupdate', handleTimeUpdate);
+    video2.addEventListener('timeupdate', handleTimeUpdate);
+    
+    // Add hover event listeners
+    container.addEventListener('mouseenter', function() {
+      isPlaying = true;
+      crossfadeTriggered = false;
+      
+      // Disable transitions for immediate start
+      currentVideo.style.transition = 'none';
+      nextVideo.style.transition = 'none';
+      
+      currentVideo.currentTime = 0;
+      currentVideo.style.opacity = '1';
+      nextVideo.style.opacity = '0';
+      currentVideo.play().catch(e => console.log('Video play failed:', e));
+      
+      // Re-enable transitions after a brief delay for crossfading
+      setTimeout(() => {
+        currentVideo.style.transition = `opacity ${CROSSFADE_DURATION}s ease-in-out`;
+        nextVideo.style.transition = `opacity ${CROSSFADE_DURATION}s ease-in-out`;
+      }, 100);
+    });
+    
+    container.addEventListener('mouseleave', function() {
+      isPlaying = false;
+      crossfadeTriggered = false;
+      video1.pause();
+      video2.pause();
+      video1.style.opacity = '0';
+      video2.style.opacity = '0';
+      currentVideo = video1;
+      nextVideo = video2;
+    });
+  }
+
+  window.onload = function() {
+    const emailDisplay = document.getElementById('email-display');
+    if (emailDisplay) {
+      emailDisplay.textContent = getEmail();
+    }
+    
+    // Convert all thumbnail images to video containers
+    const thumbnailImages = document.querySelectorAll('.thumbnail-grid img');
+    thumbnailImages.forEach(createVideoElement);
+  }
+  </script>
+</head>
+
+<body bgcolor="#000000" text="#FFDAB8">
+  <div class="header">
+    <div class="logo-section">
+      <img src="logo.png" width="80" height="80" alt="infinidream logo, the moon and stars over clouds inside a circle">
+      <span>infinidream</span>
+    </div>
+
+    <div>
+      <a href="https://forms.gle/3gdV6YFEyYDmVNdn7" class="cta-button">request an invite</a>
+      <a href="https://alpha.infinidream.ai" class="cta-button">open the app</a>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <h1 class="hero">visuals for your vibe</h1>
+
+    <div class="thumbnail-grid">
+      <img src="thumbnails/00002-5d41d3c5-da1f-4040-884a-4f1c5bf3c0a1.jpg" alt="AI Visual">
+      <img src="thumbnails-ranked/00013-21b39e9f-fd09-481a-b7d5-cfd0c951bc94.jpg" alt="Top Visual 14">
+      <img src="thumbnails-ranked/00001-e45d0e8c-ac8d-47c4-b32b-c615066d3663.jpg" alt="AI Visual">
+    </div>
+
+    <div class="feature-grid">
+      <div class="feature-box">
+        Discover and experience animated AI visuals from a multitude of
+        styles, tempos, and artists.
+      </div>
+
+      <div class="feature-box">
+        These ambient visuals are adjustable to go along with the music
+        you already have playing... or no music at all.
+      </div>
+
+      <div class="feature-box">
+        Infinidream can be a digital painting, alive and slowly evolving.
+        Or rocket down the rabbit hole, it's up to you.
+      </div>
+
+      <div class="feature-box">
+        Install Infinidream on your Mac to get the best experience, or use
+        any web browser for basic access.
+      </div>
+
+      <div class="feature-box">
+        Install the remote on your phone to control your Infinidream from
+        anywhere.
+      </div>
+
+      <div class="feature-box">
+        <a href="https://alpha.infinidream.ai/account" class=
+        "cta-button-inbox">create an account</a>
+      </div>
+    </div>
+
+    <div class="thumbnail-grid">
+      <img src="thumbnails-ranked/00002-86b76afd-5a63-40af-a1e5-c1c5230c6d12.jpg" alt="AI Visual">
+      <img src="thumbnails-ranked/00003-c54b8e31-2a6a-4a5d-8bf0-16530bce7e58.jpg" alt="AI Visual">
+      <img src="thumbnails-ranked/00004-2d0a0ba5-22ca-4d99-bb47-9765f7084fa0.jpg" alt="AI Visual">
+    </div>
+
+    <div class="feature-grid">
+      <div class="feature-box">
+        <a href="https://discord.gg/FFDTWwBgBe">Discord</a> is our main channel for support and development.
+
+        <div class="social-buttons">
+          <a href="https://discord.gg/FFDTWwBgBe" title="Discord"><i class="fab fa-discord"></i></a>
+        </div>
+      </div>
+
+      <div class="feature-box">
+        <div class="social-buttons social-button-row">
+          <a href="https://bsky.app/profile/infinidream.ai" title="Bluesky"><i class="fab fa-bluesky"></i></a>
+	  <a href="https://discord.gg/FFDTWwBgBe" title="Discord"><i class="fab fa-discord"></i></a>
+	  <a href="https://github.com/e-dream-ai" title="GitHub"><i class="fab fa-github"></i></a>
+	  <a href="https://www.facebook.com/groups/infinidreamai/" title="Facebook"><i class="fab fa-facebook"></i></a>
+	  <a href="https://www.threads.com/@infinidream_ai" title="Threads"><i class="fab fa-threads"></i></a>
+	  <a href="https://www.instagram.com/infinidream_ai" title="Instagram"><i class="fab fa-instagram"></i></a>
+	  <a href="https://x.com/infinidream_ai" title="X"><i class="fab fa-x-twitter"></i></a>
+        </div>
+      </div>
+
+      <div class="feature-box">
+        Contact us by email at<br>
+        <br>
+        <a href="#" onclick="contactEmail()" class="cta-button-inbox" id= "email-display" name="email-display">
+	  Email Us
+	</a>
+      </div>
+    </div>
+
+    <div class="thumbnail-grid">
+      <img src="thumbnails-ranked/00008-e2723fbb-c855-43db-bf63-3a74211277fd.jpg" alt="AI Visual">
+      <img src="thumbnails-ranked/00009-3641351b-10eb-4153-a8c4-cfa30fc57c16.jpg" alt="AI Visual">
+      <img src="thumbnails-ranked/00010-0a9466e9-ef96-48c2-b933-008e065eadf4.jpg" alt="AI Visual">
+    </div>
+
+    <h1>artist and open source collaborators</h1>
+
+    <p>
+      Infinidream is a platform for generative artists, programmers,
+      prompters, and dreamers of all stripes.
+    </p>
+
+    <div class="feature-grid">
+      <div class="feature-box">
+        It can be as simple as uploading videos the same way you would to
+        YouTube or Instagram, but with a deeper experience for your
+        audience.
+      </div>
+
+      <div class="feature-box">
+        Collaborate with AI by using our
+	<a href="https://github.com/e-dream-ai/python-api">Python API</a>
+	to create infinite artworks.
+      </div>
+
+      <div class="feature-box">
+        Use Infinidream to tap into crowdsourcing or social interaction
+        for participatory artworks.
+      </div>
+
+      <div class="feature-box">
+        Infinidream is <a href="https://github.com/e-dream-ai">open source</a>
+	and we invite collaboration of all kinds. Build on our
+        platform, share your own art, or just
+	<a href="https://github.com/e-dream-ai/client/issues/new">report a bug</a>.
+      </div>
+
+      <div class="feature-box">
+        Infinidream is an experiment in <em>collective intelligence</em>:
+        Human artists and AIs working together with complementary
+        strengths.
+      </div>
+
+      <div class="feature-box">
+        Join our creators program and get paid.<br>
+        <br>
+        <a href="https://forms.gle/JsZb4TRdw3jq65Bc8" class="cta-button-inbox">Creators Program</a>
+      </div>
+    </div>
+
+    <div class="thumbnail-grid">
+      <img src="thumbnails-ranked/00005-13489b20-cc0b-4923-8ea8-3f64015fe389.jpg" alt="AI Visual">
+      <img src="thumbnails-ranked/00006-c08047fb-8133-46ca-b9dd-5292b821eb56.jpg" alt="AI Visual">
+      <img src="thumbnails-ranked/00007-9b9917f7-b17e-4c82-b80a-8ffc5295cc3f.jpg" alt="AI Visual">
+    </div>
+
+    <h1>roadmap</h1>
+
+    <p>
+      There are so many ways to expand and improve Infinidream.
+      Currrently we are working on and thinking about:
+    </p>
+
+    <div class="feature-grid">
+      <div class="feature-box">
+        Hosted cloud generation driven by AI and crowd signals. Put an
+        "edit" button on each dream and allow you to change the prompts,
+        restyle, and make your own version.
+      </div>
+
+      <div class="feature-box">
+        Running on more platforms such as Windows, Android, iOS, tvOS, and
+        directly on TVs and set-top boxes.
+      </div>
+
+      <div class="feature-box">
+        Managing multiple screens. Turn your home or space into an
+        interactive gallery.
+      </div>
+
+      <div class="feature-box">
+        Social control: allowing the people around a screen to control it,
+        not just the owner. Put a QR code next to a screen to make a video
+        jukebox, or invent your own game.
+      </div>
+
+      <div class="feature-box">
+        Using the microphone to make playback audioreactive, detect the
+        ambient activity level, and even ID any song. Add realtime
+        effects, more mixing, and become an AI VJ.
+      </div>
+    </div>
+
+    <div class="thumbnail-grid">
+      <img src="thumbnails-ranked/00016-9c460739-c92a-4e86-8b19-4ceaa7fc52f3.jpg" alt="Top Visual 17">
+      <img src="thumbnails-new/00002-41e402e7-f4ed-49c1-ab6c-611ff1e07d18.jpg" alt="AI Visual">
+      <img src="thumbnails-new/00003-0b71a325-84c6-4bcb-882e-b8f37d6ad856.jpg" alt="AI Visual">
+    </div>
+
+    <h1>team</h1>
+
+    <div class="feature-grid">
+      <div class="feature-box">
+        <a href="https://draves.ai" class="team-name">Scott Draves</a>
+	<br>
+	<br>
+	Pioneering AI artist and engineering leader. Founder of the
+	<a href= "https://scottdraves.com/sheep.html">Electric Sheep</a>.
+      </div>
+
+      <div class="feature-box">
+	<a href="https://www.linkedin.com/in/max-carlson-8959531/" class="team-name">Max Carlson</a>
+	<br>
+	<br>
+	Laszlo Systems cofounder, Nest early engineer.
+      </div>
+
+      <div class="feature-box">
+        <a href="https://github.com/glouel" class="team-name">Guillaume Louel</a>
+	<br>
+	<br>
+        Freelance software architect, MacOS expert, open source maintainer
+        of <a href="https://aerialscreensaver.github.io/">Aerial</a>.
+      </div>
+
+      <div class="feature-box">
+	<a href="https://magixworld.com/" class="team-name">Mikl&oacute;s Nagy</a>
+	<br>
+	<br>
+	Multidisciplinary creative, VFX, and Open Source
+	<a href="https://github.com/XmYx">Deforum developer</a>.
+      </div>
+
+      <div class="feature-box">
+        The artists who made the samples depicted here:
+	<em>Surrealism Today</em>,
+	<em>Hueman Instrumentality</em>,
+	<em>Safety Marc</em>,
+        <em>Jeremy Torman</em>,
+	<em>Mordunkus</em>,
+	<em>R0b0tn1k</em>,
+	and more.
+      </div>
+
+      <div class="feature-box">
+        <a href="https://discord.gg/FFDTWwBgBe" class="cta-button-inbox">Chat on Discord</a>
+	<br>
+        <a href="#" onclick="contactEmail()" class="cta-button-inbox">Email Us</a>
+      </div>
+    </div>
+
+    <div class="grid-section">
+      <div class="thumbnail-grid">
+        <img src="thumbnails/00002-5d41d3c5-da1f-4040-884a-4f1c5bf3c0a1.jpg" alt="AI Visual 3">
+        <img src="thumbnails/00011-e8958970-501b-42e8-8005-e9768e951603.jpg" alt="AI Visual 12">
+        <img src="thumbnails-ranked/00001-e45d0e8c-ac8d-47c4-b32b-c615066d3663.jpg" alt="Top Visual 2">
+        <img src="thumbnails-ranked/00002-86b76afd-5a63-40af-a1e5-c1c5230c6d12.jpg" alt="Top Visual 3">
+        <img src="thumbnails-ranked/00003-c54b8e31-2a6a-4a5d-8bf0-16530bce7e58.jpg" alt="Top Visual 4">
+        <img src="thumbnails-ranked/00004-2d0a0ba5-22ca-4d99-bb47-9765f7084fa0.jpg" alt="Top Visual 5">
+        <img src="thumbnails-ranked/00005-13489b20-cc0b-4923-8ea8-3f64015fe389.jpg" alt="Top Visual 6">
+        <img src="thumbnails-ranked/00006-c08047fb-8133-46ca-b9dd-5292b821eb56.jpg" alt="Top Visual 7">
+        <img src="thumbnails-ranked/00007-9b9917f7-b17e-4c82-b80a-8ffc5295cc3f.jpg" alt="Top Visual 8">
+        <img src="thumbnails-ranked/00008-e2723fbb-c855-43db-bf63-3a74211277fd.jpg" alt="Top Visual 9">
+        <img src="thumbnails-ranked/00009-3641351b-10eb-4153-a8c4-cfa30fc57c16.jpg" alt="Top Visual 10">
+        <img src="thumbnails-ranked/00010-0a9466e9-ef96-48c2-b933-008e065eadf4.jpg" alt="Top Visual 11">
+        <img src="thumbnails-ranked/00011-01c0c747-adb7-4457-a91c-f19e60bace53.jpg" alt="Top Visual 12">
+        <img src="thumbnails-ranked/00013-21b39e9f-fd09-481a-b7d5-cfd0c951bc94.jpg" alt="Top Visual 14">
+        <img src="thumbnails/00008-d4bfc7da-6c13-407e-b80b-ed8b91ac5b44.jpg" alt="AI Visual 9">
+        <img src="thumbnails/00006-9c352143-d163-4c1e-948d-836eda24392c.jpg" alt="AI Visual 7">
+        <img src="thumbnails/00009-8d9cc836-23c3-4b6e-8ab6-45833231695f.jpg" alt="AI Visual 10">
+        <img src="thumbnails/00012-2b88ba6a-0e70-4b76-8cd1-69268d785daf.jpg" alt="AI Visual 13">
+        <img src="thumbnails-ranked/00014-912af337-ffad-45ef-8f3d-6aad08ee7f52.jpg" alt="Top Visual 15">
+        <img src="thumbnails-ranked/00015-531907ed-74ac-4149-a20f-e91fad5d70a6.jpg" alt="Top Visual 16">
+        <img src="thumbnails-ranked/00016-9c460739-c92a-4e86-8b19-4ceaa7fc52f3.jpg" alt="Top Visual 17">
+        <img src="thumbnails-ranked/00017-afc88c24-9904-4c6f-bf81-1e496af2304e.jpg" alt="Top Visual 18">
+        <img src="thumbnails-ranked/00018-80223a0b-56b2-4d9a-a32a-d46531262b6a.jpg" alt="Top Visual 19">
+        <img src="thumbnails-ranked/00019-671bac1f-e106-473d-b817-6800924ed6cf.jpg" alt="Top Visual 20">
+        <img src="thumbnails-ranked/00020-2d0421e0-8acd-4740-b97b-3b53a9cea7aa.jpg" alt="Top Visual 21">
+        <img src="thumbnails-ranked/00021-9bcf5821-96d0-44ce-8dd8-a8bb928e651a.jpg" alt="Top Visual 22">
+        <img src="thumbnails-ranked/00022-c91bac92-5f38-4807-abaf-11f9d349d565.jpg" alt="Top Visual 23">
+        <img src="thumbnails-ranked/00023-ae550e99-f460-4510-9904-021ac40ea347.jpg" alt="Top Visual 24">
+        <img src="thumbnails-ranked/00024-1a9f05ee-655e-4bb2-a664-395c90f8e99d.jpg" alt="Top Visual 25">
+        <img src="thumbnails-ranked/00025-153a8b9b-5db1-4c10-ab74-a4be1a48db86.jpg" alt="Top Visual 26">
+        <img src="thumbnails-ranked/00026-9ede9977-764e-4637-a064-4c63df793eaa.jpg" alt="Top Visual 27">
+        <img src="thumbnails-ranked/00027-b2164567-683e-4422-9fb6-dd706b1ccb46.jpg" alt="Top Visual 28">
+        <img src="thumbnails-ranked/00029-432547a1-1bd5-443d-91e1-adbb296cc495.jpg" alt="Top Visual 30">
+        <img src="thumbnails/00001-2936f37a-8ee6-4d29-be97-928d61cc1d3d.jpg" alt="AI Visual 2">
+        <img src="thumbnails/00003-d7154de6-d570-4ade-97dc-1e463ba07f8c.jpg" alt="AI Visual 4">
+        <img src="thumbnails/00004-f25d3d38-b700-4f13-898f-e294836c84c4.jpg" alt="AI Visual 5">
+        <img src="thumbnails/00007-5e75cd59-fb2d-4926-95df-622d9680937a.jpg" alt="AI Visual 8">
+        <img src="thumbnails-ranked/00030-ae07e6db-e5d8-4945-8ccd-da16c709e1d0.jpg" alt="Top Visual 31">
+        <img src="thumbnails-ranked/00031-d6f798a1-b6e1-4851-ab12-d2b40233ab70.jpg" alt="Top Visual 32">
+        <img src="thumbnails-ranked/00032-5acfe5ec-fa31-4177-a5d9-84798643507f.jpg" alt="Top Visual 33">
+        <img src="thumbnails-ranked/00033-142f0b08-0288-45fe-a812-8a55b16f3f22.jpg" alt="Top Visual 34">
+        <img src="thumbnails-new/00001-45a5a547-d366-41ff-9fec-15eb4f30e409.jpg" alt="New AI Visual 4">
+        <img src="thumbnails-new/00001-480b6287-d1c5-43e9-83eb-ca888beb2328.jpg" alt="New AI Visual 5">
+        <img src="thumbnails-new/00001-4c4f60e1-00df-45a2-8a4c-bff282a05204.jpg" alt="New AI Visual 6">
+        <img src="thumbnails-new/00001-981509d8-2171-4b08-b58a-c9d5f6bcd988.jpg" alt="New AI Visual 7">
+        <img src="thumbnails-new/00002-41e402e7-f4ed-49c1-ab6c-611ff1e07d18.jpg" alt="New AI Visual 8">
+        <img src="thumbnails-new/00002-719d51d8-8256-457c-a09d-138648c0aebc.jpg" alt="New AI Visual 9">
+        <img src="thumbnails-new/00002-a2342601-916d-4a26-9b54-df4c4671da0a.jpg" alt="New AI Visual 10">
+        <img src="thumbnails-new/00002-e27977a7-a205-4ba3-9cb5-5aa2eab6954c.jpg" alt="New AI Visual 11">
+        <img src="thumbnails-new/00000-8ef308e1-626b-4dcd-8c9e-2163b86b039e.jpg" alt="New AI Visual 2">
+        <img src="thumbnails-new/00000-919ce239-31be-43e3-9e0a-436352be8f03.jpg" alt="New AI Visual 3">
+        <img src="thumbnails-new/00003-0b71a325-84c6-4bcb-882e-b8f37d6ad856.jpg" alt="New AI Visual 12">
+        <img src="thumbnails-new/00003-159e328b-6a16-4dd5-89a8-bbaeb26c2a76.jpg" alt="New AI Visual 13">
+        <img src="thumbnails-new/00003-253cac01-c0eb-4050-a643-686533208b1c.jpg" alt="New AI Visual 14">
+        <img src="thumbnails-new/00003-4dd6509c-a683-457d-97f4-151b820a3850.jpg" alt="New AI Visual 15">
+        <img src="thumbnails-new/00004-02a2030e-f7bc-4e9c-be05-50df68701cb7.jpg" alt="New AI Visual 16">
+        <img src="thumbnails-new/00004-0d07e5c0-75d6-408d-a90f-ef015e05bd6a.jpg" alt="New AI Visual 17">
+        <img src="thumbnails-new/00004-1dae1d7a-8c24-487e-b590-0b51dacc9796.jpg" alt="New AI Visual 18">
+        <img src="thumbnails-new/00004-ce7e0720-bbee-418b-a068-326eabdd2bd2.jpg" alt="New AI Visual 19">
+        <img src="thumbnails-new/00005-23802459-58f0-43d8-9b2e-d1804e31e117.jpg" alt="New AI Visual 20">
+        <img src="thumbnails-new/00005-481436ca-f582-4297-abfb-94cfecc23723.jpg" alt="New AI Visual 21">
+        <img src="thumbnails-new/00005-e3e20955-cb5b-424f-89e4-6c41c39cfe9e.jpg" alt="New AI Visual 22">
+        <img src="thumbnails-new/00006-145885ff-3a8f-4cc1-bfce-9eb4c455b751.jpg" alt="New AI Visual 23">
+        <img src="thumbnails-new/00006-26c58639-1e7f-4e51-80f3-a17b7c66d64c.jpg" alt="New AI Visual 24">
+        <img src="thumbnails-new/00007-6ddeddc6-7000-42da-9b17-9f2ac75e8abb.jpg" alt="New AI Visual 25">
+        <img src="thumbnails-new/00007-aeb19b2d-042f-40eb-a767-04f5edb78105.jpg" alt="New AI Visual 26">
+        <img src="thumbnails-new/00007-b220be44-2508-40c0-bb42-56c243ae5b34.jpg" alt="New AI Visual 27">
+        <img src="thumbnails-new/00008-386cd1b2-9bf8-48e5-a39d-78f062b6cc66.jpg" alt="New AI Visual 28">
+        <img src="thumbnails-new/00008-3e8ab9ac-2088-4f32-bbad-5ef56d372d91.jpg" alt="New AI Visual 29">
+        <img src="thumbnails-new/00008-c0b34fcb-706a-4e83-8704-55ec7aaadbfb.jpg" alt="New AI Visual 30">
+        <img src="thumbnails-new/00010-cc8e4897-7ec2-4237-ac23-36d51876f642.jpg" alt="New AI Visual 31">
+        <img src="thumbnails-new/00010-f7285f38-feb3-484b-957f-5cbc9703e701.jpg" alt="New AI Visual 32">
+        <img src="thumbnails-new/00010-f7dbba66-9ac3-4657-a65d-15451b6698a1.jpg" alt="New AI Visual 33">
+        <img src="thumbnails-new/00011-0ae36464-30e4-41bb-8318-b051791c7752.jpg" alt="New AI Visual 34">
+        <img src="thumbnails-new/00011-e38b86e2-eaf9-4fab-b60c-410775305472.jpg" alt="New AI Visual 35">
+        <img src="thumbnails-new/00012-ea6e4060-8f55-450a-80a1-bb19da3ba530.jpg" alt="New AI Visual 36">
+        <img src="thumbnails-new/00013-2b8ccecf-7f81-400e-84bd-36183f8592bd.jpg" alt="New AI Visual 37">
+        <img src="thumbnails-new/00013-bd6e5655-2c95-4462-b2ee-f2ae58b21b7b.jpg" alt="New AI Visual 38">
+        <img src="thumbnails-new/00013-dbd8d2e4-38e9-4190-b27c-b0ed980401f9.jpg" alt="New AI Visual 39">
+        <img src="thumbnails-new/00014-01a84eb2-063c-4d0d-bc88-4fccbcae23e3.jpg" alt="New AI Visual 40">
+        <img src="thumbnails-new/00015-a772bb25-c106-4174-b7a7-221f068254db.jpg" alt="New AI Visual 41">
+        <img src="thumbnails-new/00017-440197ed-d861-4960-bde6-c252c23c61ce.jpg" alt="New AI Visual 42">
+        <img src="thumbnails-new/00017-48d40ae3-dd73-4c86-ac38-56aa7ea8bb1c.jpg" alt="New AI Visual 43">
+        <img src="thumbnails-new/00018-19f4dd5b-a9a0-4c94-bbd8-651a7d00b070.jpg" alt="New AI Visual 44">
+        <img src="thumbnails-new/00018-fe826117-a2ba-41d6-87e9-9780ad4d8fa6.jpg" alt="New AI Visual 45">
+        <img src="thumbnails-new/00020-5792c2e7-b03b-4f5c-843e-6c86919814ea.jpg" alt="New AI Visual 46">
+      </div>
+    </div>
+  </div>
+
+  <div class="copyright">
+    &copy; 2025 e-dream, inc.
+  </div>
+</body>
+</html>
