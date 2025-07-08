@@ -459,6 +459,7 @@ function getEmail() {
       
       // Show video and bring to front when it starts playing
       const showVideo = () => {
+        console.log('showVideo()');
         currentVideo.style.opacity = '1';
         currentVideo.style.zIndex = '3'; // Above image
         currentVideo.removeEventListener('playing', showVideo);
