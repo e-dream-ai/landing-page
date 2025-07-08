@@ -397,38 +397,49 @@ function getEmail() {
     container.appendChild(video1);
     container.appendChild(video2);
     
-    let currentVideo = video1;
-    let nextVideo = video2;
-    let isPlaying = false;
-    let crossfadeTriggered = false;
+    // Create container object for global management
+    const containerObj = {
+      element: container,
+      video1: video1,
+      video2: video2,
+      currentVideo: video1,
+      nextVideo: video2,
+      isPlaying: false,
+      crossfadeTriggered: false,
+      CROSSFADE_DURATION: CROSSFADE_DURATION
+    };
+    
+    // Store reference for scroll-based playback
+    container.videoContainer = containerObj;
+    allVideoContainers.push(containerObj);
     
     function startCrossfade() {
-      if (!isPlaying || crossfadeTriggered) return;
+      if (!containerObj.isPlaying || containerObj.crossfadeTriggered) return;
       
-      crossfadeTriggered = true;
+      containerObj.crossfadeTriggered = true;
       
       // Start the next video from the beginning
-      nextVideo.currentTime = 0;
-      nextVideo.play().catch(e => console.log('Video play failed:', e));
+      containerObj.nextVideo.currentTime = 0;
+      containerObj.nextVideo.play().catch(e => console.log('Video play failed:', e));
       
       // Fade out current video and fade in next video
-      currentVideo.style.opacity = '0';
-      nextVideo.style.opacity = '1';
+      containerObj.currentVideo.style.opacity = '0';
+      containerObj.nextVideo.style.opacity = '1';
       
       // Swap the videos
-      const temp = currentVideo;
-      currentVideo = nextVideo;
-      nextVideo = temp;
+      const temp = containerObj.currentVideo;
+      containerObj.currentVideo = containerObj.nextVideo;
+      containerObj.nextVideo = temp;
       
       // Reset crossfade flag after the crossfade completes
       setTimeout(() => {
-        crossfadeTriggered = false;
+        containerObj.crossfadeTriggered = false;
       }, CROSSFADE_DURATION * 1000);
     }
     
     // Add crossfade effect when video approaches end
     function handleTimeUpdate() {
-      if (this.duration && this.currentTime > this.duration - CROSSFADE_DURATION && !crossfadeTriggered) {
+      if (this.duration && this.currentTime > this.duration - CROSSFADE_DURATION && !containerObj.crossfadeTriggered) {
         startCrossfade();
       }
     }
@@ -436,36 +447,88 @@ function getEmail() {
     video1.addEventListener('timeupdate', handleTimeUpdate);
     video2.addEventListener('timeupdate', handleTimeUpdate);
     
-    // Add hover event listeners
-    container.addEventListener('mouseenter', function() {
-      isPlaying = true;
-      crossfadeTriggered = false;
+    // Add hover event listeners for desktop
+    if (!isMobile()) {
+      container.addEventListener('mouseenter', function() {
+        startVideo(containerObj);
+      });
       
-      // Disable transitions for immediate start
-      currentVideo.style.transition = 'none';
-      nextVideo.style.transition = 'none';
+      container.addEventListener('mouseleave', function() {
+        stopCurrentVideo();
+      });
+    }
+  }
+
+  // Global video management
+  let currentPlayingContainer = null;
+  let allVideoContainers = [];
+  
+  function stopCurrentVideo() {
+    if (currentPlayingContainer) {
+      currentPlayingContainer.isPlaying = false;
+      currentPlayingContainer.crossfadeTriggered = false;
+      currentPlayingContainer.video1.pause();
+      currentPlayingContainer.video2.pause();
+      currentPlayingContainer.video1.style.opacity = '0';
+      currentPlayingContainer.video2.style.opacity = '0';
+      currentPlayingContainer.currentVideo = currentPlayingContainer.video1;
+      currentPlayingContainer.nextVideo = currentPlayingContainer.video2;
+    }
+  }
+  
+  function startVideo(container) {
+    stopCurrentVideo();
+    currentPlayingContainer = container;
+    
+    container.isPlaying = true;
+    container.crossfadeTriggered = false;
+    
+    // Disable transitions for immediate start
+    container.currentVideo.style.transition = 'none';
+    container.nextVideo.style.transition = 'none';
+    
+    container.currentVideo.currentTime = 0;
+    container.currentVideo.style.opacity = '1';
+    container.nextVideo.style.opacity = '0';
+    container.currentVideo.play().catch(e => console.log('Video play failed:', e));
+    
+    // Re-enable transitions after a brief delay for crossfading
+    setTimeout(() => {
+      container.currentVideo.style.transition = `opacity ${container.CROSSFADE_DURATION}s ease-in-out`;
+      container.nextVideo.style.transition = `opacity ${container.CROSSFADE_DURATION}s ease-in-out`;
+    }, 100);
+  }
+  
+  // Detect mobile devices
+  function isMobile() {
+    return window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  }
+  
+  // Intersection observer for scroll-based video playback
+  function setupScrollBasedPlayback() {
+    const observer = new IntersectionObserver((entries) => {
+      let mostVisible = null;
+      let maxRatio = 0;
       
-      currentVideo.currentTime = 0;
-      currentVideo.style.opacity = '1';
-      nextVideo.style.opacity = '0';
-      currentVideo.play().catch(e => console.log('Video play failed:', e));
+      entries.forEach(entry => {
+        if (entry.intersectionRatio > maxRatio) {
+          maxRatio = entry.intersectionRatio;
+          mostVisible = entry.target;
+        }
+      });
       
-      // Re-enable transitions after a brief delay for crossfading
-      setTimeout(() => {
-        currentVideo.style.transition = `opacity ${CROSSFADE_DURATION}s ease-in-out`;
-        nextVideo.style.transition = `opacity ${CROSSFADE_DURATION}s ease-in-out`;
-      }, 100);
+      if (mostVisible && maxRatio > 0.5) {
+        const container = mostVisible.videoContainer;
+        if (container && container !== currentPlayingContainer) {
+          startVideo(container);
+        }
+      }
+    }, {
+      threshold: [0, 0.25, 0.5, 0.75, 1]
     });
     
-    container.addEventListener('mouseleave', function() {
-      isPlaying = false;
-      crossfadeTriggered = false;
-      video1.pause();
-      video2.pause();
-      video1.style.opacity = '0';
-      video2.style.opacity = '0';
-      currentVideo = video1;
-      nextVideo = video2;
+    allVideoContainers.forEach(container => {
+      observer.observe(container.element);
     });
   }
 
@@ -478,6 +541,15 @@ function getEmail() {
     // Convert all thumbnail images to video containers
     const thumbnailImages = document.querySelectorAll('.thumbnail-grid img');
     thumbnailImages.forEach(createVideoElement);
+    
+    // Setup scroll-based playback for mobile, hover for desktop
+    if (isMobile()) {
+      setupScrollBasedPlayback();
+      // Start playing the first video
+      if (allVideoContainers.length > 0) {
+        startVideo(allVideoContainers[0]);
+      }
+    }
   }
   </script>
 </head>
