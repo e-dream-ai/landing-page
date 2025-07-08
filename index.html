@@ -67,12 +67,34 @@
     aspect-ratio: 16/9;
     object-fit: cover;
     border-radius: 8px;
-    transition: transform 0.3s ease;
   }
 
-  .thumbnail-grid img:hover {
-    transform: scale(1.05);
+  .thumbnail-container {
+    position: relative;
+    display: inline-block;
   }
+
+  .thumbnail-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .thumbnail-container:hover video {
+    opacity: 1;
+  }
+
+  .thumbnail-container:hover img {
+    opacity: 0;
+  }
+
 
   .grid-section {
     margin-top: 50px;
@@ -284,10 +306,266 @@ function getEmail() {
     window.location.href = 'mailto:' + getEmail();
   }
 
+  // UUID mapping for thumbnails-ranked directory
+  const uuidMapping = {
+    "21b39e9f-fd09-481a-b7d5-cfd0c951bc94": "9602c3fa-7263-416f-93bd-be0bdf307941",
+    "2d0421e0-8acd-4740-b97b-3b53a9cea7aa": "156cd9cd-f58b-4460-9a51-9997b651aefc",
+    "9ede9977-764e-4637-a064-4c63df793eaa": "6e196918-61de-41d7-860b-819e70d1ea22",
+    "bd5615c2-5a68-4e33-b9c1-6649fb09dc03": "7e397b5e-6e48-467d-915b-09bbaa567d56",
+    "4fc05086-b043-461c-830b-88c474f7a0c4": "eb107f71-77b6-4079-8afc-6cf30355c403",
+    "d6f798a1-b6e1-4851-ab12-d2b40233ab70": "df5cc6a3-2487-43d9-bc37-d3ef6a9635eb",
+    "c91bac92-5f38-4807-abaf-11f9d349d565": "7e87171a-8d5e-457f-8d6f-773bc6e38594",
+    "e45d0e8c-ac8d-47c4-b32b-c615066d3663": "eb107f71-77b6-4079-8afc-6cf30355c403",
+    "80223a0b-56b2-4d9a-a32a-d46531262b6a": "7650ddb2-8401-45b9-90e9-7efabd59e161",
+    "0a9466e9-ef96-48c2-b933-008e065eadf4": "098a39bb-6e13-44ca-bd38-ed63add13f08",
+    "432547a1-1bd5-443d-91e1-adbb296cc495": "670fcdb7-c557-49cc-b58a-6610c14b9fb0",
+    "01c0c747-adb7-4457-a91c-f19e60bace53": "45f00939-06b6-4fca-851d-e5b2a96bfd21",
+    "86b76afd-5a63-40af-a1e5-c1c5230c6d12": "f844e1bc-8885-4b8d-987e-f3349db75f4f",
+    "1a9f05ee-655e-4bb2-a664-395c90f8e99d": "a46d7a0c-86b4-4726-a5ec-bd806b6da375",
+    "9b9917f7-b17e-4c82-b80a-8ffc5295cc3f": "8ef308e1-626b-4dcd-8c9e-2163b86b039e",
+    "3641351b-10eb-4153-a8c4-cfa30fc57c16": "919ce239-31be-43e3-9e0a-436352be8f03",
+    "531907ed-74ac-4149-a20f-e91fad5d70a6": "f7970cbb-6205-4a11-be4b-a0e70c68c843",
+    "afc88c24-9904-4c6f-bf81-1e496af2304e": "1ec37552-2f5b-47e0-a599-4fb5ed3515eb",
+    "ae550e99-f460-4510-9904-021ac40ea347": "3cd842d5-8fbc-4cf7-ba6b-5d3ece5090cf",
+    "9bcf5821-96d0-44ce-8dd8-a8bb928e651a": "de50f70d-0604-40f5-ad79-8ab0f02e78ff",
+    "c08047fb-8133-46ca-b9dd-5292b821eb56": "dbaeb60a-ba06-4a86-be91-cca15417b47d",
+    "b2164567-683e-4422-9fb6-dd706b1ccb46": "abd349d1-dd79-47bd-a106-0cf213cfb269",
+    "671bac1f-e106-473d-b817-6800924ed6cf": "2040bc41-fc9a-4c91-9706-b124181aa93a",
+    "9c460739-c92a-4e86-8b19-4ceaa7fc52f3": "02009afc-0541-4d0b-bdd5-369b3e50652a",
+    "142f0b08-0288-45fe-a812-8a55b16f3f22": "09907ea2-4ec8-49ac-bed6-4a439b236d3c",
+    "13489b20-cc0b-4923-8ea8-3f64015fe389": "09907ea2-4ec8-49ac-bed6-4a439b236d3c",
+    "5acfe5ec-fa31-4177-a5d9-84798643507f": "f2a2fb0e-d922-4dad-8f82-966887753cd7",
+    "912af337-ffad-45ef-8f3d-6aad08ee7f52": "09907ea2-4ec8-49ac-bed6-4a439b236d3c",
+    "ae07e6db-e5d8-4945-8ccd-da16c709e1d0": "322bf289-4a93-4789-ba29-6541149aa82c",
+    "e2723fbb-c855-43db-bf63-3a74211277fd": "678b9361-b383-4ff9-b7b5-614feb9743e2",
+    "153a8b9b-5db1-4c10-ab74-a4be1a48db86": "a510ab54-6ac6-4c72-985f-527a7643400c",
+    "c54b8e31-2a6a-4a5d-8bf0-16530bce7e58": "8478419f-a54a-43c5-8143-1792f2e1cbff",
+    "2d0a0ba5-22ca-4d99-bb47-9765f7084fa0": "a8e8ee74-6321-4e61-9529-514d9ac12518"
+  };
+
+  function getVideoPath(thumbnailSrc) {
+    // Extract UUID from thumbnail filename
+    const parts = thumbnailSrc.split('/');
+    const filename = parts[parts.length - 1];
+    const uuid = filename.split('-').slice(1).join('-').replace('.jpg', '');
+    
+    // Check if this is from thumbnails-ranked directory
+    if (thumbnailSrc.includes('thumbnails-ranked/')) {
+      // Use UUID mapping for thumbnails-ranked
+      const mappedUuid = uuidMapping[uuid];
+      if (mappedUuid) {
+        return `processed-videos/processed_${mappedUuid}.mp4`;
+      }
+    }
+    
+    // Default behavior for thumbnails and thumbnails-new
+    return `processed-videos/processed_${uuid}.mp4`;
+  }
+
+  function createVideoElement(thumbnailImg) {
+    const container = document.createElement('div');
+    container.className = 'thumbnail-container';
+    
+    const videoSrc = getVideoPath(thumbnailImg.src);
+    const CROSSFADE_DURATION = 3.0; // seconds
+    
+    // Create two video elements for crossfading
+    const video1 = document.createElement('video');
+    video1.muted = true;
+    video1.loop = false;
+    video1.preload = 'none';
+    video1.src = videoSrc;
+    video1.poster = thumbnailImg.src; // Show thumbnail until video plays
+    video1.style.opacity = '0';
+    video1.style.transition = `opacity ${CROSSFADE_DURATION}s ease-in-out`;
+    
+    const video2 = document.createElement('video');
+    video2.muted = true;
+    video2.loop = false;
+    video2.preload = 'none';
+    video2.src = videoSrc;
+    video2.poster = thumbnailImg.src; // Show thumbnail until video plays
+    video2.style.opacity = '0';
+    video2.style.transition = `opacity ${CROSSFADE_DURATION}s ease-in-out`;
+    
+    // Copy img attributes to container
+    container.style.width = '100%';
+    container.style.aspectRatio = '16/9';
+    
+    // Insert container before img and move img inside
+    thumbnailImg.parentNode.insertBefore(container, thumbnailImg);
+    container.appendChild(thumbnailImg);
+    container.appendChild(video1);
+    container.appendChild(video2);
+    
+    // Create container object for global management
+    const containerObj = {
+      element: container,
+      video1: video1,
+      video2: video2,
+      currentVideo: video1,
+      nextVideo: video2,
+      isPlaying: false,
+      crossfadeTriggered: false,
+      CROSSFADE_DURATION: CROSSFADE_DURATION
+    };
+    
+    // Store reference for scroll-based playback
+    container.videoContainer = containerObj;
+    allVideoContainers.push(containerObj);
+    
+    function startCrossfade() {
+      if (!containerObj.isPlaying || containerObj.crossfadeTriggered) return;
+      
+      containerObj.crossfadeTriggered = true;
+      
+      // Start the next video from the beginning
+      containerObj.nextVideo.currentTime = 0;
+      containerObj.nextVideo.play().catch(e => console.log('Video play failed:', e));
+      
+      // Fade out current video and fade in next video
+      containerObj.currentVideo.style.opacity = '0';
+      containerObj.nextVideo.style.opacity = '1';
+      
+      // Swap the videos
+      const temp = containerObj.currentVideo;
+      containerObj.currentVideo = containerObj.nextVideo;
+      containerObj.nextVideo = temp;
+      
+      // Reset crossfade flag after the crossfade completes
+      setTimeout(() => {
+        containerObj.crossfadeTriggered = false;
+      }, CROSSFADE_DURATION * 1000);
+    }
+    
+    // Add crossfade effect when video approaches end
+    function handleTimeUpdate() {
+      if (this.duration && this.currentTime > this.duration - CROSSFADE_DURATION && !containerObj.crossfadeTriggered) {
+        startCrossfade();
+      }
+    }
+    
+    video1.addEventListener('timeupdate', handleTimeUpdate);
+    video2.addEventListener('timeupdate', handleTimeUpdate);
+    
+    // Add hover event listeners for desktop
+    if (!isMobile()) {
+      container.addEventListener('mouseenter', function() {
+        startVideo(containerObj);
+      });
+      
+      container.addEventListener('mouseleave', function() {
+        stopCurrentVideo();
+      });
+    }
+  }
+
+  // Global video management
+  let currentPlayingContainer = null;
+  let allVideoContainers = [];
+  
+  function stopCurrentVideo() {
+    if (currentPlayingContainer) {
+      currentPlayingContainer.isPlaying = false;
+      currentPlayingContainer.crossfadeTriggered = false;
+      currentPlayingContainer.video1.pause();
+      currentPlayingContainer.video2.pause();
+      currentPlayingContainer.video1.style.opacity = '0';
+      currentPlayingContainer.video2.style.opacity = '0';
+      currentPlayingContainer.currentVideo = currentPlayingContainer.video1;
+      currentPlayingContainer.nextVideo = currentPlayingContainer.video2;
+    }
+  }
+  
+  function startVideo(container) {
+    stopCurrentVideo();
+    currentPlayingContainer = container;
+    
+    container.isPlaying = true;
+    container.crossfadeTriggered = false;
+    
+    // Disable transitions for immediate start
+    container.currentVideo.style.transition = 'none';
+    container.nextVideo.style.transition = 'none';
+    
+    container.currentVideo.currentTime = 0;
+    container.currentVideo.style.opacity = '1';
+    container.nextVideo.style.opacity = '0';
+    container.currentVideo.play().catch(e => console.log('Video play failed:', e));
+    
+    // Re-enable transitions after a brief delay for crossfading
+    setTimeout(() => {
+      container.currentVideo.style.transition = `opacity ${container.CROSSFADE_DURATION}s ease-in-out`;
+      container.nextVideo.style.transition = `opacity ${container.CROSSFADE_DURATION}s ease-in-out`;
+    }, 100);
+  }
+  
+  
+  // Detect mobile devices
+  function isMobile() {
+    return window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  }
+  
+  // Scroll-based video playback
+  function setupScrollBasedPlayback() {
+    const headerHeight = document.querySelector('.header').offsetHeight;
+    
+    function findTopMostFullyVisibleVideo() {
+      let topMostContainer = null;
+      let topMostTop = Infinity;
+      
+      allVideoContainers.forEach(container => {
+        const rect = container.element.getBoundingClientRect();
+        const isFullyVisible = rect.top >= headerHeight && rect.bottom <= window.innerHeight;
+        
+        if (isFullyVisible && rect.top < topMostTop) {
+          topMostTop = rect.top;
+          topMostContainer = container;
+        }
+      });
+      
+      return topMostContainer;
+    }
+    
+    function updatePlayingVideo() {
+      // Always find the topmost fully visible video
+      const topVideo = findTopMostFullyVisibleVideo();
+      
+      // If there's a topmost fully visible video and it's different from current, switch to it
+      if (topVideo && topVideo !== currentPlayingContainer) {
+        startVideo(topVideo);
+      }
+      
+      // If no fully visible video is found, stop current video
+      if (!topVideo && currentPlayingContainer) {
+        stopCurrentVideo();
+      }
+    }
+    
+    // Check on scroll
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(updatePlayingVideo, 50);
+    });
+    
+    // Initial check
+    updatePlayingVideo();
+  }
+
   window.onload = function() {
     const emailDisplay = document.getElementById('email-display');
     if (emailDisplay) {
       emailDisplay.textContent = getEmail();
+    }
+    
+    // Convert all thumbnail images to video containers
+    const thumbnailImages = document.querySelectorAll('.thumbnail-grid img');
+    thumbnailImages.forEach(createVideoElement);
+    
+    // Setup scroll-based playback for mobile, hover for desktop
+    if (isMobile()) {
+      setupScrollBasedPlayback();
     }
   }
   </script>
