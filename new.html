@@ -504,32 +504,51 @@ function getEmail() {
     return window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
   }
   
-  // Intersection observer for scroll-based video playback
+  // Scroll-based video playback
   function setupScrollBasedPlayback() {
-    const observer = new IntersectionObserver((entries) => {
-      let mostVisible = null;
-      let maxRatio = 0;
+    const headerHeight = document.querySelector('.header').offsetHeight;
+    
+    function findTopMostFullyVisibleVideo() {
+      let topMostContainer = null;
+      let topMostTop = Infinity;
       
-      entries.forEach(entry => {
-        if (entry.intersectionRatio > maxRatio) {
-          maxRatio = entry.intersectionRatio;
-          mostVisible = entry.target;
+      allVideoContainers.forEach(container => {
+        const rect = container.element.getBoundingClientRect();
+        const isFullyVisible = rect.top >= headerHeight && rect.bottom <= window.innerHeight;
+        
+        if (isFullyVisible && rect.top < topMostTop) {
+          topMostTop = rect.top;
+          topMostContainer = container;
         }
       });
       
-      if (mostVisible && maxRatio > 0.5) {
-        const container = mostVisible.videoContainer;
-        if (container && container !== currentPlayingContainer) {
-          startVideo(container);
-        }
+      return topMostContainer;
+    }
+    
+    function updatePlayingVideo() {
+      // Always find the topmost fully visible video
+      const topVideo = findTopMostFullyVisibleVideo();
+      
+      // If there's a topmost fully visible video and it's different from current, switch to it
+      if (topVideo && topVideo !== currentPlayingContainer) {
+        startVideo(topVideo);
       }
-    }, {
-      threshold: [0, 0.25, 0.5, 0.75, 1]
+      
+      // If no fully visible video is found, stop current video
+      if (!topVideo && currentPlayingContainer) {
+        stopCurrentVideo();
+      }
+    }
+    
+    // Check on scroll
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(updatePlayingVideo, 50);
     });
     
-    allVideoContainers.forEach(container => {
-      observer.observe(container.element);
-    });
+    // Initial check
+    updatePlayingVideo();
   }
 
   window.onload = function() {
@@ -545,10 +564,6 @@ function getEmail() {
     // Setup scroll-based playback for mobile, hover for desktop
     if (isMobile()) {
       setupScrollBasedPlayback();
-      // Start playing the first video
-      if (allVideoContainers.length > 0) {
-        startVideo(allVideoContainers[0]);
-      }
     }
   }
   </script>
