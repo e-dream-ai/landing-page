@@ -381,6 +381,7 @@ function getEmail() {
     video1.src = videoSrc;
     video1.style.opacity = '0';
     video1.style.transition = `opacity ${CROSSFADE_DURATION}s ease-in-out`;
+    video1.style.zIndex = '1'; // Behind image initially
     
     const video2 = document.createElement('video');
     video2.muted = true;
@@ -389,6 +390,7 @@ function getEmail() {
     video2.src = videoSrc;
     video2.style.opacity = '0';
     video2.style.transition = `opacity ${CROSSFADE_DURATION}s ease-in-out`;
+    video2.style.zIndex = '1'; // Behind image initially
     
     // Copy img attributes to container
     container.style.width = '100%';
@@ -399,6 +401,9 @@ function getEmail() {
     container.appendChild(thumbnailImg);
     container.appendChild(video1);
     container.appendChild(video2);
+    
+    // Set image z-index higher than videos initially
+    thumbnailImg.style.zIndex = '2';
     
     let currentVideo = video1;
     let nextVideo = video2;
@@ -449,8 +454,16 @@ function getEmail() {
       nextVideo.style.transition = 'none';
       
       currentVideo.currentTime = 0;
-      currentVideo.style.opacity = '1';
       nextVideo.style.opacity = '0';
+      
+      // Show video and bring to front when it starts playing
+      const showVideo = () => {
+        currentVideo.style.opacity = '1';
+        currentVideo.style.zIndex = '3'; // Above image
+        currentVideo.removeEventListener('playing', showVideo);
+      };
+      
+      currentVideo.addEventListener('playing', showVideo);
       currentVideo.play().catch(e => console.log('Video play failed:', e));
       
       // Re-enable transitions after a brief delay for crossfading
@@ -467,6 +480,8 @@ function getEmail() {
       video2.pause();
       video1.style.opacity = '0';
       video2.style.opacity = '0';
+      video1.style.zIndex = '1'; // Back behind image
+      video2.style.zIndex = '1'; // Back behind image
       currentVideo = video1;
       nextVideo = video2;
     });
