@@ -449,8 +449,16 @@ function getEmail() {
       nextVideo.style.transition = 'none';
       
       currentVideo.currentTime = 0;
-      currentVideo.style.opacity = '1';
+      currentVideo.style.opacity = '0'; // Start hidden
       nextVideo.style.opacity = '0';
+      
+      // Only show video once it starts playing
+      const showVideo = () => {
+        currentVideo.style.opacity = '1';
+        currentVideo.removeEventListener('playing', showVideo);
+      };
+      
+      currentVideo.addEventListener('playing', showVideo);
       currentVideo.play().catch(e => console.log('Video play failed:', e));
       
       // Re-enable transitions after a brief delay for crossfading
