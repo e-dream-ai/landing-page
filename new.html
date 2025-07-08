@@ -379,6 +379,7 @@ function getEmail() {
     video1.loop = false;
     video1.preload = 'none';
     video1.src = videoSrc;
+    video1.poster = thumbnailImg.src; // Show thumbnail until video plays
     video1.style.opacity = '0';
     video1.style.transition = `opacity ${CROSSFADE_DURATION}s ease-in-out`;
     
@@ -387,6 +388,7 @@ function getEmail() {
     video2.loop = false;
     video2.preload = 'none';
     video2.src = videoSrc;
+    video2.poster = thumbnailImg.src; // Show thumbnail until video plays
     video2.style.opacity = '0';
     video2.style.transition = `opacity ${CROSSFADE_DURATION}s ease-in-out`;
     
