@@ -373,7 +373,7 @@ function getEmail() {
     const video1 = document.createElement('video');
     video1.muted = true;
     video1.loop = false;
-    video1.preload = 'none';
+    video1.preload = 'metadata';
     video1.src = videoSrc;
     video1.poster = thumbnailImg.src; // Show thumbnail until video plays
     video1.style.opacity = '0';
@@ -382,7 +382,7 @@ function getEmail() {
     const video2 = document.createElement('video');
     video2.muted = true;
     video2.loop = false;
-    video2.preload = 'none';
+    video2.preload = 'metadata';
     video2.src = videoSrc;
     video2.poster = thumbnailImg.src; // Show thumbnail until video plays
     video2.style.opacity = '0';
@@ -489,9 +489,20 @@ function getEmail() {
     container.nextVideo.style.transition = 'none';
     
     container.currentVideo.currentTime = 0;
-    container.currentVideo.style.opacity = '1';
     container.nextVideo.style.opacity = '0';
-    container.currentVideo.play().catch(e => console.log('Video play failed:', e));
+    
+    // Show video immediately, then start playback
+    container.currentVideo.style.opacity = '1';
+    
+    // Start playing with better error handling for Safari
+    const playPromise = container.currentVideo.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(e => {
+        console.log('Video play failed:', e);
+        // Keep showing the poster frame if play fails
+        container.currentVideo.style.opacity = '0';
+      });
+    }
     
     // Re-enable transitions after a brief delay for crossfading
     setTimeout(() => {
