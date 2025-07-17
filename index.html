@@ -111,9 +111,17 @@
         transition: opacity 0.3s ease;
         pointer-events: none;
         z-index: 3;
+        background: rgba(0, 0, 0, 0.6);
+        border-radius: 50%;
+        padding: 8px;
       }
 
       .thumbnail-container.loading .loading-spinner {
+        opacity: 1;
+      }
+
+      /* Ensure image stays visible during loading */
+      .thumbnail-container.loading img {
         opacity: 1;
       }
 
@@ -698,6 +706,12 @@
             container.currentVideo.style.transition = `opacity ${container.CROSSFADE_DURATION}s ease-in-out`;
             container.nextVideo.style.transition = `opacity ${container.CROSSFADE_DURATION}s ease-in-out`;
           }, 100);
+        } else {
+          // Make sure image is visible during loading
+          const img = container.element.querySelector("img");
+          if (img) {
+            img.style.opacity = "1";
+          }
         }
       }
 
