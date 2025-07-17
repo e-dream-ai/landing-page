@@ -100,6 +100,33 @@
         pointer-events: none;
       }
 
+      .thumbnail-container .loading-spinner {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 48px;
+        height: 48px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+        z-index: 3;
+      }
+
+      .thumbnail-container.loading .loading-spinner {
+        opacity: 1;
+      }
+
+      .thumbnail-container .loading-spinner svg {
+        width: 100%;
+        height: 100%;
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+      }
+
+      .thumbnail-container .loading-spinner path {
+        fill: #ffdab8;
+      }
+
       /* Hide video controls completely */
       .thumbnail-container video::-webkit-media-controls {
         display: none !important;
@@ -146,22 +173,13 @@
         opacity: 0;
       }
 
-      /* Mobile touch feedback */
+      /* Mobile scroll-based playback */
       @media (hover: none) and (pointer: coarse) {
-        .thumbnail-container {
-          cursor: pointer;
-        }
-
-        .thumbnail-container:active {
-          transform: scale(0.98);
-          transition: transform 0.1s ease;
-        }
-
-        .thumbnail-container.video-playing img {
+        .thumbnail-container.playing img {
           opacity: 0;
         }
 
-        .thumbnail-container.video-playing video {
+        .thumbnail-container.playing video {
           opacity: 1;
         }
       }
@@ -499,11 +517,17 @@
         container.style.width = "100%";
         container.style.aspectRatio = "16/9";
 
+        // Create loading spinner
+        const spinner = document.createElement("div");
+        spinner.className = "loading-spinner";
+        spinner.innerHTML = `<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><style>.spinner_ajPY{transform-origin:center;animation:spinner_AtaB .75s infinite linear}@keyframes spinner_AtaB{100%{transform:rotate(360deg)}}</style><path d="M12,1A11,11,0,1,0,23,12,11,11,0,0,0,12,1Zm0,19a8,8,0,1,1,8-8A8,8,0,0,1,12,20Z" opacity=".25"/><path d="M10.14,1.16a11,11,0,0,0-9,8.92A1.59,1.59,0,0,0,2.46,12,1.52,1.52,0,0,0,4.11,10.7a8,8,0,0,1,6.66-6.61A1.42,1.42,0,0,0,12,2.69h0A1.57,1.57,0,0,0,10.14,1.16Z" class="spinner_ajPY"/></svg>`;
+
         // Insert container before img and move img inside
         thumbnailImg.parentNode.insertBefore(container, thumbnailImg);
         container.appendChild(thumbnailImg);
         container.appendChild(video1);
         container.appendChild(video2);
+        container.appendChild(spinner);
 
         // Create container object for global management
         const containerObj = {
@@ -527,6 +551,7 @@
           if (!containerObj.videoReady) {
             containerObj.videoReady = true;
             container.classList.add("video-ready");
+            container.classList.remove("loading");
 
             // If this container is currently supposed to be playing, start the video now
             if (
@@ -607,45 +632,6 @@
           container.addEventListener("mouseleave", function () {
             stopCurrentVideo();
           });
-        } else {
-          // Mobile: click/touch events
-          container.addEventListener("click", function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            // If this video is already playing, pause/resume it
-            if (
-              currentPlayingContainer === containerObj &&
-              containerObj.isPlaying
-            ) {
-              if (containerObj.currentVideo.paused) {
-                containerObj.currentVideo
-                  .play()
-                  .catch((e) => console.log("Video play failed:", e));
-              } else {
-                containerObj.currentVideo.pause();
-              }
-            } else {
-              // Start playing this video
-              startVideo(containerObj);
-            }
-          });
-
-          // Prevent any video events from bubbling up
-          video1.addEventListener("click", function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-          });
-
-          video2.addEventListener("click", function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-          });
-
-          // Prevent context menu on long press
-          container.addEventListener("contextmenu", function (e) {
-            e.preventDefault();
-          });
         }
       }
 
@@ -664,8 +650,11 @@
           currentPlayingContainer.currentVideo = currentPlayingContainer.video1;
           currentPlayingContainer.nextVideo = currentPlayingContainer.video2;
 
-          // Remove playing class for mobile
-          currentPlayingContainer.element.classList.remove("playing");
+          // Remove playing class for mobile and clean up loading state
+          if (isMobile()) {
+            currentPlayingContainer.element.classList.remove("playing");
+          }
+          currentPlayingContainer.element.classList.remove("loading");
         }
         currentPlayingContainer = null;
       }
@@ -678,10 +667,13 @@
         container.crossfadeTriggered = false;
 
         // Add playing class for mobile
-        container.element.classList.add("playing");
+        if (isMobile()) {
+          container.element.classList.add("playing");
+        }
 
         // Start preloading the video if not ready
         if (!container.videoReady) {
+          container.element.classList.add("loading");
           container.currentVideo.preload = "auto";
           container.nextVideo.preload = "auto";
           container.currentVideo.load();
@@ -781,9 +773,10 @@
         );
         thumbnailImages.forEach(createVideoElement);
 
-        // Note: Mobile now uses click-based interaction instead of scroll-based
-        // Desktop uses hover-based interaction
-        // Scroll-based playback has been removed in favor of explicit user interaction
+        // Setup scroll-based playback for mobile, hover for desktop
+        if (isMobile()) {
+          setupScrollBasedPlayback();
+        }
       };
     </script>
   </head>
