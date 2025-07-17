@@ -85,6 +85,9 @@
     opacity: 0;
     transition: opacity 0.3s ease;
     pointer-events: none;
+    touch-action: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
   }
 
   .thumbnail-container:hover video {
@@ -371,6 +374,9 @@ function getEmail() {
     
     // Create two video elements for crossfading
     const video1 = document.createElement('video');
+    video1.controls = false;
+    video1.playsInline = true;
+    video1.setAttribute('webkit-playsinline', '');
     video1.muted = true;
     video1.loop = false;
     video1.preload = 'none';
@@ -380,6 +386,9 @@ function getEmail() {
     video1.style.transition = `opacity ${CROSSFADE_DURATION}s ease-in-out`;
     
     const video2 = document.createElement('video');
+    video2.controls = false;
+    video2.playsInline = true;
+    video2.setAttribute('webkit-playsinline', '');
     video2.muted = true;
     video2.loop = false;
     video2.preload = 'none';
