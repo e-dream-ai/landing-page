@@ -295,6 +295,14 @@
       margin-top: 180px;
     }
   }
+  @media (max-width: 768px) {
+    .thumbnail-grid {
+      grid-template-columns: 1fr;
+    }
+    .thumbnail-container {
+       pointer-events: none;
+    }
+  }
   </style>
   <script type='text/javascript'>
 function getEmail() {
@@ -483,7 +491,12 @@ function getEmail() {
     
     container.isPlaying = true;
     container.crossfadeTriggered = false;
-    
+    // Ensure Safari can autoplay
+    container.currentVideo.muted = true;
+    container.currentVideo.setAttribute('muted', '');
+    container.currentVideo.setAttribute('playsinline', '');
+    container.currentVideo.setAttribute('webkit-playsinline', '');
+	  
     // Disable transitions for immediate start
     container.currentVideo.style.transition = 'none';
     container.nextVideo.style.transition = 'none';
@@ -503,55 +516,88 @@ function getEmail() {
   
   // Detect mobile devices
   function isMobile() {
-    return window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-  }
+        const ua = navigator.userAgent || navigator.vendor || window.opera;
+
+        const isIphone = /iPhone|iPod/i.test(ua);
+        const isIpad =
+          /iPad/i.test(ua) ||
+          (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); // iPadOS reports as Mac
+        const isAndroid = /Android/i.test(ua);
+        const isOtherMobile = /webOS|BlackBerry|IEMobile|Opera Mini/i.test(ua);
+
+        // ✅ True if any mobile detected OR viewport width <= 768px
+        return (
+          isIphone ||
+          isIpad ||
+          isAndroid ||
+          isOtherMobile ||
+          window.innerWidth <= 768
+        );
+      }
   
   // Scroll-based video playback
-  function setupScrollBasedPlayback() {
-    const headerHeight = document.querySelector('.header').offsetHeight;
-    
-    function findTopMostFullyVisibleVideo() {
-      let topMostContainer = null;
-      let topMostTop = Infinity;
-      
-      allVideoContainers.forEach(container => {
-        const rect = container.element.getBoundingClientRect();
-        const isFullyVisible = rect.top >= headerHeight && rect.bottom <= window.innerHeight;
-        
-        if (isFullyVisible && rect.top < topMostTop) {
-          topMostTop = rect.top;
-          topMostContainer = container;
+  function setupScrollBasedPlayback() {// Scroll-based video playback
+      function setupScrollBasedPlayback() {
+        const headerHeight = document.querySelector('.header').offsetHeight;
+
+        function findTopMostFullyVisibleVideo() {
+          let topMostContainer = null;
+          let topMostTop = Infinity;
+
+          allVideoContainers.forEach((container) => {
+            const rect = container.element.getBoundingClientRect();
+            const isFullyVisible =
+              rect.top >= headerHeight && rect.bottom <= window.innerHeight;
+
+            if (isFullyVisible && rect.top < topMostTop) {
+              topMostTop = rect.top;
+              topMostContainer = container;
+            }
+          });
+
+          return topMostContainer;
         }
-      });
-      
-      return topMostContainer;
-    }
-    
-    function updatePlayingVideo() {
-      // Always find the topmost fully visible video
-      const topVideo = findTopMostFullyVisibleVideo();
-      
-      // If there's a topmost fully visible video and it's different from current, switch to it
-      if (topVideo && topVideo !== currentPlayingContainer) {
-        startVideo(topVideo);
+
+        function updatePlayingVideo() {
+          // Always find the topmost fully visible video
+          const topVideo = findTopMostFullyVisibleVideo();
+
+          // If there's a topmost fully visible video and it's different from current, switch to it
+          if (topVideo && topVideo !== currentPlayingContainer) {
+            const video = topVideo.currentVideo;
+
+            // ✅ Force Safari iPhone silent autoplay compatibility
+            video.muted = true;
+            video.setAttribute('playsinline', ''); // For iOS Safari
+            video.setAttribute('webkit-playsinline', ''); // Older iOS Safari
+            startVideo(topVideo);
+          }
+
+          // If no fully visible video is found, stop current video
+          if (!topVideo && currentPlayingContainer) {
+            stopCurrentVideo();
+          }
+        }
+
+        // Check on scroll
+        let scrollTimeout;
+        window.addEventListener('scroll', () => {
+          clearTimeout(scrollTimeout);
+          scrollTimeout = setTimeout(updatePlayingVideo, 50);
+        });
+        // ✅ Ensure ALL videos are iPhone-friendly (muted & inline)
+        document.querySelectorAll('video').forEach((video) => {
+          video.muted = true;
+          video.setAttribute('muted', '');
+          video.setAttribute('playsinline', '');
+          video.setAttribute('webkit-playsinline', '');
+          video.autoplay = false; // we control via scroll
+          video.preload = 'auto';
+        });
+
+        // Initial check
+        updatePlayingVideo();
       }
-      
-      // If no fully visible video is found, stop current video
-      if (!topVideo && currentPlayingContainer) {
-        stopCurrentVideo();
-      }
-    }
-    
-    // Check on scroll
-    let scrollTimeout;
-    window.addEventListener('scroll', () => {
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(updatePlayingVideo, 50);
-    });
-    
-    // Initial check
-    updatePlayingVideo();
-  }
 
   window.onload = function() {
     const emailDisplay = document.getElementById('email-display');
@@ -564,9 +610,9 @@ function getEmail() {
     thumbnailImages.forEach(createVideoElement);
     
     // Setup scroll-based playback for mobile, hover for desktop
-    if (isMobile()) {
-      setupScrollBasedPlayback();
-    }
+     if (isMobile()) {
+          setupScrollBasedPlayback();
+        }
   }
   </script>
 </head>
