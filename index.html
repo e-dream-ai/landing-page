@@ -192,6 +192,65 @@
         }
       }
 
+      /* Fullscreen styles */
+      .fullscreen-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        z-index: 10000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        opacity: 0;
+        transition: opacity 0.4s ease-in-out, backdrop-filter 0.4s ease-in-out;
+      }
+
+      .fullscreen-container.show {
+        opacity: 1;
+      }
+
+      .fullscreen-container video {
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+        opacity: 0;
+        border-radius: 8px;
+        transition: opacity 0.5s ease-in-out 0.2s,
+          transform 0.5s ease-in-out 0.2s;
+      }
+
+      .fullscreen-container.show video {
+        opacity: 1;
+      }
+
+      .fullscreen-container .loading-spinner {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 64px;
+        height: 64px;
+        opacity: 1;
+        background: rgba(0, 0, 0, 0.8);
+        border-radius: 50%;
+        padding: 12px;
+        z-index: 10001;
+      }
+
+      .fullscreen-container .loading-spinner svg {
+        width: 100%;
+        height: 100%;
+        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.8));
+      }
+
       .grid-section {
         margin-top: 50px;
       }
@@ -389,6 +448,11 @@
         }
         .main-content {
           margin-top: 180px;
+        }
+
+        .fullscreen-container video {
+          max-width: 95%;
+          max-height: 100%;
         }
       }
     </style>
@@ -630,6 +694,19 @@
         video1.addEventListener("timeupdate", handleTimeUpdate);
         video2.addEventListener("timeupdate", handleTimeUpdate);
 
+        // Add click event listener for fullscreen
+        container.addEventListener("click", function () {
+          // On mobile, only allow fullscreen for the currently playing video
+          if (isMobile()) {
+            if (currentPlayingContainer === containerObj) {
+              enterFullscreen(containerObj);
+            }
+          } else {
+            // On desktop, allow fullscreen for any video
+            enterFullscreen(containerObj);
+          }
+        });
+
         // Add event listeners based on device type
         if (!isMobile()) {
           // Desktop: hover events
@@ -726,6 +803,83 @@
           )
         );
       }
+
+      // Fullscreen functionality
+      let fullscreenContainer = null;
+
+      function enterFullscreen(container) {
+        // Create fullscreen container
+        const fullscreenDiv = document.createElement("div");
+        fullscreenDiv.className = "fullscreen-container";
+
+        // Clone the video element for fullscreen
+        const fullscreenVideo = container.currentVideo.cloneNode(true);
+        fullscreenVideo.muted = true;
+        fullscreenVideo.loop = true;
+        fullscreenVideo.controls = false;
+        fullscreenVideo.playsInline = true;
+        fullscreenVideo.disablePictureInPicture = true;
+
+        // Create loading spinner for fullscreen
+        const spinner = document.createElement("div");
+        spinner.className = "loading-spinner";
+        spinner.innerHTML = `<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><style>.spinner_ajPY{transform-origin:center;animation:spinner_AtaB .75s infinite linear}@keyframes spinner_AtaB{100%{transform:rotate(360deg)}}</style><path d="M12,1A11,11,0,1,0,23,12,11,11,0,0,0,12,1Zm0,19a8,8,0,1,1,8-8A8,8,0,0,1,12,20Z" opacity=".25"/><path d="M10.14,1.16a11,11,0,0,0-9,8.92A1.59,1.59,0,0,0,2.46,12,1.52,1.52,0,0,0,4.11,10.7a8,8,0,0,1,6.66-6.61A1.42,1.42,0,0,0,12,2.69h0A1.57,1.57,0,0,0,10.14,1.16Z" class="spinner_ajPY"/></svg>`;
+
+        fullscreenDiv.appendChild(fullscreenVideo);
+        fullscreenDiv.appendChild(spinner);
+
+        // Add click handler to exit fullscreen
+        fullscreenDiv.addEventListener("click", exitFullscreen);
+
+        // Add to document
+        document.body.appendChild(fullscreenDiv);
+        fullscreenContainer = fullscreenDiv;
+
+        // Start playing the video
+        fullscreenVideo.currentTime = container.currentVideo.currentTime || 0;
+
+        // Hide spinner when video is ready
+        fullscreenVideo.addEventListener("canplay", function () {
+          spinner.style.opacity = "0";
+        });
+
+        fullscreenVideo
+          .play()
+          .catch((e) => console.log("Fullscreen video play failed:", e));
+
+        // Prevent body scrolling
+        document.body.style.overflow = "hidden";
+
+        // Trigger animation after a brief delay
+        requestAnimationFrame(() => {
+          fullscreenDiv.classList.add("show");
+        });
+      }
+
+      function exitFullscreen() {
+        if (fullscreenContainer) {
+          // Animate out
+          fullscreenContainer.classList.remove("show");
+
+          // Remove after animation completes
+          setTimeout(() => {
+            if (fullscreenContainer && fullscreenContainer.parentNode) {
+              document.body.removeChild(fullscreenContainer);
+            }
+            fullscreenContainer = null;
+          }, 400); // Match the CSS transition duration
+
+          // Restore body scrolling
+          document.body.style.overflow = "";
+        }
+      }
+
+      // Add ESC key support for exiting fullscreen
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape" && fullscreenContainer) {
+          exitFullscreen();
+        }
+      });
 
       // Scroll-based video playback
       function setupScrollBasedPlayback() {
