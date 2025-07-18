@@ -696,6 +696,11 @@
 
         // Add click event listener for fullscreen
         container.addEventListener("click", function () {
+          // Don't allow fullscreen if video isn't ready yet
+          if (!containerObj.videoReady) {
+            return;
+          }
+
           // On mobile, only allow fullscreen for the currently playing video
           if (isMobile()) {
             if (currentPlayingContainer === containerObj) {
@@ -838,31 +843,14 @@
         // Start playing the video
         fullscreenVideo.currentTime = container.currentVideo.currentTime || 0;
 
-        // Handle video loading and playback
-        let videoStarted = false;
+        // Hide spinner when video is ready
+        fullscreenVideo.addEventListener("canplay", function () {
+          spinner.style.opacity = "0";
+        });
 
-        function startFullscreenVideo() {
-          if (!videoStarted) {
-            videoStarted = true;
-            spinner.style.opacity = "0";
-            fullscreenVideo
-              .play()
-              .catch((e) => console.log("Fullscreen video play failed:", e));
-          }
-        }
-
-        // Try to start immediately if video is ready
-        if (fullscreenVideo.readyState >= 3) {
-          // HAVE_FUTURE_DATA or higher
-          startFullscreenVideo();
-        } else {
-          // Wait for video to be ready
-          fullscreenVideo.addEventListener("canplay", startFullscreenVideo);
-          fullscreenVideo.addEventListener("loadeddata", startFullscreenVideo);
-
-          // Force load the video
-          fullscreenVideo.load();
-        }
+        fullscreenVideo
+          .play()
+          .catch((e) => console.log("Fullscreen video play failed:", e));
 
         // Prevent body scrolling
         document.body.style.overflow = "hidden";
