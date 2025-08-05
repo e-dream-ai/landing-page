@@ -87,6 +87,10 @@
         display: inline-block;
       }
 
+      .thumbnail-container img {
+        cursor: pointer;
+      }
+
       .thumbnail-container video {
         position: absolute;
         top: 0;
@@ -189,6 +193,131 @@
 
         .thumbnail-container.playing video {
           opacity: 1;
+        }
+      }
+
+      /* Fullscreen styles */
+      .fullscreen-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        z-index: 10000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: default;
+        opacity: 0;
+        transition: opacity 0.4s ease-in-out, backdrop-filter 0.4s ease-in-out;
+      }
+
+      .fullscreen-container.show {
+        opacity: 1;
+      }
+
+      .fullscreen-container video {
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+        opacity: 0;
+        border-radius: 8px;
+        transition: opacity 0.5s ease-in-out 0.2s,
+          transform 0.5s ease-in-out 0.2s;
+      }
+
+      .fullscreen-container.show video {
+        opacity: 1;
+      }
+
+      .fullscreen-container .loading-spinner {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 64px;
+        height: 64px;
+        opacity: 1;
+        background: rgba(0, 0, 0, 0.8);
+        border-radius: 50%;
+        padding: 12px;
+        z-index: 10001;
+      }
+
+      .fullscreen-container .loading-spinner svg {
+        width: 100%;
+        height: 100%;
+        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.8));
+      }
+
+      /* Fullscreen navigation arrows */
+      .fullscreen-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 60px;
+        height: 60px;
+        background: rgba(0, 0, 0, 0.7);
+        border: 2px solid rgba(255, 218, 184, 0.3);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 10002;
+        transition: all 0.3s ease;
+        opacity: 0.8;
+      }
+
+      .fullscreen-nav:hover {
+        background: rgba(0, 0, 0, 0.9);
+        border-color: rgba(255, 218, 184, 0.6);
+        opacity: 1;
+        transform: translateY(-50%) scale(1.1);
+      }
+
+      .fullscreen-nav-left {
+        left: 30px;
+      }
+
+      .fullscreen-nav-right {
+        right: 30px;
+      }
+
+      .fullscreen-nav svg {
+        width: 24px;
+        height: 24px;
+        fill: #ffdab8;
+      }
+
+      .fullscreen-nav.disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+        pointer-events: none;
+      }
+
+      @media (max-width: 600px) {
+        .fullscreen-nav {
+          width: 50px;
+          height: 50px;
+        }
+
+        .fullscreen-nav-left {
+          left: 20px;
+        }
+
+        .fullscreen-nav-right {
+          right: 20px;
+        }
+
+        .fullscreen-nav svg {
+          width: 20px;
+          height: 20px;
         }
       }
 
@@ -390,6 +519,11 @@
         .main-content {
           margin-top: 180px;
         }
+
+        .fullscreen-container video {
+          max-width: 95%;
+          max-height: 100%;
+        }
       }
     </style>
     <script type="text/javascript">
@@ -472,7 +606,26 @@
           "a8e8ee74-6321-4e61-9529-514d9ac12518",
       };
 
-      function getVideoPath(thumbnailSrc) {
+      function getSmallVideoPath(thumbnailSrc) {
+        // Extract UUID from thumbnail filename
+        const parts = thumbnailSrc.split("/");
+        const filename = parts[parts.length - 1];
+        const uuid = filename.split("-").slice(1).join("-").replace(".jpg", "");
+
+        // Check if this is from thumbnails-ranked directory
+        if (thumbnailSrc.includes("thumbnails-ranked/")) {
+          // Use UUID mapping for thumbnails-ranked
+          const mappedUuid = uuidMapping[uuid];
+          if (mappedUuid) {
+            return `small-videos/processed_${mappedUuid}.mp4`;
+          }
+        }
+
+        // Default behavior for thumbnails and thumbnails-new
+        return `small-videos/processed_${uuid}.mp4`;
+      }
+
+      function getFullVideoPath(thumbnailSrc) {
         // Extract UUID from thumbnail filename
         const parts = thumbnailSrc.split("/");
         const filename = parts[parts.length - 1];
@@ -495,15 +648,16 @@
         const container = document.createElement("div");
         container.className = "thumbnail-container";
 
-        const videoSrc = getVideoPath(thumbnailImg.src);
+        const smallVideoSrc = getSmallVideoPath(thumbnailImg.src);
+        const fullVideoSrc = getFullVideoPath(thumbnailImg.src);
         const CROSSFADE_DURATION = 3.0; // seconds
 
-        // Create two video elements for crossfading
+        // Create two video elements for crossfading (using small videos)
         const video1 = document.createElement("video");
         video1.muted = true;
         video1.loop = true;
         video1.preload = "none";
-        video1.src = videoSrc;
+        video1.src = smallVideoSrc;
         video1.controls = false;
         video1.playsInline = true;
         video1.disablePictureInPicture = true;
@@ -514,7 +668,7 @@
         video2.muted = true;
         video2.loop = true;
         video2.preload = "none";
-        video2.src = videoSrc;
+        video2.src = smallVideoSrc;
         video2.controls = false;
         video2.playsInline = true;
         video2.disablePictureInPicture = true;
@@ -548,6 +702,9 @@
           crossfadeTriggered: false,
           videoReady: false,
           CROSSFADE_DURATION: CROSSFADE_DURATION,
+          thumbnailSrc: thumbnailImg.src,
+          smallVideoSrc: smallVideoSrc,
+          fullVideoSrc: fullVideoSrc,
         };
 
         // Store reference for scroll-based playback
@@ -629,6 +786,24 @@
 
         video1.addEventListener("timeupdate", handleTimeUpdate);
         video2.addEventListener("timeupdate", handleTimeUpdate);
+
+        // Add click event listener for fullscreen
+        container.addEventListener("click", function () {
+          // Don't allow fullscreen if video isn't ready yet
+          if (!containerObj.videoReady) {
+            return;
+          }
+
+          // On mobile, only allow fullscreen for the currently playing video
+          if (isMobile()) {
+            if (currentPlayingContainer === containerObj) {
+              enterFullscreen(containerObj);
+            }
+          } else {
+            // On desktop, allow fullscreen for any video
+            enterFullscreen(containerObj);
+          }
+        });
 
         // Add event listeners based on device type
         if (!isMobile()) {
@@ -726,6 +901,198 @@
           )
         );
       }
+
+      // Fullscreen functionality
+      let fullscreenContainer = null;
+      let currentFullscreenIndex = -1;
+
+      function findContainerIndex(container) {
+        return allVideoContainers.findIndex(c => c === container);
+      }
+
+      function navigateFullscreen(direction) {
+        if (!fullscreenContainer || allVideoContainers.length === 0) return;
+
+        const newIndex = currentFullscreenIndex + direction;
+        if (newIndex < 0 || newIndex >= allVideoContainers.length) return;
+
+        const newContainer = allVideoContainers[newIndex];
+        if (!newContainer) return;
+
+        // Update current index
+        currentFullscreenIndex = newIndex;
+
+        // Get the video element and update its source
+        const fullscreenVideo = fullscreenContainer.querySelector("video");
+        const spinner = fullscreenContainer.querySelector(".loading-spinner");
+
+        // Show spinner during transition
+        spinner.style.opacity = "1";
+        fullscreenVideo.style.opacity = "0";
+
+        // Update video source
+        fullscreenVideo.src = newContainer.fullVideoSrc;
+        fullscreenVideo.currentTime = 0;
+
+        // Update navigation button states
+        updateNavigationButtons();
+
+        // Handle video ready - with timeout fallback
+        let videoLoadTimeout;
+        const onVideoReady = () => {
+          clearTimeout(videoLoadTimeout);
+          spinner.style.opacity = "0";
+          fullscreenVideo.style.opacity = "1";
+          fullscreenVideo.removeEventListener("canplay", onVideoReady);
+          fullscreenVideo.removeEventListener("loadeddata", onVideoReady);
+        };
+
+        // Set up multiple event listeners for better compatibility
+        fullscreenVideo.addEventListener("canplay", onVideoReady);
+        fullscreenVideo.addEventListener("loadeddata", onVideoReady);
+
+        // Fallback timeout in case video doesn't load properly
+        videoLoadTimeout = setTimeout(() => {
+          console.log("Video load timeout, showing anyway");
+          spinner.style.opacity = "0";
+          fullscreenVideo.style.opacity = "1";
+        }, 5000); // 5 second timeout
+
+        // Force preload and play
+        fullscreenVideo.preload = "auto";
+        fullscreenVideo.load();
+        fullscreenVideo.play().catch((e) => console.log("Navigation video play failed:", e));
+      }
+
+      function updateNavigationButtons() {
+        const leftBtn = fullscreenContainer?.querySelector(".fullscreen-nav-left");
+        const rightBtn = fullscreenContainer?.querySelector(".fullscreen-nav-right");
+
+        if (leftBtn) {
+          leftBtn.classList.toggle("disabled", currentFullscreenIndex <= 0);
+        }
+        if (rightBtn) {
+          rightBtn.classList.toggle("disabled", currentFullscreenIndex >= allVideoContainers.length - 1);
+        }
+      }
+
+      function enterFullscreen(container) {
+        // Find the index of the current container
+        currentFullscreenIndex = findContainerIndex(container);
+        if (currentFullscreenIndex === -1) return;
+
+        // Create fullscreen container
+        const fullscreenDiv = document.createElement("div");
+        fullscreenDiv.className = "fullscreen-container";
+
+        // Create new video element for fullscreen with full video source
+        const fullscreenVideo = document.createElement("video");
+        fullscreenVideo.muted = true;
+        fullscreenVideo.loop = true;
+        fullscreenVideo.controls = false;
+        fullscreenVideo.playsInline = true;
+        fullscreenVideo.disablePictureInPicture = true;
+        fullscreenVideo.src = container.fullVideoSrc;
+
+        // Create loading spinner for fullscreen
+        const spinner = document.createElement("div");
+        spinner.className = "loading-spinner";
+        spinner.innerHTML = `<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><style>.spinner_ajPY{transform-origin:center;animation:spinner_AtaB .75s infinite linear}@keyframes spinner_AtaB{100%{transform:rotate(360deg)}}</style><path d="M12,1A11,11,0,1,0,23,12,11,11,0,0,0,12,1Zm0,19a8,8,0,1,1,8-8A8,8,0,0,1,12,20Z" opacity=".25"/><path d="M10.14,1.16a11,11,0,0,0-9,8.92A1.59,1.59,0,0,0,2.46,12,1.52,1.52,0,0,0,4.11,10.7a8,8,0,0,1,6.66-6.61A1.42,1.42,0,0,0,12,2.69h0A1.57,1.57,0,0,0,10.14,1.16Z" class="spinner_ajPY"/></svg>`;
+
+        // Create navigation arrows
+        const leftNav = document.createElement("div");
+        leftNav.className = "fullscreen-nav fullscreen-nav-left";
+        leftNav.innerHTML = `<svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>`;
+        leftNav.addEventListener("click", (e) => {
+          e.stopPropagation();
+          navigateFullscreen(-1);
+        });
+
+        const rightNav = document.createElement("div");
+        rightNav.className = "fullscreen-nav fullscreen-nav-right";
+        rightNav.innerHTML = `<svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>`;
+        rightNav.addEventListener("click", (e) => {
+          e.stopPropagation();
+          navigateFullscreen(1);
+        });
+
+        fullscreenDiv.appendChild(fullscreenVideo);
+        fullscreenDiv.appendChild(spinner);
+        fullscreenDiv.appendChild(leftNav);
+        fullscreenDiv.appendChild(rightNav);
+
+        // Add click handler to exit fullscreen (but not on navigation buttons)
+        fullscreenDiv.addEventListener("click", (e) => {
+          if (!e.target.closest(".fullscreen-nav")) {
+            exitFullscreen();
+          }
+        });
+
+        // Add to document
+        document.body.appendChild(fullscreenDiv);
+        fullscreenContainer = fullscreenDiv;
+
+        // Update navigation button states
+        updateNavigationButtons();
+
+        // Start playing the video (sync time if possible, otherwise start from beginning)
+        const currentTime = container.currentVideo.currentTime || 0;
+        fullscreenVideo.currentTime = currentTime;
+
+        // Hide spinner when video is ready
+        fullscreenVideo.addEventListener("canplay", function () {
+          spinner.style.opacity = "0";
+        });
+
+        fullscreenVideo
+          .play()
+          .catch((e) => console.log("Fullscreen video play failed:", e));
+
+        // Prevent body scrolling
+        document.body.style.overflow = "hidden";
+
+        // Trigger animation after a brief delay
+        requestAnimationFrame(() => {
+          fullscreenDiv.classList.add("show");
+        });
+      }
+
+      function exitFullscreen() {
+        if (fullscreenContainer) {
+          // Animate out
+          fullscreenContainer.classList.remove("show");
+
+          // Remove after animation completes
+          setTimeout(() => {
+            if (fullscreenContainer && fullscreenContainer.parentNode) {
+              document.body.removeChild(fullscreenContainer);
+            }
+            fullscreenContainer = null;
+          }, 400); // Match the CSS transition duration
+
+          // Restore body scrolling
+          document.body.style.overflow = "";
+        }
+      }
+
+      // Add keyboard support for fullscreen navigation
+      document.addEventListener("keydown", function (event) {
+        if (fullscreenContainer) {
+          switch (event.key) {
+            case "Escape":
+              exitFullscreen();
+              break;
+            case "ArrowLeft":
+              event.preventDefault();
+              navigateFullscreen(-1);
+              break;
+            case "ArrowRight":
+              event.preventDefault();
+              navigateFullscreen(1);
+              break;
+          }
+        }
+      });
 
       // Scroll-based video playback
       function setupScrollBasedPlayback() {
