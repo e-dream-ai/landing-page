@@ -25,7 +25,7 @@ const ROADMAP_ITEMS: RoadmapItem[] = [
 	},
 	{
 		id: "audio-reactive",
-		text: "Using the microphone to make playback audioreactive, detect the ambient activity level, and even ID any song. Add realtime effects, more mixing, and become an AI VJ.",
+		text: "Using a microphone to make playback audioreactive, detect the ambient activity level, and even ID any song. Add realtime effects, more mixing, and become an AI VJ.",
 	},
 ];
 
