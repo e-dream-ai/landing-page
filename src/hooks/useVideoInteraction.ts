@@ -4,6 +4,7 @@ import { useIsMobile } from "./useIsMobile";
 interface UseVideoInteractionOptions {
 	enabled: boolean;
 	containerRef: React.RefObject<HTMLElement | null>;
+	forceAutoPlay?: boolean;
 }
 
 interface InteractionState {
@@ -63,6 +64,7 @@ function findTopMostVisibleContainer(
 export function useVideoInteraction({
 	enabled,
 	containerRef,
+	forceAutoPlay = false,
 }: UseVideoInteractionOptions) {
 	const isMobile = useIsMobile();
 
@@ -73,6 +75,11 @@ export function useVideoInteraction({
 	});
 
 	useEffect(() => {
+		if (forceAutoPlay) {
+			dispatch({ type: "SET_ACTIVE_ON_MOBILE", payload: true });
+			return;
+		}
+
 		if (!isMobile || !enabled) {
 			dispatch({ type: "SET_ACTIVE_ON_MOBILE", payload: false });
 			return;
@@ -97,7 +104,7 @@ export function useVideoInteraction({
 			window.removeEventListener("scroll", handleScroll);
 			cancelAnimationFrame(rafId);
 		};
-	}, [isMobile, enabled, containerRef]);
+	}, [isMobile, enabled, containerRef, forceAutoPlay]);
 
 	const handleMouseEnter = useCallback(() => {
 		if (!isMobile && enabled) {
@@ -119,7 +126,11 @@ export function useVideoInteraction({
 
 	const shouldPlay =
 		enabled &&
-		(isMobile ? state.isActiveOnMobile && !state.isPaused : state.isHovered);
+		(forceAutoPlay
+			? true
+			: isMobile
+				? state.isActiveOnMobile && !state.isPaused
+				: state.isHovered);
 
 	return {
 		shouldPlay,
