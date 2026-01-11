@@ -4,12 +4,8 @@ import Title from "@/components/common/Title/Title";
 import { Button } from "@/components/ui/button";
 import { ROUTES } from "@/constants/routes";
 
-interface RoadmapItem {
-	id: string;
-	text: string;
-}
 
-const ROADMAP_ITEMS: RoadmapItem[] = [
+const RoadmapItem = [
 	{
 		id: "hosted-cloud-generation",
 		text: 'Hosted cloud generation driven by AI and crowd signals. Put an "edit" button on each dream and allow you to change the prompts, restyle, and make your own version.',
@@ -56,7 +52,7 @@ export default function RoadMapSection() {
 				are working on and thinking about:
 			</p>
 			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
-				{ROADMAP_ITEMS.map((item) => (
+				{RoadmapItem.map((item) => (
 					<ContentBox key={item.id}>{item.text}</ContentBox>
 				))}
 			</div>
