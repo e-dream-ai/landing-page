@@ -20,4 +20,5 @@ export const ROUTES = {
 	aerial: "https://aerialscreensaver.github.io/",
 	miklosNagy: "https://magixworld.com/",
 	deforum: "https://github.com/XmYx",
+	patreon: "https://www.patreon.com/c/Infinidream",
 };

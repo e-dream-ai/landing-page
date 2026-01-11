@@ -1,5 +1,8 @@
 import ContentBox from "@/components/common/ContentBox/ContextBox";
+import ExternalLink from "@/components/common/ExternalLink/ExternalLink";
 import Title from "@/components/common/Title/Title";
+import { Button } from "@/components/ui/button";
+import { ROUTES } from "@/constants/routes";
 
 interface RoadmapItem {
 	id: string;
@@ -26,6 +29,21 @@ const ROADMAP_ITEMS: RoadmapItem[] = [
 	{
 		id: "audio-reactive",
 		text: "Using a microphone to make playback audioreactive, detect the ambient activity level, and even ID any song. Add realtime effects, more mixing, and become an AI VJ.",
+	},
+	{
+		id: "patreon",
+		text: (
+			<div className="flex flex-col items-center gap-4">
+				<span>Infinidream is free to use but maintaining and developing it costs real money.
+				Please support our mission by contributing!
+				</span>
+				<ExternalLink href={ROUTES.patreon}>
+					<Button variant="reusable" size="reusable">
+						Patreon
+					</Button>
+				</ExternalLink>
+			</div>
+		),
 	},
 ];
 
