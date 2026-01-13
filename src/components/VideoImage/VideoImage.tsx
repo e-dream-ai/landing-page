@@ -15,8 +15,6 @@ interface VideoImageProps {
   priority?: boolean;
   allVideos?: Thumbnail[];
   videoIndex?: number;
-  forceAutoPlay?: boolean;
-  className?: string;
 }
 
 export default function VideoImage({
@@ -25,15 +23,12 @@ export default function VideoImage({
   priority = false,
   allVideos = [],
   videoIndex = 0,
-  forceAutoPlay = false,
-  className,
 }: VideoImageProps) {
   const containerRef = useRef<HTMLButtonElement>(null);
   const video = useVideoElement({ priority });
   const interaction = useVideoInteraction({
     enabled: video.shouldLoad && !video.hasError,
     containerRef,
-    forceAutoPlay,
   });
   const { openModal } = useVideoModal();
 
@@ -69,10 +64,7 @@ export default function VideoImage({
       data-video-container
       type="button"
       aria-label={alt}
-      className={cn(
-        "relative w-full h-full rounded-lg overflow-hidden cursor-pointer focus-visible:outline-none",
-        className
-      )}
+      className="relative w-full h-full rounded-lg overflow-hidden cursor-pointer focus-visible:outline-none"
       onMouseEnter={interaction.handleMouseEnter}
       onMouseLeave={interaction.handleMouseLeave}
       onClick={handleClick}
