@@ -1,22 +1,26 @@
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 export default function ExternalLink({
-	href,
-	children,
+  href,
+  children,
+  className,
 }: {
-	href: string;
-	children: React.ReactNode;
+  href: string;
+  children: React.ReactNode;
+  className?: string;
 }) {
-	return (
-		<Link
-			href={href}
-			target="_blank"
-			rel="noopener noreferrer"
-			className={
-				"underline hover:text-cyan-500 transition-all duration-300 ease-in-out"
-			}
-		>
-			{children}
-		</Link>
-	);
+  return (
+    <Link
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={cn(
+        "underline hover:text-cyan-500 transition-all duration-300 ease-in-out",
+        className
+      )}
+    >
+      {children}
+    </Link>
+  );
 }
