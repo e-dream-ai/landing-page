@@ -72,7 +72,7 @@ export default function CollaborationSection() {
   return (
     <section className="flex flex-col gap-7">
       <Title>artist and open source collaborators</Title>
-      <p className="font-secondary text-base text-primary">
+      <p className="font-secondary text-base text-primary font-medium">
         Infinidream is a free platform for generative artists, programmers,
         prompters, and dreamers of all stripes.
       </p>
