@@ -1,0 +1,14 @@
+<?xml version="1.0" standalone="yes"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+    <channel>
+        <title>infinidream</title>
+        <item>
+            <title>0.13.3</title>
+            <pubDate>Mon, 19 Jan 2026 22:11:51 -0500</pubDate>
+            <sparkle:version>0.13.3</sparkle:version>
+            <sparkle:shortVersionString>0.13.3</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>12.4</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/e-dream-ai/client/releases/download/0.13.3/infinidream-0.13.3.zip" length="52895941" type="application/octet-stream" sparkle:edSignature="9PfzfuxAK7IgiCihR8IuOp6wc9rhFTqygijm2W03J6gsKWXrQlliq56BH7vvJz83oT19Fem6rG1MSZzcbuRCCg=="/>
+        </item>
+    </channel>
+</rss>
