@@ -4,7 +4,7 @@ import {
 	faFacebook,
 	faGithub,
 	faInstagram,
-	faThreads,
+	faPatreon,
 	faXTwitter,
 } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -18,7 +18,7 @@ const SOCIAL_LINKS = [
 	{ icon: faDiscord, href: ROUTES.discord, label: "Discord" },
 	{ icon: faGithub, href: ROUTES.github, label: "GitHub" },
 	{ icon: faFacebook, href: ROUTES.facebook, label: "Facebook" },
-	{ icon: faThreads, href: ROUTES.threads, label: "Threads" },
+	{ icon: faPatreon, href: ROUTES.patreon, label: "Patreon" },
 	{ icon: faInstagram, href: ROUTES.instagram, label: "Instagram" },
 	{ icon: faXTwitter, href: ROUTES.x, label: "X (Twitter)" },
 ];

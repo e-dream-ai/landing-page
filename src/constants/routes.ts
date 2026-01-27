@@ -7,7 +7,6 @@ export const ROUTES = {
 	github: "https://github.com/e-dream-ai",
 	facebook: "https://www.facebook.com/groups/infinidreamai",
 	instagram: "https://www.instagram.com/infinidream_ai",
-	threads: "https://www.threads.com/@infinidream_ai",
 	x: "https://x.com/infinidream_ai",
 	issues: "https://github.com/e-dream-ai/client/issues/new",
 	api: "https://github.com/e-dream-ai/python-api",
