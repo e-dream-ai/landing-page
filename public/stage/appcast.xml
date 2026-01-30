@@ -3,22 +3,15 @@
     <channel>
         <title>infinidream stage</title>
         <item>
-        <sparkle:criticalUpdate></sparkle:criticalUpdate>
-            <title>0.14.0</title>
-            <pubDate>Fri, 30 Jan 2026 20:10:08 +0200</pubDate>
-            <sparkle:version>0.14.0</sparkle:version>
-            <sparkle:shortVersionString>0.14.0</sparkle:shortVersionString>
+            <title>0.14.2</title>
+            <pubDate>Fri, 30 Jan 2026 20:49:30 +0200</pubDate>
+            <sparkle:version>0.14.2</sparkle:version>
+            <sparkle:shortVersionString>0.14.2</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>12.4</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/e-dream-ai/client/releases/download/0.14.0/infinidream-0.14.0.zip" length="59003777" type="application/octet-stream" sparkle:edSignature="t+MvMoOO+oe0rDExZPxH8RTVm1hGFxnwZ6NHmR55UlJHDqCYWpOJVMldiiXATQkLLRmrBgI/jDzErhGmRLV6Aw=="/>
-                    <description sparkle:format="markdown">## What's Changed
-The app automatically checks for and installs updated versions of itself every time it starts.
-The screensaver can't update itself, but it shows a warning. Just run the app to update the screensaver.
-* auto update with sparkle including visible indicator [#320](https://github.com/e-dream-ai/client/issues/320) 
-* report GPU and CPU usage in F2 overlay [#163](https://github.com/e-dream-ai/client/issues/163)
-* add disk full warning [#366](https://github.com/e-dream-ai/client/issues/366)
-* increase performance of the OSD [#417](https://github.com/e-dream-ai/client/issues/417)
+            <enclosure url="https://github.com/e-dream-ai/client/releases/download/0.14.2/infinidream-0.14.2.zip" length="59003919" type="application/octet-stream" sparkle:edSignature="GCRM1qZXIv4dsKH6uy7+XahfVoqZDh1o58QmSoeUPQTNico1Gxv4YomnkvnhBb1vqrzzPKZDCaTdlGPSgH8KAA=="/>
+                    <description sparkle:format="markdown">Add Sparkle update dialog 
 
-**Full Changelog**: https://github.com/e-dream-ai/client/compare/0.12.0...0.14.0</description>
+**Full Changelog**: https://github.com/e-dream-ai/client/compare/0.14.1...0.14.2</description>
         </item>
     </channel>
 </rss>
