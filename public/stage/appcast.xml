@@ -3,15 +3,13 @@
     <channel>
         <title>infinidream stage</title>
         <item>
-            <title>0.14.2</title>
-            <pubDate>Fri, 30 Jan 2026 20:49:30 +0200</pubDate>
-            <sparkle:version>0.14.2</sparkle:version>
-            <sparkle:shortVersionString>0.14.2</sparkle:shortVersionString>
+            <title>0.14.3</title>
+            <pubDate>Fri, 30 Jan 2026 21:15:23 +0200</pubDate>
+            <sparkle:version>0.14.3</sparkle:version>
+            <sparkle:shortVersionString>0.14.3</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>12.4</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/e-dream-ai/client/releases/download/0.14.2/infinidream-0.14.2.zip" length="59003919" type="application/octet-stream" sparkle:edSignature="GCRM1qZXIv4dsKH6uy7+XahfVoqZDh1o58QmSoeUPQTNico1Gxv4YomnkvnhBb1vqrzzPKZDCaTdlGPSgH8KAA=="/>
-                    <description sparkle:format="markdown">Add Sparkle update dialog 
-
-**Full Changelog**: https://github.com/e-dream-ai/client/compare/0.14.1...0.14.2</description>
+            <enclosure url="https://github.com/e-dream-ai/client/releases/download/0.14.3/infinidream-0.14.3.zip" length="59003936" type="application/octet-stream" sparkle:edSignature="+wz9eY0iAnwYMsSOGTxvtCDaDxcBK4U02seAxNESYxfnhX1/AsBJgOgSHxhOPLQP1RAKOnQDobg5g6MzSvyXBw=="/>
+                    <description sparkle:format="markdown">**Full Changelog**: https://github.com/e-dream-ai/client/compare/0.14.1...0.14.3</description>
         </item>
     </channel>
 </rss>
