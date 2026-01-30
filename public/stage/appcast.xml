@@ -3,12 +3,13 @@
     <channel>
         <title>infinidream stage</title>
         <item>
+        <sparkle:criticalUpdate></sparkle:criticalUpdate>
             <title>0.14.0</title>
-            <pubDate>Fri, 30 Jan 2026 19:05:49 +0200</pubDate>
+            <pubDate>Fri, 30 Jan 2026 20:10:08 +0200</pubDate>
             <sparkle:version>0.14.0</sparkle:version>
             <sparkle:shortVersionString>0.14.0</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>12.4</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/e-dream-ai/client/releases/download/0.14.0/infinidream-0.14.0.zip" length="59003781" type="application/octet-stream" sparkle:edSignature="rWIQZl0oXqPxf8O8T2S0TZytnjwNcxhr2LmAETqXxapFy2MKRvjPvp8jP6OgeM2XpqxOA4Zr9EYCGDp+tdEYBQ=="/>
+            <enclosure url="https://github.com/e-dream-ai/client/releases/download/0.14.0/infinidream-0.14.0.zip" length="59003777" type="application/octet-stream" sparkle:edSignature="t+MvMoOO+oe0rDExZPxH8RTVm1hGFxnwZ6NHmR55UlJHDqCYWpOJVMldiiXATQkLLRmrBgI/jDzErhGmRLV6Aw=="/>
                     <description sparkle:format="markdown">## What's Changed
 The app automatically checks for and installs updated versions of itself every time it starts.
 The screensaver can't update itself, but it shows a warning. Just run the app to update the screensaver.
