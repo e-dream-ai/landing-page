@@ -3,12 +3,21 @@
     <channel>
         <title>infinidream stage</title>
         <item>
-            <title>0.13.6</title>
-            <pubDate>Tue, 20 Jan 2026 21:49:32 +0200</pubDate>
-            <sparkle:version>0.13.6</sparkle:version>
-            <sparkle:shortVersionString>0.13.6</sparkle:shortVersionString>
+            <title>0.14.0</title>
+            <pubDate>Fri, 30 Jan 2026 19:05:49 +0200</pubDate>
+            <sparkle:version>0.14.0</sparkle:version>
+            <sparkle:shortVersionString>0.14.0</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>12.4</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/e-dream-ai/client/releases/download/0.13.6/infinidream-0.13.6.zip" length="58994677" type="application/octet-stream" sparkle:edSignature="/MF/ORD3l/Z1xnv7KQBLhpaM15oNhtsY9MkPw9iLaWEiueB9LDu5fAMTx9EqxTR+7SdolZz918GTY/Fym+xyDg=="/>
+            <enclosure url="https://github.com/e-dream-ai/client/releases/download/0.14.0/infinidream-0.14.0.zip" length="59003781" type="application/octet-stream" sparkle:edSignature="rWIQZl0oXqPxf8O8T2S0TZytnjwNcxhr2LmAETqXxapFy2MKRvjPvp8jP6OgeM2XpqxOA4Zr9EYCGDp+tdEYBQ=="/>
+                    <description sparkle:format="markdown">## What's Changed
+The app automatically checks for and installs updated versions of itself every time it starts.
+The screensaver can't update itself, but it shows a warning. Just run the app to update the screensaver.
+* auto update with sparkle including visible indicator [#320](https://github.com/e-dream-ai/client/issues/320) 
+* report GPU and CPU usage in F2 overlay [#163](https://github.com/e-dream-ai/client/issues/163)
+* add disk full warning [#366](https://github.com/e-dream-ai/client/issues/366)
+* increase performance of the OSD [#417](https://github.com/e-dream-ai/client/issues/417)
+
+**Full Changelog**: https://github.com/e-dream-ai/client/compare/0.12.0...0.14.0</description>
         </item>
     </channel>
 </rss>
