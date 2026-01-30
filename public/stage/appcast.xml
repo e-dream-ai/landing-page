@@ -3,12 +3,12 @@
     <channel>
         <title>infinidream stage</title>
         <item>
-            <title>0.14.2</title>
-            <pubDate>Fri, 30 Jan 2026 22:50:18 +0200</pubDate>
-            <sparkle:version>0.14.2</sparkle:version>
-            <sparkle:shortVersionString>0.14.2</sparkle:shortVersionString>
+            <title>0.14.4</title>
+            <pubDate>Fri, 30 Jan 2026 23:08:20 +0200</pubDate>
+            <sparkle:version>0.14.4</sparkle:version>
+            <sparkle:shortVersionString>0.14.4</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>12.4</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/e-dream-ai/client/releases/download/0.14.2/infinidream-0.14.2.zip" length="59008690" type="application/octet-stream" sparkle:edSignature="kx07oR3ugVj0fk7cXPE6fWeqRuUGMV/K1iAuMX1Rh2lwN1szkzejUuPF4yqnsFLL4w8rt1wiHmKm/sJejGBGBQ=="/>
+            <enclosure url="https://github.com/e-dream-ai/client/releases/download/0.14.4/infinidream-0.14.4.zip" length="59008700" type="application/octet-stream" sparkle:edSignature="tnAYvxsAxqmkJ2SJRSg2hO7pbiD3ybsMHTgjNP55Bf1fpicpaX4Ge9WPJIQIAaljlvECh6SGQBNBmKfQKvwUAQ=="/>
                     <description sparkle:format="markdown">**Full Changelog**: https://github.com/e-dream-ai/client/compare/0.14.2...0.14.4</description>
         </item>
     </channel>
