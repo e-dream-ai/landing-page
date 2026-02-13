@@ -3,17 +3,25 @@
     <channel>
         <title>infinidream stage</title>
         <item>
-            <title>0.14.6</title>
-            <pubDate>Sat, 31 Jan 2026 13:24:37 -0500</pubDate>
-            <sparkle:version>0.14.6</sparkle:version>
-            <sparkle:shortVersionString>0.14.6</sparkle:shortVersionString>
+            <title>0.14.4</title>
+            <pubDate>Fri, 13 Feb 2026 23:14:20 +0200</pubDate>
+            <sparkle:version>0.14.4</sparkle:version>
+            <sparkle:shortVersionString>0.14.4</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>12.4</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/e-dream-ai/client/releases/download/0.14.6/infinidream-0.14.6.zip" length="52919772" type="application/octet-stream" sparkle:edSignature="Wa49IHcISuPrhTvgsfQiduNz/sZZfjPf/QqhueJnmymABNAhchnPyR/h1gIlfHPpRldMEH3Iat0RidBfw1mlBw=="/>
+            <enclosure url="https://github.com/e-dream-ai/client/releases/download/0.14.4/infinidream-0.14.4-stage.zip" length="47849785" type="application/octet-stream"/>
                     <description sparkle:format="markdown">## What's Changed
-* Fix [#429](https://github.com/e-dream-ai/client/issues/429) - dark flash
-* Fix [#419](https://github.com/e-dream-ai/client/issues/419) - hang on quit without net
+* Fix [#444](https://github.com/e-dream-ai/client/issues/444) - clicking "skip" crashes
+* Fix [#386](https://github.com/e-dream-ai/client/issues/386) - Update tooltip of preserve-aspect-ratio checkbox
+* Fix [#450](https://github.com/e-dream-ai/client/issues/450) - improve speed icons
+* Fix [#462](https://github.com/e-dream-ai/client/issues/462) - setting change delayed
+* Fix [#463](https://github.com/e-dream-ai/client/issues/463) - commands should work in either case
+* Fix [#467](https://github.com/e-dream-ai/client/issues/467) - Setting/Options crash
+* Fix [#473](https://github.com/e-dream-ai/client/issues/473) - not net shows as busy
+* Enable shutdown watchdog for screensaver
+* Fix [#476](https://github.com/e-dream-ai/client/issues/476) - remove useless settings widgets
 
-**Full Changelog**: https://github.com/e-dream-ai/client/compare/0.14.4...0.14.6</description>
+
+**Full Changelog**: https://github.com/e-dream-ai/client/compare/0.14.3...0.14.4</description>
         </item>
     </channel>
 </rss>
