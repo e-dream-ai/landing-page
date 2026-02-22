@@ -3,19 +3,22 @@
     <channel>
         <title>infinidream</title>
         <item>
-            <title>0.14.3</title>
-            <pubDate>Tue, 03 Feb 2026 10:42:17 -0500</pubDate>
-            <sparkle:version>0.14.3</sparkle:version>
-            <sparkle:shortVersionString>0.14.3</sparkle:shortVersionString>
+            <title>0.14.4</title>
+            <pubDate>Sun, 22 Feb 2026 16:44:57 -0500</pubDate>
+            <sparkle:version>0.14.4</sparkle:version>
+            <sparkle:shortVersionString>0.14.4</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>12.4</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/e-dream-ai/client/releases/download/0.14.3/infinidream-0.14.3.zip" length="52924997" type="application/octet-stream" sparkle:edSignature="Y0E8XwW/3fdhSKnaBxVTIuug22hmKZBXqXZnPG423PbL2WnrmEfqCSzTpjFhkao/mNYiFQZXQlEaM/De4eNlCw=="/>
+            <enclosure url="https://github.com/e-dream-ai/client/releases/download/0.14.4/infinidream-0.14.4.zip" length="52982587" type="application/octet-stream" sparkle:edSignature="p0QuTzaBMW7yh2OE4PlZIrlBKSfue5BBN415s2YGiL7RPbTXnR88Q9crbjl4YrfYP6j2qECKiHo0kIMiwCmGBQ=="/>
                     <description sparkle:format="markdown">## What's Changed
-* settings dialog works [#449](https://github.com/e-dream-ai/client/issues/449)
-* downloads complete [#448](https://github.com/e-dream-ai/client/issues/448)
+* clicking "skip" in onboarding wizard fixed [#444](https://github.com/e-dream-ai/client/issues/444) 
+* settings widgets fixed, unused widgets removed [#386](https://github.com/e-dream-ai/client/issues/386) [#476](https://github.com/e-dream-ai/client/issues/476) [#462](https://github.com/e-dream-ai/client/issues/462)
+* add snail and bird speed icons [#450](https://github.com/e-dream-ai/client/issues/450)
+* keyboard commands work in upper and lower case [#463](https://github.com/e-dream-ai/client/issues/463)
+* remove our settings dialog from system settings, use the app instead [#467](https://github.com/e-dream-ai/client/issues/467)
+* remove confusing busy indicator [#473](https://github.com/e-dream-ai/client/issues/473)
+* explain the web controls in both wizard and settings [#477](https://github.com/e-dream-ai/client/issues/477) 
 
-**Full Changelog**: https://github.com/e-dream-ai/client/compare/0.14.2...0.14.3
-
-**Previous Releases**: https://github.com/e-dream-ai/client/releases</description>
+**Full Changelog**: https://github.com/e-dream-ai/client/compare/0.14.3...0.14.4</description>
         </item>
     </channel>
 </rss>
