@@ -3,22 +3,24 @@
     <channel>
         <title>infinidream</title>
         <item>
-            <title>0.14.4</title>
-            <pubDate>Sun, 22 Feb 2026 16:44:57 -0500</pubDate>
-            <sparkle:version>0.14.4</sparkle:version>
-            <sparkle:shortVersionString>0.14.4</sparkle:shortVersionString>
+            <title>0.14.5</title>
+            <pubDate>Tue, 10 Mar 2026 20:08:46 -0400</pubDate>
+            <sparkle:version>0.14.5</sparkle:version>
+            <sparkle:shortVersionString>0.14.5</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>12.4</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/e-dream-ai/client/releases/download/0.14.4/infinidream-0.14.4.zip" length="52982587" type="application/octet-stream" sparkle:edSignature="p0QuTzaBMW7yh2OE4PlZIrlBKSfue5BBN415s2YGiL7RPbTXnR88Q9crbjl4YrfYP6j2qECKiHo0kIMiwCmGBQ=="/>
+            <enclosure url="https://github.com/e-dream-ai/client/releases/download/0.14.5/infinidream-0.14.5.zip" length="51821917" type="application/octet-stream" sparkle:edSignature="nW+SoKzV3+ztCgbUzXnAZMXyMutVlLMcXcE1cl/f44LWIFEKBzyY38U1DOkqZMpucwnfP1JBtGkXZIZMpl+tBg=="/>
                     <description sparkle:format="markdown">## What's Changed
-* clicking "skip" in onboarding wizard fixed [#444](https://github.com/e-dream-ai/client/issues/444) 
-* settings widgets fixed, unused widgets removed [#386](https://github.com/e-dream-ai/client/issues/386) [#476](https://github.com/e-dream-ai/client/issues/476) [#462](https://github.com/e-dream-ai/client/issues/462)
-* add snail and bird speed icons [#450](https://github.com/e-dream-ai/client/issues/450)
-* keyboard commands work in upper and lower case [#463](https://github.com/e-dream-ai/client/issues/463)
-* remove our settings dialog from system settings, use the app instead [#467](https://github.com/e-dream-ai/client/issues/467)
-* remove confusing busy indicator [#473](https://github.com/e-dream-ai/client/issues/473)
-* explain the web controls in both wizard and settings [#477](https://github.com/e-dream-ai/client/issues/477) 
+* allow playlists to prioritize and control looping [#312](https://github.com/e-dream-ai/client/issues/312)
+* support faster playback by decoding faster than refresh [#452](https://github.com/e-dream-ai/client/issues/452)
+* handle stretching on ultrawide screens [#472](https://github.com/e-dream-ai/client/issues/472) 
+* preserve quota until it's about to expire [#275](https://github.com/e-dream-ai/client/issues/275)
+* remove legacy Metal text rendering, keep only CATextLayer path [#500](https://github.com/e-dream-ai/client/issues/500)
+* improve default focus in onboarding wizard [#495](https://github.com/e-dream-ai/client/issues/495)
+* include git hash and build date in log output [#502](https://github.com/e-dream-ai/client/issues/502)
+* log dream names in addition to UUIDs
+* move download percentage indicator [#471](https://github.com/e-dream-ai/client/issues/471)
 
-**Full Changelog**: https://github.com/e-dream-ai/client/compare/0.14.3...0.14.4</description>
+**Full Changelog**: https://github.com/e-dream-ai/client/compare/0.14.4...0.14.5</description>
         </item>
     </channel>
 </rss>
