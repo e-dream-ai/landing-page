@@ -3,24 +3,20 @@
     <channel>
         <title>infinidream</title>
         <item>
-            <title>0.14.5</title>
-            <pubDate>Tue, 10 Mar 2026 20:08:46 -0400</pubDate>
-            <sparkle:version>0.14.5</sparkle:version>
-            <sparkle:shortVersionString>0.14.5</sparkle:shortVersionString>
+            <title>0.14.6</title>
+            <pubDate>Sun, 15 Mar 2026 14:19:50 -0400</pubDate>
+            <sparkle:version>0.14.6</sparkle:version>
+            <sparkle:shortVersionString>0.14.6</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>12.4</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/e-dream-ai/client/releases/download/0.14.5/infinidream-0.14.5.zip" length="51821917" type="application/octet-stream" sparkle:edSignature="nW+SoKzV3+ztCgbUzXnAZMXyMutVlLMcXcE1cl/f44LWIFEKBzyY38U1DOkqZMpucwnfP1JBtGkXZIZMpl+tBg=="/>
+            <enclosure url="https://github.com/e-dream-ai/client/releases/download/0.14.6/infinidream-0.14.6.zip" length="51817986" type="application/octet-stream" sparkle:edSignature="K3O2GlImnnT6EEGvihMCBuQCN6ZMXibyVKBe3qyjt6aZfiIh8j2SVzZwUVGeF2rA9fP52mfHNmBguospq8glDA=="/>
                     <description sparkle:format="markdown">## What's Changed
-* allow playlists to prioritize and control looping [#312](https://github.com/e-dream-ai/client/issues/312)
-* support faster playback by decoding faster than refresh [#452](https://github.com/e-dream-ai/client/issues/452)
-* handle stretching on ultrawide screens [#472](https://github.com/e-dream-ai/client/issues/472) 
-* preserve quota until it's about to expire [#275](https://github.com/e-dream-ai/client/issues/275)
-* remove legacy Metal text rendering, keep only CATextLayer path [#500](https://github.com/e-dream-ai/client/issues/500)
-* improve default focus in onboarding wizard [#495](https://github.com/e-dream-ai/client/issues/495)
-* include git hash and build date in log output [#502](https://github.com/e-dream-ai/client/issues/502)
-* log dream names in addition to UUIDs
-* move download percentage indicator [#471](https://github.com/e-dream-ai/client/issues/471)
+* optimize Metal GPU rendering: collapse render passes, remove debug shader branches, remove unused depth buffer — 34% GPU frame time reduction [#510](https://github.com/e-dream-ai/client/issues/510)
+* overlay improvements: refactor rendering to simplify threading, add track position to credits, align FPS with speed icons, fix vertical jitter and crash on F2 stats [#500](https://github.com/e-dream-ai/client/issues/500) [#517](https://github.com/e-dream-ai/client/issues/517) [#518](https://github.com/e-dream-ai/client/issues/518) [#519](https://github.com/e-dream-ai/client/issues/519)
+* fix quota handling, get new quota every time we switch playlists instead of only daily [#512](https://github.com/e-dream-ai/client/issues/512) [#503](https://github.com/e-dream-ai/client/issues/503)
+* avoid sign-out during transient server outages [#325](https://github.com/e-dream-ai/client/issues/325)
+* faster startup [#513](https://github.com/e-dream-ai/client/issues/513) [#482](https://github.com/e-dream-ai/client/issues/482) [#505](https://github.com/e-dream-ai/client/issues/505) 
 
-**Full Changelog**: https://github.com/e-dream-ai/client/compare/0.14.4...0.14.5</description>
+**Full Changelog**: https://github.com/e-dream-ai/client/compare/0.14.5...0.14.6</description>
         </item>
     </channel>
 </rss>
