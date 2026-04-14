@@ -3,18 +3,22 @@
     <channel>
         <title>infinidream</title>
         <item>
-            <title>0.14.7</title>
-            <pubDate>Fri, 27 Mar 2026 18:02:50 -0400</pubDate>
-            <sparkle:version>0.14.7</sparkle:version>
-            <sparkle:shortVersionString>0.14.7</sparkle:shortVersionString>
+            <title>0.14.8</title>
+            <pubDate>Mon, 13 Apr 2026 22:59:19 -0400</pubDate>
+            <sparkle:version>0.14.8</sparkle:version>
+            <sparkle:shortVersionString>0.14.8</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>12.4</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/e-dream-ai/client/releases/download/0.14.7/infinidream-0.14.7.zip" length="51834963" type="application/octet-stream" sparkle:edSignature="ePh6Zb8TtFWyv6Q5jnpgAa1KbKZI75mmxU96XKYAZxLISfpeCZDwvNE9jbtAc890F1W+YC/XYQWiahbyqS47DA=="/>
+            <enclosure url="https://github.com/e-dream-ai/client/releases/download/0.14.8/infinidream-0.14.8.zip" length="51836379" type="application/octet-stream" sparkle:edSignature="qKz/zNahW7FNcuH3ZVVoZmQcBpK+EDSBW/KbwzcuPSqPauc3E58do4SK6OQu7gOUTuhaaVOfltRKsM+5s/cnCA=="/>
                     <description sparkle:format="markdown">## What's Changed
-* handle and report errors during code validation [#526](https://github.com/e-dream-ai/client/issues/526)
-* respect cache size limit [#259](https://github.com/e-dream-ai/client/issues/259)
-* screensaver overlays now use Lato [#524](https://github.com/e-dream-ai/client/issues/524)
+* sign-in after starting offline without crashing [#534](https://github.com/e-dream-ai/client/issues/534)
+* improve sign-in text and error handling [#543](https://github.com/e-dream-ai/client/issues/543)
+* enable SSL verification [#546](https://github.com/e-dream-ai/client/issues/546) 
+* respect history in more keyframe cases to avoid infinite loops of dreams [#545](https://github.com/e-dream-ai/client/issues/545) 
+* correctly update the scheduled ending time for the dream as playback speed changes to avoid fading to black [#446](https://github.com/e-dream-ai/client/issues/446) 
+* upload the dSYM file with the debug symbols to bugsnag so we can better understand errors reported from the field.
+* protect against missing dream FPS string [#542](https://github.com/e-dream-ai/client/issues/542)
 
-**Full Changelog**: https://github.com/e-dream-ai/client/compare/0.14.6...0.14.7</description>
+**Full Changelog**: https://github.com/e-dream-ai/client/compare/0.14.7...0.14.8</description>
         </item>
     </channel>
 </rss>
