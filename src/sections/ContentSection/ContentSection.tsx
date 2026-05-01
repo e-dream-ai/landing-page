@@ -25,7 +25,7 @@ const CONTENT_ITEMS: ContentItem[] = [
 	},
 	{
 		id: "mac-install",
-		text: "Install Infinidream on your Mac to get the best experience, or use any web browser for basic access.",
+		text: "Install Infinidream on your Mac or PC to get the best experience, or use any web browser for basic access.",
 	},
 	{
 		id: "phone-remote",
