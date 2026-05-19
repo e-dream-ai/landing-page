@@ -11,7 +11,7 @@ const RoadmapItem = [
   },
   {
     id: "multi-platform",
-    text: "Running on more platforms such as Windows, Android, iOS, tvOS, and directly on TVs and set-top boxes.",
+    text: "Running on more platforms such as Linux, Android, iOS, tvOS, and directly on TVs and set-top boxes.",
   },
   {
     id: "multiple-screens",
@@ -31,7 +31,7 @@ const RoadmapItem = [
       <div className="flex flex-col items-center gap-4">
         <span>
           Infinidream is free to use but maintaining and developing it costs
-          real money. Please support our mission by contributing!
+          real money. Please support our mission.
         </span>
         <ExternalLink href={ROUTES.patreon}>
           <Button variant="reusable" size="reusable">
