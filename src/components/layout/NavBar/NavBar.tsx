@@ -39,8 +39,8 @@ export default function NavBar() {
         <Logo />
 
         <nav className="flex flex-col sm:flex-row gap-2 sm:gap-2.5 w-auto justify-end">
-          <NavLink href={ROUTES.invite} external>
-            Request an invite
+          <NavLink href={ROUTES.createAccount} external>
+            Create an account
           </NavLink>
           <NavLink href={ROUTES.app}>Open the app</NavLink>
         </nav>
