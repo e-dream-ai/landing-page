@@ -3,23 +3,31 @@
     <channel>
         <title>infinidream</title>
         <item>
-            <title>0.15.0</title>
-            <pubDate>Sat, 09 May 2026 23:03:21 -0400</pubDate>
-            <sparkle:version>0.15.0</sparkle:version>
-            <sparkle:shortVersionString>0.15.0</sparkle:shortVersionString>
+            <title>0.16.0</title>
+            <pubDate>Fri, 22 May 2026 22:32:03 -0400</pubDate>
+            <sparkle:version>0.16.0</sparkle:version>
+            <sparkle:shortVersionString>0.16.0</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>12.4</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/e-dream-ai/client/releases/download/0.15.0/infinidream-0.15.0.zip" length="54747059" type="application/octet-stream" sparkle:edSignature="jJuRwgJiFELXRCxzntYN7yZ8ol5JqPzbMEu3fGnB28hcuB0GQgAV3PwQRYBB0LfjJoxLs0o6v44wJ7C2RS67BQ=="/>
-                    <description sparkle:format="markdown">This is the first dual-release of Infinidream for Windows and Mac, built from the same source.
+            <enclosure url="https://github.com/e-dream-ai/client/releases/download/0.16.0/infinidream-0.16.0.zip" length="54769870" type="application/octet-stream" sparkle:edSignature="8GsvXp7IFzXwCtGxxVF1prBGgxr+cwGSQ8Dr1JfJ/kma5Zkm3IZs8ty48bxX/BdvVuNTy7TYed5Hot5n3uGoBQ=="/>
+                    <description sparkle:format="markdown">This release adds Linux as a third supported platform, with polish and fixes for Windows and Mac.
+
+## Cross-platform
+
+Authenticate websocket connections via headers rather than query parameters so session tokens stop appearing in logs ([#537](https://github.com/e-dream-ai/client/issues/537)), handle new error codes returned by the auth endpoint including WorkOS rate-limit responses ([#535](https://github.com/e-dream-ai/client/issues/535), [#624](https://github.com/e-dream-ai/client/issues/624)).
 
 ## Windows
 
-NSIS installer, D3D11VA hardware decoding, multi-display screensaver, custom titlebar, and feature parity with Mac.
+Hide titlebar in screensaver preview ([#629](https://github.com/e-dream-ai/client/issues/629), [#630](https://github.com/e-dream-ai/client/issues/630)), close screensaver on mouse movement ([#615](https://github.com/e-dream-ai/client/issues/615)), allow keyboard commands while in screensaver mode ([#613](https://github.com/e-dream-ai/client/issues/613)), focus email field on first-time wizard open ([#644](https://github.com/e-dream-ai/client/issues/644)), restrict verification-code input to 6 digits ([#637](https://github.com/e-dream-ai/client/issues/637)).
 
 ## Mac
 
-Perceptual FPS clamped to [0.078125, 320] to prevent runaway playback speeds.
+Validate the verification-code field in the settings dialog ([#627](https://github.com/e-dream-ai/client/issues/627)), correct an `Error()` format-string bug and silence noisy `playing` log lines ([#315](https://github.com/e-dream-ai/client/issues/315), [#646](https://github.com/e-dream-ai/client/issues/646)).
 
-**Full Changelog**: https://github.com/e-dream-ai/client/compare/0.14.8...0.15.0</description>
+## Linux
+
+Initial Linux support ([#544](https://github.com/e-dream-ai/client/issues/544)): Vulkan renderer with linear and cubic frame blending ([#626](https://github.com/e-dream-ai/client/issues/626)), Lato font with drop-shadow overlay text ([#620](https://github.com/e-dream-ai/client/issues/620)), mouse-cursor OSD and remote control commands ([#619](https://github.com/e-dream-ai/client/issues/619)), Wayland/KWin compositor-ping handling to prevent window desaturation ([#628](https://github.com/e-dream-ai/client/issues/628)), render loop paced to display FPS rather than content FPS, `--fullscreen` flag with Ctrl+Q quit, and an AppImage build replacing the legacy shell script with a Python implementation ([#621](https://github.com/e-dream-ai/client/issues/621)).
+
+**Full Changelog**: https://github.com/e-dream-ai/client/compare/0.15.0...0.16.0</description>
         </item>
     </channel>
 </rss>
