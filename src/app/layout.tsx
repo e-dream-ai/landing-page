@@ -3,9 +3,9 @@ import { Comfortaa, Lato } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/layout/Footer/Footer";
 import NavBar from "@/components/layout/NavBar/NavBar";
-import VideoModal from "@/components/VideoModal/VideoModal";
 import { VideoModalProvider } from "@/contexts/VideoModalContext";
 import { ViewportProvider } from "@/contexts/ViewportContext";
+import VideoModal from "@/components/VideoModal/VideoModal";
 
 const comfortaa = Comfortaa({
 	variable: "--font-comfortaa",

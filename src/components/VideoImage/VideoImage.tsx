@@ -1,10 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { ClipLoader } from "react-spinners";
 import { useVideoModal } from "@/contexts/VideoModalContext";
-import { useMergedRefs } from "@/hooks/useMergedRefs";
 import { useVideoElement } from "@/hooks/useVideoElement";
 import { useVideoInteraction } from "@/hooks/useVideoInteraction";
 import { getSmallVideoPathFromThumbnail } from "@/lib/helpers";
@@ -41,9 +40,15 @@ export default function VideoImage({
 	const showSpinner = video.isLoading && interaction.shouldPlay;
 	const hasModalVideos = allVideos.length > 0;
 
-	const mergedRef = useMergedRefs(
-		containerRef,
-		priority ? undefined : video.inViewRef,
+	const setContainerRef = useCallback(
+		(node: HTMLButtonElement | null) => {
+			containerRef.current = node;
+
+			if (!priority) {
+				video.inViewRef(node);
+			}
+		},
+		[priority, video.inViewRef],
 	);
 
 	useEffect(() => {
@@ -64,7 +69,7 @@ export default function VideoImage({
 
 	return (
 		<button
-			ref={mergedRef}
+			ref={setContainerRef}
 			data-video-container
 			type="button"
 			aria-label={alt}

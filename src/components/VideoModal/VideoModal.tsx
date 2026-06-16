@@ -1,9 +1,9 @@
 "use client";
 
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import { ClipLoader } from "react-spinners";
 import { useVideoModal } from "@/contexts/VideoModalContext";
 import { useScrollLock } from "@/hooks/useScrollLock";

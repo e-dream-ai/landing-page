@@ -1,5 +1,13 @@
-import { useCallback, useEffect, useReducer } from "react";
+import {
+	useCallback,
+	useEffect,
+	useReducer,
+	useSyncExternalStore,
+} from "react";
 import { useViewport } from "@/contexts/ViewportContext";
+
+const ACTIVE_ROW_TOLERANCE = 2;
+const EMPTY_ACTIVE_CONTAINERS = new Set<HTMLElement>();
 
 interface UseVideoInteractionOptions {
 	enabled: boolean;
@@ -9,14 +17,19 @@ interface UseVideoInteractionOptions {
 interface InteractionState {
 	isHovered: boolean;
 	isPaused: boolean;
-	isActiveOnMobile: boolean;
 }
 
 type InteractionAction =
 	| { type: "MOUSE_ENTER" }
 	| { type: "MOUSE_LEAVE" }
-	| { type: "TOGGLE_PAUSE" }
-	| { type: "SET_ACTIVE_ON_MOBILE"; payload: boolean };
+	| { type: "TOGGLE_PAUSE" };
+
+const registeredContainers = new Set<HTMLElement>();
+const activeSubscribers = new Set<() => void>();
+let activeContainers = EMPTY_ACTIVE_CONTAINERS;
+let isLandscapeMode = false;
+let rafId: number | null = null;
+let isListening = false;
 
 function interactionReducer(
 	state: InteractionState,
@@ -29,24 +42,56 @@ function interactionReducer(
 			return { ...state, isHovered: false };
 		case "TOGGLE_PAUSE":
 			return { ...state, isPaused: !state.isPaused };
-		case "SET_ACTIVE_ON_MOBILE":
-			return { ...state, isActiveOnMobile: action.payload };
 		default:
 			return state;
 	}
 }
 
-function findActiveMobileContainer(
-	currentContainer: HTMLElement | null,
-	isLandscape: boolean,
+function areContainerSetsEqual(
+	first: Set<HTMLElement>,
+	second: Set<HTMLElement>,
 ): boolean {
-	if (!currentContainer) return false;
+	if (first.size !== second.size) return false;
 
-	const containers = document.querySelectorAll<HTMLElement>(
-		"[data-video-container]",
-	);
+	for (const container of first) {
+		if (!second.has(container)) return false;
+	}
 
-	if (isLandscape) {
+	return true;
+}
+
+function notifyActiveSubscribers() {
+	for (const subscriber of activeSubscribers) {
+		subscriber();
+	}
+}
+
+function setActiveContainers(nextActiveContainers: Set<HTMLElement>) {
+	if (areContainerSetsEqual(activeContainers, nextActiveContainers)) return;
+
+	activeContainers = nextActiveContainers;
+	notifyActiveSubscribers();
+}
+
+function getRegisteredContainers(): HTMLElement[] {
+	const containers: HTMLElement[] = [];
+
+	for (const container of registeredContainers) {
+		if (container.isConnected) {
+			containers.push(container);
+		} else {
+			registeredContainers.delete(container);
+		}
+	}
+
+	return containers;
+}
+
+function findActiveMobileContainers(): Set<HTMLElement> {
+	const containers = getRegisteredContainers();
+	if (containers.length === 0) return EMPTY_ACTIVE_CONTAINERS;
+
+	if (isLandscapeMode) {
 		// In landscape, find the row closest to the vertical center of the viewport.
 		const viewportCenter = window.innerHeight / 2;
 		let minDistance = Number.POSITIVE_INFINITY;
@@ -63,13 +108,21 @@ function findActiveMobileContainer(
 			}
 		}
 
-		const currentRect = currentContainer.getBoundingClientRect();
-		// Tolerance for sub-pixel rendering differences
-		return Math.abs(currentRect.top - activeTop) < 2;
+		const nextActiveContainers = new Set<HTMLElement>();
+
+		for (const container of containers) {
+			const rect = container.getBoundingClientRect();
+
+			if (Math.abs(rect.top - activeTop) < ACTIVE_ROW_TOLERANCE) {
+				nextActiveContainers.add(container);
+			}
+		}
+
+		return nextActiveContainers;
 	}
 
 	let topMostTop = Number.POSITIVE_INFINITY;
-	let topMostContainer: Element | null = null;
+	let topMostContainer: HTMLElement | null = null;
 
 	for (const container of containers) {
 		const rect = container.getBoundingClientRect();
@@ -81,7 +134,80 @@ function findActiveMobileContainer(
 		}
 	}
 
-	return topMostContainer === currentContainer;
+	return topMostContainer
+		? new Set([topMostContainer])
+		: EMPTY_ACTIVE_CONTAINERS;
+}
+
+function updateActiveContainers() {
+	rafId = null;
+	setActiveContainers(findActiveMobileContainers());
+}
+
+function scheduleActiveContainerUpdate() {
+	if (typeof window === "undefined") return;
+
+	if (rafId !== null) {
+		cancelAnimationFrame(rafId);
+	}
+
+	rafId = requestAnimationFrame(updateActiveContainers);
+}
+
+function addGlobalListeners() {
+	if (isListening || typeof window === "undefined") return;
+
+	window.addEventListener("scroll", scheduleActiveContainerUpdate, {
+		passive: true,
+	});
+	window.addEventListener("resize", scheduleActiveContainerUpdate);
+	isListening = true;
+}
+
+function removeGlobalListenersIfIdle() {
+	if (!isListening || registeredContainers.size > 0) return;
+
+	window.removeEventListener("scroll", scheduleActiveContainerUpdate);
+	window.removeEventListener("resize", scheduleActiveContainerUpdate);
+
+	if (rafId !== null) {
+		cancelAnimationFrame(rafId);
+		rafId = null;
+	}
+
+	isListening = false;
+	setActiveContainers(EMPTY_ACTIVE_CONTAINERS);
+}
+
+function registerMobileVideoContainer(
+	container: HTMLElement,
+	isLandscape: boolean,
+) {
+	registeredContainers.add(container);
+	isLandscapeMode = isLandscape;
+	addGlobalListeners();
+	scheduleActiveContainerUpdate();
+
+	return () => {
+		registeredContainers.delete(container);
+		scheduleActiveContainerUpdate();
+		removeGlobalListenersIfIdle();
+	};
+}
+
+function subscribeToActiveContainers(callback: () => void) {
+	activeSubscribers.add(callback);
+	return () => {
+		activeSubscribers.delete(callback);
+	};
+}
+
+function getActiveContainersSnapshot() {
+	return activeContainers;
+}
+
+function getActiveContainersServerSnapshot() {
+	return EMPTY_ACTIVE_CONTAINERS;
 }
 
 export function useVideoInteraction({
@@ -97,37 +223,23 @@ export function useVideoInteraction({
 	const [state, dispatch] = useReducer(interactionReducer, {
 		isHovered: false,
 		isPaused: false,
-		isActiveOnMobile: false,
 	});
+
+	const activeMobileContainers = useSyncExternalStore(
+		subscribeToActiveContainers,
+		getActiveContainersSnapshot,
+		getActiveContainersServerSnapshot,
+	);
 
 	useEffect(() => {
 		if (!isMobileMode || !enabled) {
-			dispatch({ type: "SET_ACTIVE_ON_MOBILE", payload: false });
 			return;
 		}
 
-		let rafId: number;
+		const container = containerRef.current;
+		if (!container) return;
 
-		const updateActiveVideo = () => {
-			const isActive = findActiveMobileContainer(
-				containerRef.current,
-				isLandscape,
-			);
-			dispatch({ type: "SET_ACTIVE_ON_MOBILE", payload: isActive });
-		};
-
-		const handleScroll = () => {
-			cancelAnimationFrame(rafId);
-			rafId = requestAnimationFrame(updateActiveVideo);
-		};
-
-		updateActiveVideo();
-		window.addEventListener("scroll", handleScroll, { passive: true });
-
-		return () => {
-			window.removeEventListener("scroll", handleScroll);
-			cancelAnimationFrame(rafId);
-		};
+		return registerMobileVideoContainer(container, isLandscape);
 	}, [isMobileMode, isLandscape, enabled, containerRef]);
 
 	const handleMouseEnter = useCallback(() => {
@@ -151,7 +263,8 @@ export function useVideoInteraction({
 	const shouldPlay =
 		enabled &&
 		(isMobileMode
-			? state.isActiveOnMobile && !state.isPaused
+			? activeMobileContainers.has(containerRef.current as HTMLElement) &&
+				!state.isPaused
 			: state.isHovered);
 
 	return {

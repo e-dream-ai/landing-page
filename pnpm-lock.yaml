@@ -17,18 +17,12 @@ importers:
       '@fortawesome/free-brands-svg-icons':
         specifier: ^6.7.2
         version: 6.7.2
-      '@fortawesome/free-regular-svg-icons':
-        specifier: ^6.7.2
-        version: 6.7.2
       '@fortawesome/free-solid-svg-icons':
         specifier: ^6.7.2
         version: 6.7.2
       '@fortawesome/react-fontawesome':
         specifier: ^0.2.2
         version: 0.2.6(@fortawesome/fontawesome-svg-core@6.7.2)(react@19.2.7)
-      '@radix-ui/react-slot':
-        specifier: ^1.3.0
-        version: 1.3.0(@types/react@19.2.2)(react@19.2.7)
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -154,10 +148,6 @@ packages:
 
   '@fortawesome/free-brands-svg-icons@6.7.2':
     resolution: {integrity: sha512-zu0evbcRTgjKfrr77/2XX+bU+kuGfjm0LbajJHVIgBWNIDzrhpRxiCPNT8DW5AdmSsq7Mcf9D1bH0aSeSUSM+Q==}
-    engines: {node: '>=6'}
-
-  '@fortawesome/free-regular-svg-icons@6.7.2':
-    resolution: {integrity: sha512-7Z/ur0gvCMW8G93dXIQOkQqHo2M5HLhYrRVC0//fakJXxcF1VmMPsxnG6Ee8qEylA8b8Q3peQXWMNZ62lYF28g==}
     engines: {node: '>=6'}
 
   '@fortawesome/free-solid-svg-icons@6.7.2':
@@ -377,24 +367,6 @@ packages:
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [win32]
-
-  '@radix-ui/react-compose-refs@1.1.3':
-    resolution: {integrity: sha512-rYOP8OMnuuPMQF1uhPVlGNcCDlkokKqGFE3JcxFViIkAXP7EvFWUliJAstrapypaBLJNHbZL6jGhbVDGTwmVhA==}
-    peerDependencies:
-      '@types/react': '*'
-      react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-
-  '@radix-ui/react-slot@1.3.0':
-    resolution: {integrity: sha512-MojKku4U/miO8Av4Dkb+ctMAQx7JmY96LmtDQlAarCRtd7rN52QCSzBF+XAvr5S6coSVj9HEPBgHAHKEJVk/WA==}
-    peerDependencies:
-      '@types/react': '*'
-      react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
 
   '@swc/helpers@0.5.15':
     resolution: {integrity: sha512-JQ5TuMi45Owi4/BIMAJBoSQoOJu12oOk/gADqlcUL9JEdHB8vyjUSsxqeNXnmXHjYKMi2WcYtezGEEhqUI/E2g==}
@@ -848,10 +820,6 @@ snapshots:
     dependencies:
       '@fortawesome/fontawesome-common-types': 6.7.2
 
-  '@fortawesome/free-regular-svg-icons@6.7.2':
-    dependencies:
-      '@fortawesome/fontawesome-common-types': 6.7.2
-
   '@fortawesome/free-solid-svg-icons@6.7.2':
     dependencies:
       '@fortawesome/fontawesome-common-types': 6.7.2
@@ -1007,19 +975,6 @@ snapshots:
 
   '@next/swc-win32-x64-msvc@16.2.9':
     optional: true
-
-  '@radix-ui/react-compose-refs@1.1.3(@types/react@19.2.2)(react@19.2.7)':
-    dependencies:
-      react: 19.2.7
-    optionalDependencies:
-      '@types/react': 19.2.2
-
-  '@radix-ui/react-slot@1.3.0(@types/react@19.2.2)(react@19.2.7)':
-    dependencies:
-      '@radix-ui/react-compose-refs': 1.1.3(@types/react@19.2.2)(react@19.2.7)
-      react: 19.2.7
-    optionalDependencies:
-      '@types/react': 19.2.2
 
   '@swc/helpers@0.5.15':
     dependencies:
