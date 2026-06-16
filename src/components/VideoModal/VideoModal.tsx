@@ -3,12 +3,13 @@
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { ClipLoader } from "react-spinners";
 import { useVideoModal } from "@/contexts/VideoModalContext";
-import { useScrollLock, useVideoElement } from "@/hooks";
+import { useScrollLock } from "@/hooks/useScrollLock";
+import { useVideoElement } from "@/hooks/useVideoElement";
 import { getVideoPathFromThumbnail } from "@/lib/helpers";
 import { cn } from "@/lib/utils";
-import NavigationButton from "../NavigationButton/NavigationButton";
 
 export default function VideoModal() {
 	const { isOpen, currentIndex, videos, closeModal, goToNext, goToPrevious } =
@@ -79,11 +80,14 @@ export default function VideoModal() {
 						transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
 					>
 						{hasMultipleVideos && (
-							<NavigationButton
-								direction="left"
+							<button
+								type="button"
 								onClick={goToPrevious}
-								ariaLabel="Previous video"
-							/>
+								className="absolute left-4 top-1/2 -translate-y-1/2 z-50 p-3 rounded-full bg-black/50 hover:bg-black/70 border-2 border-primary/80 text-white transition-colors duration-200 focus:outline-none cursor-pointer"
+								aria-label="Previous video"
+							>
+								<ChevronLeft className="size-8" />
+							</button>
 						)}
 
 						<div className="w-full h-full flex items-center justify-center">
@@ -117,11 +121,14 @@ export default function VideoModal() {
 						</div>
 
 						{hasMultipleVideos && (
-							<NavigationButton
-								direction="right"
+							<button
+								type="button"
 								onClick={goToNext}
-								ariaLabel="Next video"
-							/>
+								className="absolute right-4 top-1/2 -translate-y-1/2 z-50 p-3 rounded-full bg-black/50 hover:bg-black/70 border-2 border-primary/80 text-white transition-colors duration-200 focus:outline-none cursor-pointer"
+								aria-label="Next video"
+							>
+								<ChevronRight className="size-8" />
+							</button>
 						)}
 					</motion.div>
 				</motion.div>

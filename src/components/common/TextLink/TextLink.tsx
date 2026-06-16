@@ -1,7 +1,7 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { cn } from "@/lib/utils";
+import { cn, isExternalHref } from "@/lib/utils";
 
 const textLinkVariants = cva("underline underline-offset-2 transition-colors", {
 	variants: {
@@ -23,8 +23,6 @@ type TextLinkProps = VariantProps<typeof textLinkVariants> & {
 	className?: string;
 	external?: boolean;
 };
-
-const isExternalHref = (href: string) => /^(https?:|mailto:)/.test(href);
 
 export default function TextLink({
 	href,

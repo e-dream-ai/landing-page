@@ -5,6 +5,7 @@ import Footer from "@/components/layout/Footer/Footer";
 import NavBar from "@/components/layout/NavBar/NavBar";
 import VideoModal from "@/components/VideoModal/VideoModal";
 import { VideoModalProvider } from "@/contexts/VideoModalContext";
+import { ViewportProvider } from "@/contexts/ViewportContext";
 
 const comfortaa = Comfortaa({
 	variable: "--font-comfortaa",
@@ -62,12 +63,14 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={`${comfortaa.variable} ${lato.variable} antialiased`}>
-				<VideoModalProvider>
-					<NavBar />
-					{children}
-					<Footer />
-					<VideoModal />
-				</VideoModalProvider>
+				<ViewportProvider>
+					<VideoModalProvider>
+						<NavBar />
+						{children}
+						<Footer />
+						<VideoModal />
+					</VideoModalProvider>
+				</ViewportProvider>
 			</body>
 		</html>
 	);

@@ -1,5 +1,4 @@
 export const ROUTES = {
-	invite: "https://forms.gle/3gdV6YFEyYDmVNdn7",
 	app: "https://alpha.infinidream.ai",
 	createAccount: "https://alpha.infinidream.ai/account",
 	discord: "https://discord.gg/x42WkXwwWG",

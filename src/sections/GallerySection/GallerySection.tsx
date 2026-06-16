@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Button from "@/components/common/Button/Button";
+import FadeUp from "@/components/common/FadeUp/FadeUp";
 import SectionHeader from "@/components/common/SectionHeader/SectionHeader";
 import Container from "@/components/layout/Container/Container";
 import VideoImage from "@/components/VideoImage/VideoImage";
@@ -24,13 +25,14 @@ export default function GallerySection() {
 
 	return (
 		<Container className="mx-auto flex max-w-7xl flex-col gap-8">
-			<SectionHeader
-				align="center"
-				label="Gallery"
-				title="Endless Dreams"
-				description="A living library of animated visuals, from dozens of artists and AIs."
-				className="mx-auto"
-			/>
+			<FadeUp className="mx-auto">
+				<SectionHeader
+					align="center"
+					label="Gallery"
+					title="Endless Dreams"
+					description="A living library of animated visuals, from dozens of artists and AIs."
+				/>
+			</FadeUp>
 
 			<div
 				className="grid grid-cols-2 gap-2 sm:grid-cols-4 lg:grid-cols-6"

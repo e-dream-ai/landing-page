@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useReducer } from "react";
-import { useIsLandscape } from "./useIsLandscape";
-import { useIsMobile } from "./useIsMobile";
+import { useViewport } from "@/contexts/ViewportContext";
 
 interface UseVideoInteractionOptions {
 	enabled: boolean;
@@ -89,14 +88,11 @@ export function useVideoInteraction({
 	enabled,
 	containerRef,
 }: UseVideoInteractionOptions) {
-	const isMobile = useIsMobile();
-	const isLandscape = useIsLandscape();
-
+	const { isMobile, isLandscape, isPointerCoarse } = useViewport();
 	const isMobileMode =
 		isMobile ||
-		(typeof window !== "undefined" &&
-			(window.matchMedia("(pointer: coarse)").matches ||
-				"ontouchstart" in window));
+		isPointerCoarse ||
+		(typeof window !== "undefined" && "ontouchstart" in window);
 
 	const [state, dispatch] = useReducer(interactionReducer, {
 		isHovered: false,

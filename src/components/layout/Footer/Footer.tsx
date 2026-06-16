@@ -25,7 +25,7 @@ const SOCIAL_LINKS = [
 export default function Footer() {
 	return (
 		<footer className="flex flex-col items-center gap-10 px-8 py-5 border-t border-white/10">
-			<div className="flex flex-wrap items-center justify-center gap-2.5 	font-secondary text-sm">
+			<div className="flex flex-wrap items-center justify-center gap-2.5 font-secondary text-sm">
 				{SOCIAL_LINKS.map((link, index) => (
 					<Fragment key={link.label}>
 						{index > 0 && <span className="text-white/20">|</span>}

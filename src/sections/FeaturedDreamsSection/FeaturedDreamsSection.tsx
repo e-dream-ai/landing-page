@@ -8,7 +8,7 @@ import {
 
 const START_INDEX = getSectionStartIndex(THUMBNAILS_4TH_SECTION);
 
-export default function ShowcaseSection() {
+export default function FeaturedDreamsSection() {
 	return (
 		<section className="-mt-8 border-b border-white/10">
 			<Container className="mx-auto grid max-w-7xl grid-cols-1 gap-5 py-12 sm:grid-cols-3">

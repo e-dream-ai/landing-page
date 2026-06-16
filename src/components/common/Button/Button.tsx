@@ -1,7 +1,7 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { cn } from "@/lib/utils";
+import { cn, isExternalHref } from "@/lib/utils";
 
 const buttonVariants = cva(
 	"inline-flex items-center justify-center rounded font-secondary transition-colors duration-300 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 cursor-pointer",
@@ -34,8 +34,6 @@ type ButtonProps = VariantProps<typeof buttonVariants> & {
 	type?: "button" | "submit" | "reset";
 	onClick?: () => void;
 };
-
-const isExternalHref = (href: string) => /^(https?:|mailto:)/.test(href);
 
 export default function Button({
 	children,

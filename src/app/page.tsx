@@ -1,19 +1,19 @@
-import CollaborationSection from "@/sections/CollaborationSection/CollaborationSection";
-import ContentSection from "@/sections/ContentSection/ContentSection";
+import ArtistsSection from "@/sections/ArtistsSection/ArtistsSection";
+import ExperienceSection from "@/sections/ExperienceSection/ExperienceSection";
+import FeaturedDreamsSection from "@/sections/FeaturedDreamsSection/FeaturedDreamsSection";
 import GallerySection from "@/sections/GallerySection/GallerySection";
 import HeroSection from "@/sections/HeroSection/HeroSection";
-import RoadMapSection from "@/sections/RoadMapSection/RoadMapSection";
-import ShowcaseSection from "@/sections/ShowcaseSection/ShowcaseSection";
+import RoadmapSection from "@/sections/RoadmapSection/RoadmapSection";
 import TeamSection from "@/sections/TeamSection/TeamSection";
 
 export default function HomePage() {
 	return (
 		<main className="flex flex-col gap-8">
 			<HeroSection />
-			<ContentSection />
-			<CollaborationSection />
-			<ShowcaseSection />
-			<RoadMapSection />
+			<ExperienceSection />
+			<ArtistsSection />
+			<FeaturedDreamsSection />
+			<RoadmapSection />
 			<TeamSection />
 			<GallerySection />
 		</main>

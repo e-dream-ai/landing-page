@@ -2,15 +2,15 @@ import VideoImage from "@/components/VideoImage/VideoImage";
 import { ALL_THUMBNAILS } from "@/lib/thumbnails";
 import type { Thumbnail } from "@/lib/types";
 
-interface ThumbnailSectionProps {
+interface ThumbnailGridProps {
 	thumbnails: Thumbnail[];
 	startIndex: number;
 }
 
-export default function ThumbnailSection({
+export default function ThumbnailGrid({
 	thumbnails,
 	startIndex,
-}: ThumbnailSectionProps) {
+}: ThumbnailGridProps) {
 	return (
 		<div className="grid grid-cols-1 md:grid-cols-3 gap-5">
 			{thumbnails.map((thumbnail, index) => (

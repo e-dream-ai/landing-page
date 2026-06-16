@@ -1,5 +1,10 @@
 import Button from "@/components/common/Button/Button";
+import FadeUp from "@/components/common/FadeUp/FadeUp";
 import SectionHeader from "@/components/common/SectionHeader/SectionHeader";
+import {
+	StaggerContainer,
+	StaggerItem,
+} from "@/components/common/Stagger/Stagger";
 import TextLink from "@/components/common/TextLink/TextLink";
 import Section from "@/components/layout/Section/Section";
 import { ROUTES } from "@/constants/routes";
@@ -52,13 +57,13 @@ const INFO_CARDS = [
 	},
 ];
 
-export default function CollaborationSection() {
+export default function ArtistsSection() {
 	return (
 		<Section
 			alt
 			className="grid grid-cols-1 items-start gap-16 lg:grid-cols-[2fr_3fr]"
 		>
-			<div className="flex flex-col gap-5 lg:sticky lg:top-24">
+			<FadeUp className="flex flex-col gap-5 lg:sticky lg:top-24">
 				<SectionHeader
 					label="Artists"
 					title="Make Art That Never Stops Moving"
@@ -70,13 +75,13 @@ export default function CollaborationSection() {
 				<Button href={ROUTES.creators} variant="primary" className="self-start">
 					Creators Program
 				</Button>
-			</div>
+			</FadeUp>
 
-			<div className="grid grid-cols-1 border-l border-t border-white/10 sm:grid-cols-2">
+			<StaggerContainer className="grid grid-cols-1 border-l border-t border-white/10 sm:grid-cols-2">
 				{INFO_CARDS.map((card) => (
-					<div
+					<StaggerItem
 						key={card.num}
-						className="group flex flex-col gap-2 border-r border-b border-white/10 p-6 transition-colors duration-300 hover:bg-white/[0.03]"
+						className="group flex flex-col gap-2 border-r border-b border-white/10 p-6 transition-colors duration-300 hover:bg-white/3"
 					>
 						<p className="font-primary text-xs text-white/20 transition-colors duration-300 group-hover:text-primary">
 							{card.num}
@@ -85,9 +90,9 @@ export default function CollaborationSection() {
 						<p className="font-secondary text-sm font-light leading-relaxed text-white/75">
 							{card.content}
 						</p>
-					</div>
+					</StaggerItem>
 				))}
-			</div>
+			</StaggerContainer>
 		</Section>
 	);
 }

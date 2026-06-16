@@ -1,10 +1,15 @@
 import { ArrowRight } from "lucide-react";
+import FadeUp from "@/components/common/FadeUp/FadeUp";
 import SectionHeader from "@/components/common/SectionHeader/SectionHeader";
+import {
+	StaggerContainer,
+	StaggerItem,
+} from "@/components/common/Stagger/Stagger";
 import TextLink from "@/components/common/TextLink/TextLink";
 import Section from "@/components/layout/Section/Section";
 import { ROUTES } from "@/constants/routes";
 import { getSectionStartIndex, THUMBNAILS_5TH_SECTION } from "@/lib/thumbnails";
-import ThumbnailSection from "@/sections/ThumbnailSection/ThumbnailSection";
+import ThumbnailGrid from "@/sections/ThumbnailGrid/ThumbnailGrid";
 
 const ROADMAP_ITEMS = [
 	'Cloud generation powered by AI and crowd signals. Hit "edit" on any dream — change the prompts, restyle it, make it yours.',
@@ -14,14 +19,16 @@ const ROADMAP_ITEMS = [
 	"Audioreactive mode. A mic picks up the music, IDs the song, and the visuals respond in real time. Become an AI VJ.",
 ];
 
-export default function RoadMapSection() {
+export default function RoadmapSection() {
 	return (
 		<Section className="flex flex-col gap-10">
-			<SectionHeader label="Roadmap" title="What's Next" />
+			<FadeUp>
+				<SectionHeader label="Roadmap" title="What's Next" />
+			</FadeUp>
 
-			<div className="flex flex-col lg:mx-auto">
+			<StaggerContainer className="flex flex-col lg:mx-auto">
 				{ROADMAP_ITEMS.map((item) => (
-					<div
+					<StaggerItem
 						key={item}
 						className="flex gap-6 border-b border-white/10 py-6 first:pt-0"
 					>
@@ -29,9 +36,9 @@ export default function RoadMapSection() {
 						<p className="font-secondary text-base font-light text-white/75">
 							{item}
 						</p>
-					</div>
+					</StaggerItem>
 				))}
-			</div>
+			</StaggerContainer>
 
 			<div className="mx-auto flex max-w-xl flex-col items-center gap-2 rounded border border-white/10 px-8 py-6 text-center font-secondary text-base font-light text-white/75">
 				<p>Infinidream is free. Building it is not. If this matters to you,</p>
@@ -45,7 +52,7 @@ export default function RoadMapSection() {
 				</TextLink>
 			</div>
 
-			<ThumbnailSection
+			<ThumbnailGrid
 				thumbnails={THUMBNAILS_5TH_SECTION}
 				startIndex={getSectionStartIndex(THUMBNAILS_5TH_SECTION)}
 			/>

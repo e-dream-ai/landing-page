@@ -1,6 +1,11 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import FadeUp from "@/components/common/FadeUp/FadeUp";
 import SectionHeader from "@/components/common/SectionHeader/SectionHeader";
+import {
+	StaggerContainer,
+	StaggerItem,
+} from "@/components/common/Stagger/Stagger";
 import TextLink from "@/components/common/TextLink/TextLink";
 import Section from "@/components/layout/Section/Section";
 import { ROUTES } from "@/constants/routes";
@@ -52,11 +57,13 @@ const TEAM_MEMBERS: TeamMember[] = [
 export default function TeamSection() {
 	return (
 		<Section alt className="flex flex-col gap-10">
-			<SectionHeader label="Team" title="Who's Building This" />
+			<FadeUp>
+				<SectionHeader label="Team" title="Who's Building This" />
+			</FadeUp>
 
-			<div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
+			<StaggerContainer className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
 				{TEAM_MEMBERS.map((member) => (
-					<div key={member.name} className="flex flex-col gap-1.5">
+					<StaggerItem key={member.name} className="flex flex-col gap-1.5">
 						<Link
 							href={member.href}
 							target="_blank"
@@ -68,9 +75,9 @@ export default function TeamSection() {
 						<p className="font-secondary text-sm font-light leading-relaxed text-white/75">
 							{member.role}
 						</p>
-					</div>
+					</StaggerItem>
 				))}
-			</div>
+			</StaggerContainer>
 
 			<div className="flex flex-col gap-6 text-center font-secondary font-light">
 				<p className="text-sm text-white/75">

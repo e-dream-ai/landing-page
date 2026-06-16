@@ -22,7 +22,7 @@ const GALLERY_START = getSectionStartIndex(THUMBNAILS_2ND_SECTION);
 const FEATURED = GALLERY.slice(0, 2);
 const REST = GALLERY.slice(2);
 
-export default function ContentSection() {
+export default function ExperienceSection() {
 	return (
 		<Container className="flex flex-col gap-10">
 			<div className="mx-auto flex max-w-4xl flex-col gap-5 font-secondary text-base font-light text-white/75">

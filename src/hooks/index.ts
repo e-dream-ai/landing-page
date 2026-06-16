@@ -1,5 +1,4 @@
-export { useIsLandscape } from "./useIsLandscape";
-export { useIsMobile } from "./useIsMobile";
+export { useMediaQuery } from "./useMediaQuery";
 export { useMergedRefs } from "./useMergedRefs";
 export { useScrollLock } from "./useScrollLock";
 export { useVideoElement } from "./useVideoElement";
