@@ -1,88 +1,93 @@
-import ContentBox from "@/components/common/ContentBox/ContextBox";
-import ExternalLink from "@/components/common/ExternalLink/ExternalLink";
-import Title from "@/components/common/Title/Title";
-import { Button } from "@/components/ui/button";
+import Button from "@/components/common/Button/Button";
+import SectionHeader from "@/components/common/SectionHeader/SectionHeader";
+import TextLink from "@/components/common/TextLink/TextLink";
+import Section from "@/components/layout/Section/Section";
 import { ROUTES } from "@/constants/routes";
 
-const contentBoxes = [
-  {
-    id: "video-upload",
-    content:
-      "It can be as simple as uploading videos the same way you would to YouTube or Instagram, but with a deeper experience for your audience.",
-  },
-  {
-    id: "python-api",
-    content: (
-      <>
-        Collaborate with AI by using our{" "}
-        <ExternalLink href={ROUTES.api}>Python API</ExternalLink> to create
-        infinite artworks.
-      </>
-    ),
-  },
-  {
-    id: "crowdsourcing",
-    content:
-      "Use Infinidream to tap into crowdsourcing or social interaction for participatory artworks.",
-  },
-  {
-    id: "open-source",
-    content: (
-      <>
-        Infinidream is{" "}
-        <ExternalLink href={ROUTES.github}>open source</ExternalLink> and we
-        invite collaboration of all kinds. Build on our platform, share your own
-        art, or just{" "}
-        <ExternalLink href={ROUTES.issues}>report a bug</ExternalLink>.
-      </>
-    ),
-  },
-  {
-    id: "collective-intelligence",
-    content: (
-      <>
-        Infinidream is an experiment in <em>collective intelligence</em>: Human
-        artists and AIs working together with complementary strengths.
-      </>
-    ),
-  },
-  {
-    id: "creators-program",
-    content: (
-      <div className="flex flex-col items-center gap-4 w-full">
-        <span className="text-center">
-          Join our creators program and get paid.
-        </span>
-        <ExternalLink href={ROUTES.creators}>
-          <Button
-            variant="reusable"
-            size="reusable"
-            className="w-full whitespace-normal h-auto py-1"
-          >
-            Creators Program
-          </Button>
-        </ExternalLink>
-      </div>
-    ),
-    className: "flex flex-col items-center gap-4",
-  },
+const INFO_CARDS = [
+	{
+		num: "01",
+		title: "Interactive audience",
+		content:
+			"Upload your work the way you would to YouTube or Instagram — except your audience can actually interact with it. Speed it up, slow it down, mix it with other dreams.",
+	},
+	{
+		num: "02",
+		title: "AI collaboration",
+		content: (
+			<>
+				Collaborate with AI by using our{" "}
+				<TextLink href={ROUTES.api}>Python API</TextLink> to generate art that
+				never repeats.
+			</>
+		),
+	},
+	{
+		num: "03",
+		title: "Participatory art",
+		content:
+			"Build participatory pieces. Let crowds steer your art. Turn viewers into collaborators.",
+	},
+	{
+		num: "04",
+		title: "Open source",
+		content: (
+			<>
+				Infinidream is <TextLink href={ROUTES.github}>open source</TextLink> —
+				fork it, build on it, share your art, or just{" "}
+				<TextLink href={ROUTES.issues}>report a bug</TextLink>.
+			</>
+		),
+	},
+	{
+		num: "05",
+		title: "Collective intelligence",
+		content:
+			"This is an experiment in collective intelligence — human artists and AIs building on each other's strengths.",
+	},
+	{
+		num: "06",
+		title: "Get paid",
+		content: "Join the creators program. Make art, get paid.",
+	},
 ];
 
 export default function CollaborationSection() {
-  return (
-    <section className="flex flex-col gap-7">
-      <Title>artist and open source collaborators</Title>
-      <p className="font-secondary text-base text-primary font-medium">
-        Infinidream is a free platform for generative artists, programmers,
-        prompters, and dreamers of all stripes.
-      </p>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-5">
-        {contentBoxes.map((box) => (
-          <ContentBox key={box.id} className={box.className}>
-            {box.content}
-          </ContentBox>
-        ))}
-      </div>
-    </section>
-  );
+	return (
+		<Section
+			alt
+			className="grid grid-cols-1 items-start gap-16 lg:grid-cols-[2fr_3fr]"
+		>
+			<div className="flex flex-col gap-5 lg:sticky lg:top-24">
+				<SectionHeader
+					label="Artists"
+					title="Make Art That Never Stops Moving"
+				/>
+				<p className="font-secondary text-base font-light text-white/75">
+					A free platform for generative artists, programmers, prompt engineers,
+					and anyone who dreams in pixels.
+				</p>
+				<Button href={ROUTES.creators} variant="primary" className="self-start">
+					Creators Program
+				</Button>
+			</div>
+
+			<div className="grid grid-cols-1 border-l border-t border-white/10 sm:grid-cols-2">
+				{INFO_CARDS.map((card) => (
+					<div
+						key={card.num}
+						className="group flex flex-col gap-2 border-r border-b border-white/10 p-6 transition-colors duration-300 hover:bg-white/[0.03]"
+					>
+						<p className="font-primary text-xs text-white/20 transition-colors duration-300 group-hover:text-primary">
+							{card.num}
+						</p>
+						<p className="font-primary text-sm text-white">{card.title}</p>
+						<p className="font-secondary text-sm font-light leading-relaxed text-white/75">
+							{card.content}
+						</p>
+					</div>
+				))}
+			</div>
+		</Section>
+	);
 }

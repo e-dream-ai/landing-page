@@ -1,50 +1,79 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "motion/react";
+import { Menu, X } from "lucide-react";
+import Link from "next/link";
+import { useState } from "react";
+import Button from "@/components/common/Button/Button";
 import Logo from "@/components/common/Logo/Logo";
-import NavLink from "@/components/common/NavLink/NavLink";
+import Container from "@/components/layout/Container/Container";
 import { ROUTES } from "@/constants/routes";
 
+const NAV_LINKS = [
+	{ label: "Open the App", href: ROUTES.app },
+	{ label: "Discord", href: ROUTES.discord },
+];
+
 export default function NavBar() {
-  const { scrollY } = useScroll();
-  const backgroundColor = useTransform(
-    scrollY,
-    [0, 50],
-    ["rgba(0, 0, 0, 0)", "rgba(0, 0, 0, 0.95)"]
-  );
-  const backdropBlur = useTransform(scrollY, [0, 50], [0, 8]);
-  const backdropFilter = useTransform(
-    backdropBlur,
-    (blur) => `blur(${blur}px)`
-  );
-  const shadowOpacity = useTransform(scrollY, [0, 50], [0, 0.3]);
-  const boxShadow = useTransform(
-    shadowOpacity,
-    (opacity) =>
-      `0 4px 6px -1px rgba(0, 0, 0, ${opacity}), 0 2px 4px -1px rgba(0, 0, 0, ${
-        opacity * 0.5
-      })`
-  );
+	const [open, setOpen] = useState(false);
 
-  return (
-    <motion.header
-      className="fixed top-0 left-0 right-0 z-50 border-b border-primary/20"
-      style={{
-        backgroundColor,
-        backdropFilter,
-        boxShadow,
-      }}
-    >
-      <div className="flex sm:flex-row justify-between items-center gap-3 sm:gap-4 py-3 sm:py-4 lg:py-5 px-4 sm:px-6 lg:px-8">
-        <Logo />
+	return (
+		<header className="fixed top-0 right-0 left-0 z-50 border-b border-white/10 bg-black/50 backdrop-blur-xl backdrop-saturate-150">
+			<Container className="flex items-center justify-between">
+				<Logo />
 
-        <nav className="flex flex-col sm:flex-row gap-2 sm:gap-2.5 w-auto justify-end">
-          <NavLink href={ROUTES.createAccount} external>
-            Create an account
-          </NavLink>
-          <NavLink href={ROUTES.app}>Open the app</NavLink>
-        </nav>
-      </div>
-    </motion.header>
-  );
+				<nav className="hidden items-center gap-6 md:flex">
+					{NAV_LINKS.map((link) => (
+						<Link
+							key={link.href}
+							href={link.href}
+							target="_blank"
+							rel="noopener noreferrer"
+							className="text-sm font-light text-white/75 transition-colors hover:text-white"
+						>
+							{link.label}
+						</Link>
+					))}
+
+					<Button href={ROUTES.createAccount} variant="white" size="sm">
+						Start Free
+					</Button>
+				</nav>
+
+				<button
+					type="button"
+					aria-label="Toggle menu"
+					aria-expanded={open}
+					onClick={() => setOpen((value) => !value)}
+					className="text-white/75 transition-colors hover:text-white md:hidden"
+				>
+					{open ? <X className="size-6" /> : <Menu className="size-6" />}
+				</button>
+			</Container>
+
+			{open && (
+				<Container className="flex animate-in flex-col gap-3 border-t border-white/10 pt-3 pb-5 duration-200 fade-in slide-in-from-top-1 md:hidden">
+					{NAV_LINKS.map((link) => (
+						<Link
+							key={link.href}
+							href={link.href}
+							target="_blank"
+							rel="noopener noreferrer"
+							onClick={() => setOpen(false)}
+							className="py-1 text-sm font-light text-white/75 transition-colors hover:text-white"
+						>
+							{link.label}
+						</Link>
+					))}
+
+					<Button
+						href={ROUTES.createAccount}
+						variant="white"
+						className="mt-1 w-full"
+					>
+						Start Free
+					</Button>
+				</Container>
+			)}
+		</header>
+	);
 }

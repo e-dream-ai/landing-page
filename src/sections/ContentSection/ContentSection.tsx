@@ -1,68 +1,67 @@
-import type { ReactNode } from "react";
-import Link from "next/link";
-import ContentBox from "@/components/common/ContentBox/ContextBox";
-import { Button } from "@/components/ui/button";
+import TextLink from "@/components/common/TextLink/TextLink";
+import Container from "@/components/layout/Container/Container";
+import VideoImage from "@/components/VideoImage/VideoImage";
 import { ROUTES } from "@/constants/routes";
+import {
+	ALL_THUMBNAILS,
+	getSectionStartIndex,
+	THUMBNAILS_2ND_SECTION,
+	THUMBNAILS_3RD_SECTION,
+} from "@/lib/thumbnails";
 
-// Types
-interface ContentItem {
-	id: string;
-	content: ReactNode;
-}
-
-// Constants
-const CONTENT_ITEMS: ContentItem[] = [
-	{
-		id: "discover-visuals",
-		content:
-			"Discover and experience animated AI visuals from a multitude of styles, tempos, and artists.",
-	},
-	{
-		id: "adjustable-visuals",
-		content:
-			"These ambient visuals are adjustable to go along with the music you already have playing... or no music at all.",
-	},
-	{
-		id: "digital-painting",
-		content:
-			"Infinidream can be a digital painting, alive and slowly evolving. Or rocket down the rabbit hole, it's up to you.",
-	},
-	{
-		id: "mac-install",
-		content:
-			"Install Infinidream on your Mac or PC to get the best experience, or use any web browser for basic access.",
-	},
-	{
-		id: "phone-remote",
-		content:
-			"Install the remote on your phone to control your Infinidream from anywhere.",
-	},
-	{
-		id: "electric-sheep",
-		content: (
-			<>
-				Infinidream is a descendent of the Electric Sheep screensaver&mdash;now
-				reborn and gone meta. The Electric sheep are available inside of
-				Infinidream in 1080p, better than ever.
-			</>
-		),
-	},
+const PARAGRAPHS = [
+	"Discover and experience animated AI visuals from a multitude of styles, tempos, and artists.",
+	"Adjust the tempo to match the music you already have playing. Or let it drift in silence — your call.",
+	"Slow it down for a digital painting that barely moves. Speed it up and fall down the rabbit hole. You control how deep it goes.",
+	"Mac and PC apps for the full experience. Any web browser for instant access — no install required.",
+	"Use your phone as a remote. Change visuals from across the room.",
 ];
+
+const GALLERY = [...THUMBNAILS_2ND_SECTION, ...THUMBNAILS_3RD_SECTION];
+const GALLERY_START = getSectionStartIndex(THUMBNAILS_2ND_SECTION);
+const FEATURED = GALLERY.slice(0, 2);
+const REST = GALLERY.slice(2);
 
 export default function ContentSection() {
 	return (
-		<section className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-5">
-			{CONTENT_ITEMS.map((item) => (
-				<ContentBox key={item.id}>{item.content}</ContentBox>
-			))}
+		<Container className="flex flex-col gap-10">
+			<div className="mx-auto flex max-w-4xl flex-col gap-5 font-secondary text-base font-light text-white/75">
+				{PARAGRAPHS.map((paragraph) => (
+					<p key={paragraph}>{paragraph}</p>
+				))}
 
-			<ContentBox className="flex items-center justify-center">
-				<Link href={ROUTES.createAccount}>
-					<Button size="reusable" variant="reusable">
-						Create an account
-					</Button>
-				</Link>
-			</ContentBox>
-		</section>
+				<p>
+					<TextLink href={ROUTES.createAccount}>Create an account</TextLink> —
+					where we build this thing together. Get support, share your work,
+					shape what comes next.
+				</p>
+			</div>
+
+			<div className="flex flex-col gap-5 max-w-7xl mx-auto">
+				<div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+					{FEATURED.map((thumbnail, index) => (
+						<VideoImage
+							key={thumbnail.src}
+							thumbnailSrc={thumbnail.src}
+							alt={thumbnail.alt}
+							allVideos={ALL_THUMBNAILS}
+							videoIndex={GALLERY_START + index}
+						/>
+					))}
+				</div>
+
+				<div className="grid grid-cols-2 gap-5 md:grid-cols-4">
+					{REST.map((thumbnail, index) => (
+						<VideoImage
+							key={thumbnail.src}
+							thumbnailSrc={thumbnail.src}
+							alt={thumbnail.alt}
+							allVideos={ALL_THUMBNAILS}
+							videoIndex={GALLERY_START + FEATURED.length + index}
+						/>
+					))}
+				</div>
+			</div>
+		</Container>
 	);
 }

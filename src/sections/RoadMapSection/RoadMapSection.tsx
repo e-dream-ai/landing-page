@@ -1,61 +1,54 @@
-import ContentBox from "@/components/common/ContentBox/ContextBox";
-import ExternalLink from "@/components/common/ExternalLink/ExternalLink";
-import Title from "@/components/common/Title/Title";
-import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
+import SectionHeader from "@/components/common/SectionHeader/SectionHeader";
+import TextLink from "@/components/common/TextLink/TextLink";
+import Section from "@/components/layout/Section/Section";
 import { ROUTES } from "@/constants/routes";
+import { getSectionStartIndex, THUMBNAILS_5TH_SECTION } from "@/lib/thumbnails";
+import ThumbnailSection from "@/sections/ThumbnailSection/ThumbnailSection";
 
-const RoadmapItem = [
-  {
-    id: "hosted-cloud-generation",
-    text: 'Hosted cloud generation driven by AI and crowd signals. Put an "edit" button on each dream and allow you to change the prompts, restyle, and make your own version.',
-  },
-  {
-    id: "multi-platform",
-    text: "Running on more platforms such as Linux, Android, iOS, tvOS, and directly on TVs and set-top boxes.",
-  },
-  {
-    id: "multiple-screens",
-    text: "Managing multiple screens. Turn your home or space into an interactive gallery.",
-  },
-  {
-    id: "social-control",
-    text: "Social control: allowing the people around a screen to control it, not just the owner. Put a QR code next to a screen to make a video jukebox, or invent your own game.",
-  },
-  {
-    id: "audio-reactive",
-    text: "Using a microphone to make playback audioreactive, detect the ambient activity level, and even ID any song. Add realtime effects, more mixing, and become an AI VJ.",
-  },
-  {
-    id: "patreon",
-    text: (
-      <div className="flex flex-col items-center gap-4">
-        <span>
-          Infinidream is free to use but maintaining and developing it costs
-          real money. Please support our mission.
-        </span>
-        <ExternalLink href={ROUTES.patreon}>
-          <Button variant="reusable" size="reusable">
-            Patreon
-          </Button>
-        </ExternalLink>
-      </div>
-    ),
-  },
+const ROADMAP_ITEMS = [
+	'Cloud generation powered by AI and crowd signals. Hit "edit" on any dream — change the prompts, restyle it, make it yours.',
+	"Linux, Android, iOS, tvOS, and native TV apps. Every screen you own.",
+	"Multi-screen control. Turn your home into a gallery that responds to the room.",
+	"Social control — let anyone nearby drive the screen. Drop a QR code next to a display and it becomes a visual jukebox.",
+	"Audioreactive mode. A mic picks up the music, IDs the song, and the visuals respond in real time. Become an AI VJ.",
 ];
 
 export default function RoadMapSection() {
-  return (
-    <section className="flex flex-col gap-7">
-      <Title>roadmap</Title>
-      <p className="font-secondary text-base text-primary font-medium">
-        There are so many ways to expand and improve Infinidream. Currently we
-        are working on and thinking about:
-      </p>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
-        {RoadmapItem.map((item) => (
-          <ContentBox key={item.id}>{item.text}</ContentBox>
-        ))}
-      </div>
-    </section>
-  );
+	return (
+		<Section className="flex flex-col gap-10">
+			<SectionHeader label="Roadmap" title="What's Next" />
+
+			<div className="flex flex-col lg:mx-auto">
+				{ROADMAP_ITEMS.map((item) => (
+					<div
+						key={item}
+						className="flex gap-6 border-b border-white/10 py-6 first:pt-0"
+					>
+						<span className="mt-2 size-2 shrink-0 rounded-full bg-primary" />
+						<p className="font-secondary text-base font-light text-white/75">
+							{item}
+						</p>
+					</div>
+				))}
+			</div>
+
+			<div className="mx-auto flex max-w-xl flex-col items-center gap-2 rounded border border-white/10 px-8 py-6 text-center font-secondary text-base font-light text-white/75">
+				<p>Infinidream is free. Building it is not. If this matters to you,</p>
+				<TextLink
+					href={ROUTES.patreon}
+					tone="primary"
+					className="inline-flex items-center gap-1.5"
+				>
+					back us on Patreon
+					<ArrowRight className="size-4" />
+				</TextLink>
+			</div>
+
+			<ThumbnailSection
+				thumbnails={THUMBNAILS_5TH_SECTION}
+				startIndex={getSectionStartIndex(THUMBNAILS_5TH_SECTION)}
+			/>
+		</Section>
+	);
 }

@@ -1,87 +1,49 @@
 import Link from "next/link";
-import ContentBox from "@/components/common/ContentBox/ContextBox";
-import ExternalLink from "@/components/common/ExternalLink/ExternalLink";
-import Title from "@/components/common/Title/Title";
-import { Button } from "@/components/ui/button";
+import type { ReactNode } from "react";
+import SectionHeader from "@/components/common/SectionHeader/SectionHeader";
+import TextLink from "@/components/common/TextLink/TextLink";
+import Section from "@/components/layout/Section/Section";
 import { ROUTES } from "@/constants/routes";
 
-const TeamNameLink = ({
-	href,
-	children,
-}: {
+interface TeamMember {
+	name: string;
 	href: string;
-	children: React.ReactNode;
-}) => (
-	<Link
-		href={href}
-		target="_blank"
-		rel="noopener noreferrer"
-		className={
-			"underline hover:text-cyan-500 transition-all duration-300 ease-in-out text-lg italic"
-		}
-	>
-		{children}
-	</Link>
-);
+	role: ReactNode;
+}
 
-const teamMembers = [
+const TEAM_MEMBERS: TeamMember[] = [
 	{
-		id: "scott-draves",
-		content: (
+		name: "Scott Draves",
+		href: ROUTES.scottDraves,
+		role: (
 			<>
-				<TeamNameLink href={ROUTES.scottDraves}>Scott Draves</TeamNameLink>
-				<br />
-				<br />
-				Pioneering AI artist and engineering leader. Founder of the{" "}
-				<ExternalLink href={ROUTES.electricSheep}>Electric Sheep</ExternalLink>.
+				AI artist and engineering leader. Creator of{" "}
+				<TextLink href={ROUTES.electricSheep}>Electric Sheep</TextLink>.
 			</>
 		),
 	},
 	{
-		id: "max-carlson",
-		content: (
+		name: "Max Carlson",
+		href: ROUTES.maxCarlson,
+		role: "Laszlo Systems cofounder. Early engineer at Nest.",
+	},
+	{
+		name: "Guillaume Louel",
+		href: ROUTES.guillaumeLouel,
+		role: (
 			<>
-				<TeamNameLink href={ROUTES.maxCarlson}>Max Carlson</TeamNameLink>
-				<br />
-				<br />
-				Laszlo Systems cofounder, Nest early engineer.
+				Software architect. macOS specialist. Maintains{" "}
+				<TextLink href={ROUTES.aerial}>Aerial</TextLink>.
 			</>
 		),
 	},
 	{
-		id: "guillaume-louel",
-		content: (
+		name: "Miklós Nagy",
+		href: ROUTES.miklosNagy,
+		role: (
 			<>
-				<TeamNameLink href={ROUTES.guillaumeLouel}>
-					Guillaume Louel
-				</TeamNameLink>
-				<br />
-				<br />
-				Freelance software architect, MacOS expert, open source maintainer of{" "}
-				<ExternalLink href={ROUTES.aerial}>Aerial</ExternalLink>.
-			</>
-		),
-	},
-	{
-		id: "miklos-nagy",
-		content: (
-			<>
-				<TeamNameLink href={ROUTES.miklosNagy}>Miklós Nagy</TeamNameLink>
-				<br />
-				<br />
-				Multidisciplinary creative, VFX, and Open Source{" "}
-				<ExternalLink href={ROUTES.deforum}>Deforum developer</ExternalLink>.
-			</>
-		),
-	},
-	{
-		id: "contributing-artists",
-		content: (
-			<>
-				The artists who made the samples depicted here:{" "}
-				<em>Surrealism Today</em>, <em>Hueman Instrumentality</em>,{" "}
-				<em>Safety Marc</em>, <em>Jeremy Torman</em>, <em>Mordunkus</em>,{" "}
-				<em>R0b0tn1k</em>, and more.
+				VFX artist, creative technologist, and open source{" "}
+				<TextLink href={ROUTES.deforum}>Deforum developer</TextLink>.
 			</>
 		),
 	},
@@ -89,39 +51,37 @@ const teamMembers = [
 
 export default function TeamSection() {
 	return (
-		<section className="flex flex-col gap-7">
-			<Title>team</Title>
-			<div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-5">
-				{teamMembers.map((member) => (
-					<ContentBox key={member.id}>{member.content}</ContentBox>
-				))}
-				<ContentBox>
-					Infinidream was previously named 'e&#8209;dream' and that old name
-					still shows up in a few places, like the emails, github, and the
-					company name. We're working to update everything. Until then, sorry
-					for the confusion!
-				</ContentBox>
-				<ContentBox className="flex flex-col gap-4 items-center">
-					<Link href={ROUTES.discord} target="_blank" rel="noopener noreferrer">
-						<Button
-							className="xl:w-full xl:whitespace-break-spaces"
-							variant="reusable"
-							size="reusable"
+		<Section alt className="flex flex-col gap-10">
+			<SectionHeader label="Team" title="Who's Building This" />
+
+			<div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
+				{TEAM_MEMBERS.map((member) => (
+					<div key={member.name} className="flex flex-col gap-1.5">
+						<Link
+							href={member.href}
+							target="_blank"
+							rel="noopener noreferrer"
+							className="font-primary text-base font-light text-white transition-colors hover:text-primary"
 						>
-							Chat on Discord
-						</Button>
-					</Link>
-					<Link
-						href={"mailto:support@e-dream.ai"}
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						<Button variant="reusable" size="reusable">
-							Email us
-						</Button>
-					</Link>
-				</ContentBox>
+							{member.name}
+						</Link>
+						<p className="font-secondary text-sm font-light leading-relaxed text-white/75">
+							{member.role}
+						</p>
+					</div>
+				))}
 			</div>
-		</section>
+
+			<div className="flex flex-col gap-6 text-center font-secondary font-light">
+				<p className="text-sm text-white/75">
+					Art on this page by Surrealism Today, Hueman Instrumentality, Safety
+					Marc, Jeremy Torman, and more.
+				</p>
+				<p className="mx-auto max-w-2xl text-xs text-white/55">
+					You might see the name 'e-dream' in a few places — emails, GitHub,
+					company filings. Same project, new name. We're updating everything.
+				</p>
+			</div>
+		</Section>
 	);
 }

@@ -1,23 +1,62 @@
-import Title from "@/components/common/Title/Title";
-import VideoImage from "@/components/VideoImage/VideoImage";
-import { ALL_THUMBNAILS, HERO_THUMBNAILS } from "@/lib/thumbnails";
+"use client";
+
+import { useEffect, useState } from "react";
+import Button from "@/components/common/Button/Button";
+import { ROUTES } from "@/constants/routes";
+import { getVideoPathFromThumbnail } from "@/lib/helpers";
+import { HERO_THUMBNAILS } from "@/lib/thumbnails";
+import { cn } from "@/lib/utils";
+
+const HERO_VIDEOS = HERO_THUMBNAILS.map((thumbnail) =>
+	getVideoPathFromThumbnail(thumbnail.src),
+);
 
 export default function HeroSection() {
-  return (
-    <section className="flex flex-col gap-14">
-      <Title>visuals for your vibe</Title>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-        {HERO_THUMBNAILS.map((thumbnail, index) => (
-          <VideoImage
-            key={thumbnail.src}
-            thumbnailSrc={thumbnail.src}
-            alt={thumbnail.alt}
-            priority
-            allVideos={ALL_THUMBNAILS}
-            videoIndex={index}
-          />
-        ))}
-      </div>
-    </section>
-  );
+	const [active, setActive] = useState(0);
+
+	useEffect(() => {
+		const interval = setInterval(() => {
+			setActive((prev) => (prev + 1) % HERO_VIDEOS.length);
+		}, 8000);
+		return () => clearInterval(interval);
+	}, []);
+
+	return (
+		<section className="relative flex min-h-[500px] h-[85vh] items-end overflow-hidden">
+			{HERO_VIDEOS.map((src, index) => (
+				<video
+					key={src}
+					src={src}
+					autoPlay
+					muted
+					loop
+					playsInline
+					className={cn(
+						"absolute inset-0 h-full w-full object-cover transition-opacity duration-1000",
+						index === active ? "opacity-100" : "opacity-0",
+					)}
+				/>
+			))}
+
+			<div className="absolute inset-x-0 -bottom-0.5 top-0 bg-gradient-to-t from-black via-black/60 to-black/15" />
+
+			<div className="z-10 flex max-w-3xl flex-col gap-6 px-6 pb-12 sm:px-16 sm:pb-20">
+				<h1 className="font-primary text-4xl font-light text-white sm:text-5xl lg:text-6xl">
+					Turn Any Screen Into a Living Painting
+				</h1>
+				<p className="text-base font-light font-secondary text-white/85 sm:text-lg">
+					Animated AI art that breathes, shifts, and evolves — from dozens of
+					artists and styles. Pick one that fits your mood.
+				</p>
+				<div className="flex flex-wrap gap-4">
+					<Button href={ROUTES.createAccount} variant="white">
+						Start Free
+					</Button>
+					<Button href={ROUTES.app} variant="outline">
+						Open the App
+					</Button>
+				</div>
+			</div>
+		</section>
+	);
 }

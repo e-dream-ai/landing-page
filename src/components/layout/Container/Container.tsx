@@ -1,3 +1,11 @@
-export default function Container({ children }: { children: React.ReactNode }) {
-	return <div className="w-full p-8">{children}</div>;
+import { cn } from "@/lib/utils";
+
+export default function Container({
+	children,
+	className,
+}: {
+	children: React.ReactNode;
+	className?: string;
+}) {
+	return <div className={cn("w-full px-8 py-5", className)}>{children}</div>;
 }
