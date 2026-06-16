@@ -411,13 +411,7 @@ const THUMBNAIL_SECTIONS = [
 
 export const ALL_THUMBNAILS: Thumbnail[] = THUMBNAIL_SECTIONS.flat();
 
-const SECTION_INDICES = new Map<Thumbnail[], number>();
-let runningIndex = 0;
-for (const section of THUMBNAIL_SECTIONS) {
-	SECTION_INDICES.set(section, runningIndex);
-	runningIndex += section.length;
-}
-
-export function getSectionStartIndex(section: Thumbnail[]): number {
-	return SECTION_INDICES.get(section) ?? 0;
+export function getThumbnailIndex(thumbnail: Thumbnail): number {
+	const index = ALL_THUMBNAILS.indexOf(thumbnail);
+	return index === -1 ? 0 : index;
 }

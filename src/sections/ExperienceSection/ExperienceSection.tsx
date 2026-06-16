@@ -4,7 +4,7 @@ import VideoImage from "@/components/VideoImage/VideoImage";
 import { ROUTES } from "@/constants/routes";
 import {
 	ALL_THUMBNAILS,
-	getSectionStartIndex,
+	getThumbnailIndex,
 	THUMBNAILS_2ND_SECTION,
 	THUMBNAILS_3RD_SECTION,
 } from "@/lib/thumbnails";
@@ -18,7 +18,6 @@ const PARAGRAPHS = [
 ];
 
 const GALLERY = [...THUMBNAILS_2ND_SECTION, ...THUMBNAILS_3RD_SECTION];
-const GALLERY_START = getSectionStartIndex(THUMBNAILS_2ND_SECTION);
 const FEATURED = GALLERY.slice(0, 2);
 const REST = GALLERY.slice(2);
 
@@ -39,25 +38,25 @@ export default function ExperienceSection() {
 
 			<div className="flex flex-col gap-5 max-w-7xl mx-auto">
 				<div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-					{FEATURED.map((thumbnail, index) => (
+					{FEATURED.map((thumbnail) => (
 						<VideoImage
 							key={thumbnail.src}
 							thumbnailSrc={thumbnail.src}
 							alt={thumbnail.alt}
 							allVideos={ALL_THUMBNAILS}
-							videoIndex={GALLERY_START + index}
+							videoIndex={getThumbnailIndex(thumbnail)}
 						/>
 					))}
 				</div>
 
 				<div className="grid grid-cols-2 gap-5 md:grid-cols-4">
-					{REST.map((thumbnail, index) => (
+					{REST.map((thumbnail) => (
 						<VideoImage
 							key={thumbnail.src}
 							thumbnailSrc={thumbnail.src}
 							alt={thumbnail.alt}
 							allVideos={ALL_THUMBNAILS}
-							videoIndex={GALLERY_START + FEATURED.length + index}
+							videoIndex={getThumbnailIndex(thumbnail)}
 						/>
 					))}
 				</div>

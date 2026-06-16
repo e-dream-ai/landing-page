@@ -8,11 +8,10 @@ import Container from "@/components/layout/Container/Container";
 import VideoImage from "@/components/VideoImage/VideoImage";
 import {
 	ALL_THUMBNAILS,
-	getSectionStartIndex,
+	getThumbnailIndex,
 	THUMBNAILS_6TH_SECTION,
 } from "@/lib/thumbnails";
 
-const START_INDEX = getSectionStartIndex(THUMBNAILS_6TH_SECTION);
 const INITIAL_COUNT = 30;
 
 const FADE_MASK = "linear-gradient(#000 calc(100% - 80px), transparent)";
@@ -42,13 +41,13 @@ export default function GallerySection() {
 						: { maskImage: FADE_MASK, WebkitMaskImage: FADE_MASK }
 				}
 			>
-				{visible.map((thumbnail, index) => (
+				{visible.map((thumbnail) => (
 					<VideoImage
 						key={thumbnail.src}
 						thumbnailSrc={thumbnail.src}
 						alt={thumbnail.alt}
 						allVideos={ALL_THUMBNAILS}
-						videoIndex={START_INDEX + index}
+						videoIndex={getThumbnailIndex(thumbnail)}
 					/>
 				))}
 			</div>

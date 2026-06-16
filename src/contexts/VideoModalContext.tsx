@@ -9,9 +9,6 @@ import {
 } from "react";
 import type { Thumbnail } from "@/lib/types";
 
-const BODY_OVERFLOW_HIDDEN = "hidden";
-const BODY_OVERFLOW_VISIBLE = "unset";
-
 interface VideoModalContextType {
 	isOpen: boolean;
 	currentIndex: number;
@@ -45,12 +42,10 @@ export function VideoModalProvider({ children }: VideoModalProviderProps) {
 		setCurrentIndex(index);
 		setVideos(allVideos);
 		setIsOpen(true);
-		document.body.style.overflow = BODY_OVERFLOW_HIDDEN;
 	}, []);
 
 	const closeModal = useCallback(() => {
 		setIsOpen(false);
-		document.body.style.overflow = BODY_OVERFLOW_VISIBLE;
 	}, []);
 
 	const goToNext = useCallback(() => {

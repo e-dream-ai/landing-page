@@ -8,7 +8,7 @@ import {
 import TextLink from "@/components/common/TextLink/TextLink";
 import Section from "@/components/layout/Section/Section";
 import { ROUTES } from "@/constants/routes";
-import { getSectionStartIndex, THUMBNAILS_5TH_SECTION } from "@/lib/thumbnails";
+import { THUMBNAILS_5TH_SECTION } from "@/lib/thumbnails";
 import ThumbnailGrid from "@/sections/ThumbnailGrid/ThumbnailGrid";
 
 const ROADMAP_ITEMS = [
@@ -52,10 +52,7 @@ export default function RoadmapSection() {
 				</TextLink>
 			</div>
 
-			<ThumbnailGrid
-				thumbnails={THUMBNAILS_5TH_SECTION}
-				startIndex={getSectionStartIndex(THUMBNAILS_5TH_SECTION)}
-			/>
+			<ThumbnailGrid thumbnails={THUMBNAILS_5TH_SECTION} />
 		</Section>
 	);
 }

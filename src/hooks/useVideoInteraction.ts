@@ -1,9 +1,4 @@
-import {
-	useCallback,
-	useEffect,
-	useReducer,
-	useSyncExternalStore,
-} from "react";
+import { useCallback, useEffect, useState, useSyncExternalStore } from "react";
 import { useViewport } from "@/contexts/ViewportContext";
 
 const ACTIVE_ROW_TOLERANCE = 2;
@@ -14,38 +9,12 @@ interface UseVideoInteractionOptions {
 	containerRef: React.RefObject<HTMLElement | null>;
 }
 
-interface InteractionState {
-	isHovered: boolean;
-	isPaused: boolean;
-}
-
-type InteractionAction =
-	| { type: "MOUSE_ENTER" }
-	| { type: "MOUSE_LEAVE" }
-	| { type: "TOGGLE_PAUSE" };
-
 const registeredContainers = new Set<HTMLElement>();
 const activeSubscribers = new Set<() => void>();
 let activeContainers = EMPTY_ACTIVE_CONTAINERS;
 let isLandscapeMode = false;
 let rafId: number | null = null;
 let isListening = false;
-
-function interactionReducer(
-	state: InteractionState,
-	action: InteractionAction,
-): InteractionState {
-	switch (action.type) {
-		case "MOUSE_ENTER":
-			return { ...state, isHovered: true };
-		case "MOUSE_LEAVE":
-			return { ...state, isHovered: false };
-		case "TOGGLE_PAUSE":
-			return { ...state, isPaused: !state.isPaused };
-		default:
-			return state;
-	}
-}
 
 function areContainerSetsEqual(
 	first: Set<HTMLElement>,
@@ -220,10 +189,8 @@ export function useVideoInteraction({
 		isPointerCoarse ||
 		(typeof window !== "undefined" && "ontouchstart" in window);
 
-	const [state, dispatch] = useReducer(interactionReducer, {
-		isHovered: false,
-		isPaused: false,
-	});
+	const [isHovered, setIsHovered] = useState(false);
+	const [isPaused, setIsPaused] = useState(false);
 
 	const activeMobileContainers = useSyncExternalStore(
 		subscribeToActiveContainers,
@@ -244,19 +211,19 @@ export function useVideoInteraction({
 
 	const handleMouseEnter = useCallback(() => {
 		if (!isMobileMode && enabled) {
-			dispatch({ type: "MOUSE_ENTER" });
+			setIsHovered(true);
 		}
 	}, [isMobileMode, enabled]);
 
 	const handleMouseLeave = useCallback(() => {
 		if (!isMobileMode) {
-			dispatch({ type: "MOUSE_LEAVE" });
+			setIsHovered(false);
 		}
 	}, [isMobileMode]);
 
 	const handleClick = useCallback(() => {
 		if (isMobileMode && enabled) {
-			dispatch({ type: "TOGGLE_PAUSE" });
+			setIsPaused((value) => !value);
 		}
 	}, [isMobileMode, enabled]);
 
@@ -264,8 +231,8 @@ export function useVideoInteraction({
 		enabled &&
 		(isMobileMode
 			? activeMobileContainers.has(containerRef.current as HTMLElement) &&
-				!state.isPaused
-			: state.isHovered);
+				!isPaused
+			: isHovered);
 
 	return {
 		shouldPlay,
