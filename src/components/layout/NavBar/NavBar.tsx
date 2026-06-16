@@ -28,7 +28,7 @@ export default function NavBar() {
 							href={link.href}
 							target="_blank"
 							rel="noopener noreferrer"
-							className="text-sm text-primary-light transition-colors hover:text-primary"
+							className="text-md text-primary-light transition-colors hover:text-primary"
 						>
 							{link.label}
 						</Link>
@@ -46,7 +46,7 @@ export default function NavBar() {
 					onClick={() => setOpen((value) => !value)}
 					className="text-primary-light transition-colors hover:text-primary md:hidden"
 				>
-					{open ? <X className="size-6" /> : <Menu className="size-6" />}
+					{open ? <X className="size-8" /> : <Menu className="size-8" />}
 				</button>
 			</Container>
 
@@ -59,7 +59,7 @@ export default function NavBar() {
 							target="_blank"
 							rel="noopener noreferrer"
 							onClick={() => setOpen(false)}
-							className="py-1 text-sm text-primary-light transition-colors hover:text-primary"
+							className="py-1 text-md text-primary-light transition-colors hover:text-primary"
 						>
 							{link.label}
 						</Link>
