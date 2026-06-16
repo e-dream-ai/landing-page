@@ -23,16 +23,16 @@ export default function SectionHeader({
 				className,
 			)}
 		>
-			<p className="font-primary text-xs uppercase tracking-widest text-primary">
+			<p className="font-primary text-xs uppercase tracking-widest text-primary-muted">
 				{label}
 			</p>
 			{title && (
-				<h2 className="font-primary text-4xl font-light leading-tight text-white">
+				<h2 className="font-primary text-4xl font-light leading-tight text-primary">
 					{title}
 				</h2>
 			)}
 			{description && (
-				<p className="max-w-xl font-secondary text-base font-light text-white/70">
+				<p className="max-w-xl font-secondary text-base text-primary-light">
 					{description}
 				</p>
 			)}

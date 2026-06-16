@@ -68,23 +68,23 @@ export default function TeamSection() {
 							href={member.href}
 							target="_blank"
 							rel="noopener noreferrer"
-							className="font-primary text-base font-light text-white transition-colors hover:text-primary"
+							className="font-primary text-base font-light text-primary transition-colors hover:text-primary-light"
 						>
 							{member.name}
 						</Link>
-						<p className="font-secondary text-sm font-light leading-relaxed text-white/75">
+						<p className="font-secondary text-sm leading-relaxed text-primary-light">
 							{member.role}
 						</p>
 					</StaggerItem>
 				))}
 			</StaggerContainer>
 
-			<div className="flex flex-col gap-6 text-center font-secondary font-light">
-				<p className="text-sm text-white/75">
+			<div className="flex flex-col gap-6 text-center font-secondary">
+				<p className="text-sm text-primary-light">
 					Art on this page by Surrealism Today, Hueman Instrumentality, Safety
 					Marc, Jeremy Torman, and more.
 				</p>
-				<p className="mx-auto max-w-2xl text-xs text-white/55">
+				<p className="mx-auto max-w-2xl text-xs text-primary-light/60">
 					You might see the name 'e-dream' in a few places — emails, GitHub,
 					company filings. Same project, new name. We're updating everything.
 				</p>

@@ -13,7 +13,7 @@ const textLinkVariants = cva("underline underline-offset-2 transition-colors", {
 		},
 	},
 	defaultVariants: {
-		tone: "white",
+		tone: "primary",
 	},
 });
 

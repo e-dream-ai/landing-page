@@ -28,7 +28,7 @@ export default function NavBar() {
 							href={link.href}
 							target="_blank"
 							rel="noopener noreferrer"
-							className="text-sm font-light text-white/75 transition-colors hover:text-white"
+							className="text-sm text-primary-light transition-colors hover:text-primary"
 						>
 							{link.label}
 						</Link>
@@ -44,7 +44,7 @@ export default function NavBar() {
 					aria-label="Toggle menu"
 					aria-expanded={open}
 					onClick={() => setOpen((value) => !value)}
-					className="text-white/75 transition-colors hover:text-white md:hidden"
+					className="text-primary-light transition-colors hover:text-primary md:hidden"
 				>
 					{open ? <X className="size-6" /> : <Menu className="size-6" />}
 				</button>
@@ -59,7 +59,7 @@ export default function NavBar() {
 							target="_blank"
 							rel="noopener noreferrer"
 							onClick={() => setOpen(false)}
-							className="py-1 text-sm font-light text-white/75 transition-colors hover:text-white"
+							className="py-1 text-sm text-primary-light transition-colors hover:text-primary"
 						>
 							{link.label}
 						</Link>

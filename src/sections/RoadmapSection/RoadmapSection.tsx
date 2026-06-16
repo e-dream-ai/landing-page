@@ -33,14 +33,14 @@ export default function RoadmapSection() {
 						className="flex gap-6 border-b border-white/10 py-6 first:pt-0"
 					>
 						<span className="mt-2 size-2 shrink-0 rounded-full bg-primary" />
-						<p className="font-secondary text-base font-light text-white/75">
+						<p className="font-secondary text-base text-primary-light">
 							{item}
 						</p>
 					</StaggerItem>
 				))}
 			</StaggerContainer>
 
-			<div className="mx-auto flex max-w-xl flex-col items-center gap-2 rounded border border-white/10 px-8 py-6 text-center font-secondary text-base font-light text-white/75">
+			<div className="mx-auto flex max-w-xl flex-col items-center gap-2 rounded border border-white/10 px-8 py-6 text-center font-secondary text-base text-primary-light">
 				<p>Infinidream is free. Building it is not. If this matters to you,</p>
 				<TextLink
 					href={ROUTES.patreon}

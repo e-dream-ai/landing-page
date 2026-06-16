@@ -50,12 +50,12 @@ export default function HeroSection() {
 				className="z-10 flex max-w-3xl flex-col gap-6 px-6 pb-12 sm:px-16 sm:pb-20"
 			>
 				<StaggerItem>
-					<h1 className="font-primary text-4xl font-light text-white sm:text-5xl lg:text-6xl">
+					<h1 className="font-primary text-4xl font-light text-primary sm:text-5xl lg:text-6xl">
 						Turn Any Screen Into a Living Painting
 					</h1>
 				</StaggerItem>
 				<StaggerItem>
-					<p className="text-base font-light font-secondary text-white/85 sm:text-lg">
+					<p className="text-base font-secondary text-primary-light sm:text-lg">
 						Animated AI art that breathes, shifts, and evolves — from dozens of
 						artists and styles. Pick one that fits your mood.
 					</p>

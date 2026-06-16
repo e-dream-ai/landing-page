@@ -24,7 +24,7 @@ const REST = GALLERY.slice(2);
 export default function ExperienceSection() {
 	return (
 		<Container className="flex flex-col gap-10">
-			<div className="mx-auto flex max-w-4xl flex-col gap-5 font-secondary text-base font-light text-white/75">
+			<div className="mx-auto flex max-w-4xl flex-col gap-5 font-secondary text-base text-primary-light">
 				{PARAGRAPHS.map((paragraph) => (
 					<p key={paragraph}>{paragraph}</p>
 				))}

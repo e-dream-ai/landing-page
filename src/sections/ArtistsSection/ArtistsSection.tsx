@@ -68,7 +68,7 @@ export default function ArtistsSection() {
 					label="Artists"
 					title="Make Art That Never Stops Moving"
 				/>
-				<p className="font-secondary text-base font-light text-white/75">
+				<p className="font-secondary text-base text-primary-light">
 					A free platform for generative artists, programmers, prompt engineers,
 					and anyone who dreams in pixels.
 				</p>
@@ -83,11 +83,11 @@ export default function ArtistsSection() {
 						key={card.num}
 						className="group flex flex-col gap-2 border-r border-b border-white/10 p-6 transition-colors duration-300 hover:bg-white/3"
 					>
-						<p className="font-primary text-xs text-white/20 transition-colors duration-300 group-hover:text-primary">
+						<p className="font-primary text-xs text-primary/25 transition-colors duration-300 group-hover:text-primary">
 							{card.num}
 						</p>
-						<p className="font-primary text-sm text-white">{card.title}</p>
-						<p className="font-secondary text-sm font-light leading-relaxed text-white/75">
+						<p className="font-primary text-sm text-primary">{card.title}</p>
+						<p className="font-secondary text-sm leading-relaxed text-primary-light">
 							{card.content}
 						</p>
 					</StaggerItem>
