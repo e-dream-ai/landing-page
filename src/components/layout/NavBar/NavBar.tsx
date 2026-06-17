@@ -1,17 +1,11 @@
 "use client";
 
 import { Menu, X } from "lucide-react";
-import Link from "next/link";
 import { useState } from "react";
 import Button from "@/components/common/Button/Button";
 import Logo from "@/components/common/Logo/Logo";
 import Container from "@/components/layout/Container/Container";
 import { ROUTES } from "@/constants/routes";
-
-const NAV_LINKS = [
-	{ label: "Open the App", href: ROUTES.app },
-	{ label: "Discord", href: ROUTES.discord },
-];
 
 export default function NavBar() {
 	const [open, setOpen] = useState(false);
@@ -21,20 +15,11 @@ export default function NavBar() {
 			<Container className="flex items-center justify-between">
 				<Logo />
 
-				<nav className="hidden items-center gap-6 md:flex">
-					{NAV_LINKS.map((link) => (
-						<Link
-							key={link.href}
-							href={link.href}
-							target="_blank"
-							rel="noopener noreferrer"
-							className="text-md text-primary-light transition-colors hover:text-primary"
-						>
-							{link.label}
-						</Link>
-					))}
-
-					<Button href={ROUTES.createAccount} variant="white" size="sm">
+				<nav className="hidden items-center gap-3 md:flex">
+					<Button href={ROUTES.app} variant="outline" size="sm">
+						Open the App
+					</Button>
+					<Button href={ROUTES.createAccount} variant="primary" size="sm">
 						Start Free
 					</Button>
 				</nav>
@@ -52,23 +37,13 @@ export default function NavBar() {
 
 			{open && (
 				<Container className="flex animate-in flex-col gap-3 border-t border-white/10 pt-3 pb-5 duration-200 fade-in slide-in-from-top-1 md:hidden">
-					{NAV_LINKS.map((link) => (
-						<Link
-							key={link.href}
-							href={link.href}
-							target="_blank"
-							rel="noopener noreferrer"
-							onClick={() => setOpen(false)}
-							className="py-1 text-md text-primary-light transition-colors hover:text-primary"
-						>
-							{link.label}
-						</Link>
-					))}
-
+					<Button href={ROUTES.app} variant="outline" className="w-full">
+						Open the App
+					</Button>
 					<Button
 						href={ROUTES.createAccount}
-						variant="white"
-						className="mt-1 w-full"
+						variant="primary"
+						className="w-full"
 					>
 						Start Free
 					</Button>

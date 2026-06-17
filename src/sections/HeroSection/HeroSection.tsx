@@ -42,7 +42,7 @@ export default function HeroSection() {
 				/>
 			))}
 
-			<div className="absolute inset-x-0 -bottom-0.5 top-0 bg-linear-to-t from-black via-black/60 to-black/15" />
+			<div className="absolute inset-x-0 -bottom-0.5 top-0 bg-linear-to-b from-transparent via-black/50 to-black" />
 
 			<StaggerContainer
 				trigger="mount"
@@ -61,7 +61,7 @@ export default function HeroSection() {
 					</p>
 				</StaggerItem>
 				<StaggerItem className="flex flex-wrap gap-4">
-					<Button href={ROUTES.createAccount} variant="white">
+					<Button href={ROUTES.createAccount} variant="primary">
 						Start Free
 					</Button>
 					<Button href={ROUTES.app} variant="outline">

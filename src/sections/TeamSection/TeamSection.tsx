@@ -1,11 +1,10 @@
+import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import type { ReactNode } from "react";
+import Card from "@/components/common/Card/Card";
 import FadeUp from "@/components/common/FadeUp/FadeUp";
 import SectionHeader from "@/components/common/SectionHeader/SectionHeader";
-import {
-	StaggerContainer,
-	StaggerItem,
-} from "@/components/common/Stagger/Stagger";
+import { StaggerContainer } from "@/components/common/Stagger/Stagger";
 import TextLink from "@/components/common/TextLink/TextLink";
 import Section from "@/components/layout/Section/Section";
 import { ROUTES } from "@/constants/routes";
@@ -61,22 +60,29 @@ export default function TeamSection() {
 				<SectionHeader label="Team" title="Who's Building This" />
 			</FadeUp>
 
-			<StaggerContainer className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
-				{TEAM_MEMBERS.map((member) => (
-					<StaggerItem key={member.name} className="flex flex-col gap-1.5">
-						<Link
-							href={member.href}
-							target="_blank"
-							rel="noopener noreferrer"
-							className="font-primary text-base font-light text-primary transition-colors hover:text-primary-light"
-						>
-							{member.name}
-						</Link>
-						<p className="font-secondary text-sm leading-relaxed text-primary-light">
-							{member.role}
-						</p>
-					</StaggerItem>
-				))}
+			<StaggerContainer className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+				{TEAM_MEMBERS.map((member) => {
+					const initials = member.name
+						.split(" ")
+						.map((part) => part[0])
+						.join("");
+					return (
+						<Card key={member.name} watermark={initials}>
+							<Link
+								href={member.href}
+								target="_blank"
+								rel="noopener noreferrer"
+								className="inline-flex w-fit items-center gap-1.5 font-primary text-lg font-light text-primary transition-colors hover:text-primary-light"
+							>
+								{member.name}
+								<ArrowUpRight className="size-4 -translate-x-1 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
+							</Link>
+							<p className="font-secondary text-sm leading-relaxed text-primary-light/60 transition-colors duration-300 group-hover:text-primary-light">
+								{member.role}
+							</p>
+						</Card>
+					);
+				})}
 			</StaggerContainer>
 
 			<div className="flex flex-col gap-6 text-center font-secondary">

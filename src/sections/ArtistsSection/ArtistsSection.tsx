@@ -1,10 +1,8 @@
 import Button from "@/components/common/Button/Button";
+import Card from "@/components/common/Card/Card";
 import FadeUp from "@/components/common/FadeUp/FadeUp";
 import SectionHeader from "@/components/common/SectionHeader/SectionHeader";
-import {
-	StaggerContainer,
-	StaggerItem,
-} from "@/components/common/Stagger/Stagger";
+import { StaggerContainer } from "@/components/common/Stagger/Stagger";
 import TextLink from "@/components/common/TextLink/TextLink";
 import Section from "@/components/layout/Section/Section";
 import { ROUTES } from "@/constants/routes";
@@ -77,20 +75,16 @@ export default function ArtistsSection() {
 				</Button>
 			</FadeUp>
 
-			<StaggerContainer className="grid grid-cols-1 border-l border-t border-white/10 sm:grid-cols-2">
+			<StaggerContainer className="grid grid-cols-1 gap-4 sm:grid-cols-2">
 				{INFO_CARDS.map((card) => (
-					<StaggerItem
-						key={card.num}
-						className="group flex flex-col gap-2 border-r border-b border-white/10 p-6 transition-colors duration-300 hover:bg-white/3"
-					>
-						<p className="font-primary text-xs text-primary/25 transition-colors duration-300 group-hover:text-primary">
-							{card.num}
+					<Card key={card.num} watermark={card.num} contentClassName="gap-3">
+						<p className="font-primary text-xl leading-snug text-primary">
+							{card.title}
 						</p>
-						<p className="font-primary text-sm text-primary">{card.title}</p>
-						<p className="font-secondary text-sm leading-relaxed text-primary-light">
+						<p className="font-secondary text-sm leading-relaxed text-primary-light/60 transition-colors duration-300 group-hover:text-primary-light">
 							{card.content}
 						</p>
-					</StaggerItem>
+					</Card>
 				))}
 			</StaggerContainer>
 		</Section>

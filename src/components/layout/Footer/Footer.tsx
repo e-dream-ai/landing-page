@@ -29,9 +29,8 @@ export default function Footer() {
 				{SOCIAL_LINKS.map((link, index) => (
 					<Fragment key={link.label}>
 						{index > 0 && <span className="text-white/20">|</span>}
-						<TextLink href={link.href} className="flex items-center gap-1.5">
-							<FontAwesomeIcon icon={link.icon} className="size-4" />
-							{link.label}
+						<TextLink href={link.href} aria-label={link.label} className="flex items-center">
+							<FontAwesomeIcon icon={link.icon} className="size-5" />
 						</TextLink>
 					</Fragment>
 				))}
