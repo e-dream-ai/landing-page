@@ -1,7 +1,6 @@
 import TextLink from "@/components/common/TextLink/TextLink";
 import Container from "@/components/layout/Container/Container";
 import VideoImage from "@/components/VideoImage/VideoImage";
-import { ROUTES } from "@/constants/routes";
 import {
 	ALL_THUMBNAILS,
 	getThumbnailIndex,
@@ -30,9 +29,12 @@ export default function ExperienceSection() {
 				))}
 
 				<p>
-					<TextLink href={ROUTES.createAccount}>Create an account</TextLink> —
-					where we build this thing together. Get support, share your work,
-					shape what comes next.
+					Infinidream is based on the{" "}
+					<TextLink href="https://scottdraves.com/sheep">
+						Electric Sheep
+					</TextLink>{" "}
+					screen saver — reborn and gone meta. And don’t worry, if you want only
+					Sheep and not AI, then it does that too.
 				</p>
 			</div>
 
