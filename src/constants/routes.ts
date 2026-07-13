@@ -10,13 +10,5 @@ export const ROUTES = {
 	issues: "https://github.com/e-dream-ai/client/issues/new",
 	api: "https://github.com/e-dream-ai/python-api",
 	creators: "https://forms.gle/JsZb4TRdw3jq65Bc8",
-	// Team member routes
-	scottDraves: "https://draves.ai",
-	electricSheep: "https://scottdraves.com/sheep.html",
-	maxCarlson: "https://www.linkedin.com/in/max-carlson-8959531/",
-	guillaumeLouel: "https://github.com/glouel",
-	aerial: "https://aerialscreensaver.github.io/",
-	miklosNagy: "https://magixworld.com/",
-	deforum: "https://github.com/XmYx",
 	patreon: "https://www.patreon.com/c/Infinidream",
 };

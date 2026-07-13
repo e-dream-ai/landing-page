@@ -1,10 +1,10 @@
 import ArtistsSection from "@/sections/ArtistsSection/ArtistsSection";
+import CreditsSection from "@/sections/CreditsSection/CreditsSection";
 import ExperienceSection from "@/sections/ExperienceSection/ExperienceSection";
 import FeaturedDreamsSection from "@/sections/FeaturedDreamsSection/FeaturedDreamsSection";
 import GallerySection from "@/sections/GallerySection/GallerySection";
 import HeroSection from "@/sections/HeroSection/HeroSection";
 import RoadmapSection from "@/sections/RoadmapSection/RoadmapSection";
-import TeamSection from "@/sections/TeamSection/TeamSection";
 
 export default function HomePage() {
 	return (
@@ -14,8 +14,8 @@ export default function HomePage() {
 			<ArtistsSection />
 			<FeaturedDreamsSection />
 			<RoadmapSection />
-			<TeamSection />
 			<GallerySection />
+			<CreditsSection />
 		</main>
 	);
 }

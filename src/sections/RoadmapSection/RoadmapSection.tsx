@@ -46,10 +46,7 @@ export default function RoadmapSection() {
 
 			<StaggerContainer className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
 				{ROADMAP_ITEMS.map((item) => (
-					<Card
-						key={item.title}
-						className="min-h-30"
-					>
+					<Card key={item.title} className="min-h-30">
 						<p className="font-primary text-xl leading-snug text-primary">
 							{item.title}
 						</p>
