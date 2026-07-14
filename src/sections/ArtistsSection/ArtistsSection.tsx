@@ -77,11 +77,11 @@ export default function ArtistsSection() {
 
 			<StaggerContainer className="grid grid-cols-1 gap-4 sm:grid-cols-2">
 				{INFO_CARDS.map((card) => (
-					<Card key={card.num} watermark={card.num} contentClassName="gap-3">
+					<Card key={card.num} contentClassName="gap-3">
 						<p className="font-primary text-xl leading-snug text-primary">
 							{card.title}
 						</p>
-						<p className="font-secondary text-sm leading-relaxed text-primary-light/60 transition-colors duration-300 group-hover:text-primary-light">
+						<p className="font-secondary text-base leading-relaxed text-primary-light/60 transition-colors duration-300 group-hover:text-primary-light">
 							{card.content}
 						</p>
 					</Card>

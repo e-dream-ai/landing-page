@@ -50,7 +50,7 @@ export default function RoadmapSection() {
 						<p className="font-primary text-xl leading-snug text-primary">
 							{item.title}
 						</p>
-						<p className="font-secondary text-sm leading-relaxed text-primary-light/60 transition-colors duration-300 group-hover:text-primary-light">
+						<p className="font-secondary text-base leading-relaxed text-primary-light/60 transition-colors duration-300 group-hover:text-primary-light">
 							{item.content}
 						</p>
 					</Card>
