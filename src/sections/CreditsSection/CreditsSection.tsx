@@ -7,7 +7,7 @@ export default function CreditsSection() {
 				Art on this page by Surrealism Today, Hueman Instrumentality, Safety
 				Marc, Jeremy Torman, and more.
 			</p>
-			<p className="mx-auto max-w-2xl text-xs text-primary-light/60">
+			<p className="text-sm text-primary-light">
 				You might see the name 'e-dream' in a few places — emails, GitHub,
 				company filings. Same project, new name. We're updating everything.
 			</p>

@@ -24,7 +24,7 @@ export default function Card({
 			)}
 		>
 			{watermark != null && <CardWatermark>{watermark}</CardWatermark>}
-			<div className={cn("flex h-full flex-col gap-2 p-7", contentClassName)}>
+			<div className={cn("flex h-full flex-col gap-2 p-5", contentClassName)}>
 				{children}
 			</div>
 		</StaggerItem>
