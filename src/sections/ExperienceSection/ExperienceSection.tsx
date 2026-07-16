@@ -34,17 +34,14 @@ const INTRO_CARDS: { key: string; content: ReactNode }[] = [
 	},
 	{
 		key: "remote",
-		content:
-			"Use your phone as a remote. Change visuals from across the room.",
+		content: "Use your phone as a remote. Change visuals from across the room.",
 	},
 	{
 		key: "sheep",
 		content: (
 			<>
 				Infinidream is based on the{" "}
-				<TextLink href="https://scottdraves.com/sheep">
-					Electric Sheep
-				</TextLink>{" "}
+				<TextLink href="https://scottdraves.com/sheep">Electric Sheep</TextLink>{" "}
 				screen saver — reborn and gone meta. And don’t worry, if you want only
 				Sheep and not AI, then it does that too.
 			</>
