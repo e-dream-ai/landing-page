@@ -446,6 +446,46 @@ export const THUMBNAILS_6TH_SECTION: Thumbnail[] = [
 		src: "/thumbnails-new/00032-315bef10-b3bc-4530-9c2a-20f027868895.jpg",
 		alt: "New AI Visual 58",
 	},
+	{
+		src: "/thumbnails-new/00033-389ee3e5-9df4-43f4-ac3c-e0a47c6c67a8.jpg",
+		alt: "New AI Visual 59",
+	},
+	{
+		src: "/thumbnails-new/00034-886b65d1-5eaf-48d2-99a6-7c0b16dd5874.jpg",
+		alt: "New AI Visual 60",
+	},
+	{
+		src: "/thumbnails-new/00035-942004f9-8a92-49b0-a5fa-66482c3c16ab.jpg",
+		alt: "New AI Visual 61",
+	},
+	{
+		src: "/thumbnails-new/00036-1df2a9f9-00cc-4f92-a8b2-2c51de7d8a55.jpg",
+		alt: "New AI Visual 62",
+	},
+	{
+		src: "/thumbnails-new/00037-f8324aff-cc3c-43b6-a3f1-fa43131270e7.jpg",
+		alt: "New AI Visual 63",
+	},
+	{
+		src: "/thumbnails-new/00038-8f332cd7-1e73-4a7f-b268-e381b7af45b7.jpg",
+		alt: "New AI Visual 64",
+	},
+	{
+		src: "/thumbnails-new/00039-6825567c-eae2-4ee7-91bb-25d0b5bf8d80.jpg",
+		alt: "New AI Visual 65",
+	},
+	{
+		src: "/thumbnails-new/00040-f5c0df29-8198-42b7-9381-eda73f325b90.jpg",
+		alt: "New AI Visual 66",
+	},
+	{
+		src: "/thumbnails-new/00041-2fc0d168-c261-4097-a930-1775efc05993.jpg",
+		alt: "New AI Visual 67",
+	},
+	{
+		src: "/thumbnails-new/00042-c8a1c7f4-a018-4f79-b45d-f21f7e3fce89.jpg",
+		alt: "New AI Visual 68",
+	},
 ];
 
 const THUMBNAIL_SECTIONS = [
