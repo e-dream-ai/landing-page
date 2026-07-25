@@ -103,9 +103,26 @@ function findActiveMobileContainers(): Set<HTMLElement> {
 		}
 	}
 
-	return topMostContainer
-		? new Set([topMostContainer])
-		: EMPTY_ACTIVE_CONTAINERS;
+	if (!topMostContainer) return EMPTY_ACTIVE_CONTAINERS;
+
+	// Activate every fully visible container in the same row as the topmost
+	// one, not just the topmost itself (which is the leftmost tile in
+	// multi-column rows).
+	const nextActiveContainers = new Set<HTMLElement>();
+
+	for (const container of containers) {
+		const rect = container.getBoundingClientRect();
+		const isFullyVisible = rect.top >= 0 && rect.bottom <= window.innerHeight;
+
+		if (
+			isFullyVisible &&
+			Math.abs(rect.top - topMostTop) < ACTIVE_ROW_TOLERANCE
+		) {
+			nextActiveContainers.add(container);
+		}
+	}
+
+	return nextActiveContainers;
 }
 
 function updateActiveContainers() {
