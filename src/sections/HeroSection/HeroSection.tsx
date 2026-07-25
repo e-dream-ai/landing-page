@@ -42,6 +42,13 @@ export default function HeroSection() {
 				/>
 			))}
 
+			{/* Dev-only label for the active hero video, used when curating thumbnails.ts */}
+			{process.env.NODE_ENV === "development" && (
+				<span className="absolute top-20 left-4 z-20 rounded bg-black/75 px-2 py-0.5 font-mono text-sm text-white pointer-events-none">
+					hero {active}
+				</span>
+			)}
+
 			<div className="absolute inset-x-0 -bottom-0.5 top-0 bg-linear-to-b from-transparent via-black/50 to-black" />
 
 			<StaggerContainer

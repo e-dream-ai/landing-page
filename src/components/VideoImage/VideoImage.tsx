@@ -112,6 +112,13 @@ export default function VideoImage({
 				/>
 			)}
 
+			{/* Dev-only tile number, used to reference videos when curating thumbnails.ts */}
+			{process.env.NODE_ENV === "development" && (
+				<span className="absolute top-1.5 left-1.5 z-20 rounded bg-black/75 px-2 py-0.5 font-mono text-sm text-white pointer-events-none">
+					{videoIndex}
+				</span>
+			)}
+
 			{showSpinner && (
 				<div className="absolute inset-0 flex items-center justify-center bg-black/30 backdrop-blur-sm z-10">
 					<ClipLoader
