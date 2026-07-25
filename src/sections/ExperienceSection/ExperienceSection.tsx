@@ -75,6 +75,7 @@ export default function ExperienceSection() {
 							alt={thumbnail.alt}
 							allVideos={ALL_THUMBNAILS}
 							videoIndex={getThumbnailIndex(thumbnail)}
+							largeVideo
 						/>
 					))}
 				</div>

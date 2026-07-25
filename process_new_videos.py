@@ -82,11 +82,17 @@ def run_ffmpeg(args_list):
 
 
 def encode_clip(master, output, scale, duration):
-    """10s cut, rescale, x264 CRF 25, no audio — same settings as process_mp4_files.py."""
+    """10s cut, rescale, x264 CRF 25, no audio — same settings as process_mp4_files.py.
+
+    Anamorphic masters (non-square SAR) are normalized to square pixels and
+    center-cropped to 16:9 first, so playback geometry always matches the
+    first-frame thumbnail. No-op for square-pixel 16:9 masters.
+    """
     output.parent.mkdir(parents=True, exist_ok=True)
     return run_ffmpeg([
         "-i", str(master),
-        "-vf", f"scale={scale}",
+        "-vf",
+        f"scale=iw*sar:ih,crop='min(iw,ih*16/9)':'min(ih,iw*9/16)',scale={scale},setsar=1",
         "-t", str(duration),
         "-c:v", "libx264",
         "-crf", "25",

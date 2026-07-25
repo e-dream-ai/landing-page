@@ -18,6 +18,7 @@ export default function FeaturedDreamsSection() {
 						aspectClassName="aspect-[4/5] md:aspect-[9/12]"
 						allVideos={ALL_THUMBNAILS}
 						videoIndex={getThumbnailIndex(thumbnail)}
+						largeVideo
 					/>
 				))}
 			</Container>

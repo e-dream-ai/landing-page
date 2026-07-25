@@ -6,7 +6,10 @@ import { ClipLoader } from "react-spinners";
 import { useVideoModal } from "@/contexts/VideoModalContext";
 import { useVideoElement } from "@/hooks/useVideoElement";
 import { useVideoInteraction } from "@/hooks/useVideoInteraction";
-import { getSmallVideoPathFromThumbnail } from "@/lib/helpers";
+import {
+	getSmallVideoPathFromThumbnail,
+	getVideoPathFromThumbnail,
+} from "@/lib/helpers";
 import type { Thumbnail } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
@@ -17,6 +20,7 @@ interface VideoImageProps {
 	allVideos?: Thumbnail[];
 	videoIndex?: number;
 	aspectClassName?: string;
+	largeVideo?: boolean;
 }
 
 export default function VideoImage({
@@ -26,6 +30,7 @@ export default function VideoImage({
 	allVideos = [],
 	videoIndex = 0,
 	aspectClassName = "aspect-video",
+	largeVideo = false,
 }: VideoImageProps) {
 	const containerRef = useRef<HTMLButtonElement>(null);
 	const video = useVideoElement({ priority });
@@ -35,7 +40,9 @@ export default function VideoImage({
 	});
 	const { openModal } = useVideoModal();
 
-	const videoSrc = getSmallVideoPathFromThumbnail(thumbnailSrc);
+	const videoSrc = largeVideo
+		? getVideoPathFromThumbnail(thumbnailSrc)
+		: getSmallVideoPathFromThumbnail(thumbnailSrc);
 	const showVideo = video.shouldLoad && !video.hasError;
 	const showSpinner = video.isLoading && interaction.shouldPlay;
 	const hasModalVideos = allVideos.length > 0;

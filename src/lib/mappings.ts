@@ -20,8 +20,6 @@ export const uuidMapping = {
 		"eb107f71-77b6-4079-8afc-6cf30355c403",
 	"80223a0b-56b2-4d9a-a32a-d46531262b6a":
 		"7650ddb2-8401-45b9-90e9-7efabd59e161",
-	"0a9466e9-ef96-48c2-b933-008e065eadf4":
-		"098a39bb-6e13-44ca-bd38-ed63add13f08",
 	"432547a1-1bd5-443d-91e1-adbb296cc495":
 		"670fcdb7-c557-49cc-b58a-6610c14b9fb0",
 	"01c0c747-adb7-4457-a91c-f19e60bace53":
@@ -36,8 +34,6 @@ export const uuidMapping = {
 		"1ec37552-2f5b-47e0-a599-4fb5ed3515eb",
 	"ae550e99-f460-4510-9904-021ac40ea347":
 		"3cd842d5-8fbc-4cf7-ba6b-5d3ece5090cf",
-	"9bcf5821-96d0-44ce-8dd8-a8bb928e651a":
-		"de50f70d-0604-40f5-ad79-8ab0f02e78ff",
 	"b2164567-683e-4422-9fb6-dd706b1ccb46":
 		"abd349d1-dd79-47bd-a106-0cf213cfb269",
 	"9c460739-c92a-4e86-8b19-4ceaa7fc52f3":
