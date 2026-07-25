@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useCallback, useEffect, useRef } from "react";
-import { ClipLoader } from "react-spinners";
 import { useVideoModal } from "@/contexts/VideoModalContext";
 import { useVideoElement } from "@/hooks/useVideoElement";
 import { useVideoInteraction } from "@/hooks/useVideoInteraction";
@@ -44,7 +43,6 @@ export default function VideoImage({
 		? getVideoPathFromThumbnail(thumbnailSrc)
 		: getSmallVideoPathFromThumbnail(thumbnailSrc);
 	const showVideo = video.shouldLoad && !video.hasError;
-	const showSpinner = video.isLoading && interaction.shouldPlay;
 	// Once a video has played, keep it visible when paused (frozen on its
 	// current frame) instead of swapping back to the first-frame thumbnail.
 	const videoOnTop = showVideo && video.hasPlayed;
@@ -127,17 +125,6 @@ export default function VideoImage({
 				<span className="absolute top-1.5 left-1.5 z-20 rounded bg-black/75 px-2 py-0.5 font-mono text-sm text-white pointer-events-none">
 					{videoIndex}
 				</span>
-			)}
-
-			{showSpinner && (
-				<div className="absolute inset-0 flex items-center justify-center bg-black/30 backdrop-blur-sm z-10">
-					<ClipLoader
-						color="#ffffff"
-						size={56}
-						speedMultiplier={0.8}
-						aria-label="Loading video"
-					/>
-				</div>
 			)}
 		</button>
 	);
