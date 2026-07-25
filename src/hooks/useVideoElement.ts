@@ -12,6 +12,7 @@ interface VideoState {
 	isPlaying: boolean;
 	isLoading: boolean;
 	hasError: boolean;
+	hasPlayed: boolean;
 }
 
 type VideoAction =
@@ -26,9 +27,14 @@ function videoReducer(state: VideoState, action: VideoAction): VideoState {
 		case "START_LOADING":
 			return { ...state, isLoading: true };
 		case "PLAY_SUCCESS":
-			return { ...state, isPlaying: true, isLoading: false };
+			return { ...state, isPlaying: true, isLoading: false, hasPlayed: true };
 		case "PLAY_ERROR":
-			return { isPlaying: false, isLoading: false, hasError: true };
+			return {
+				isPlaying: false,
+				isLoading: false,
+				hasError: true,
+				hasPlayed: false,
+			};
 		case "PAUSE":
 			return { ...state, isPlaying: false, isLoading: false };
 		case "STOP_LOADING":
@@ -48,6 +54,7 @@ export function useVideoElement({
 		isPlaying: false,
 		isLoading: false,
 		hasError: false,
+		hasPlayed: false,
 	});
 
 	const { ref: inViewRef, inView } = useInView({

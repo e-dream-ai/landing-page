@@ -45,6 +45,9 @@ export default function VideoImage({
 		: getSmallVideoPathFromThumbnail(thumbnailSrc);
 	const showVideo = video.shouldLoad && !video.hasError;
 	const showSpinner = video.isLoading && interaction.shouldPlay;
+	// Once a video has played, keep it visible when paused (frozen on its
+	// current frame) instead of swapping back to the first-frame thumbnail.
+	const videoOnTop = showVideo && video.hasPlayed;
 	const hasModalVideos = allVideos.length > 0;
 
 	const setContainerRef = useCallback(
@@ -95,7 +98,7 @@ export default function VideoImage({
 				className={cn(
 					"w-full h-full object-cover transition-opacity duration-300",
 					aspectClassName,
-					video.isPlaying ? "opacity-0" : "opacity-100",
+					videoOnTop ? "opacity-0" : "opacity-100",
 				)}
 			/>
 
@@ -106,7 +109,7 @@ export default function VideoImage({
 					className={cn(
 						"absolute inset-0 w-full h-full object-cover transition-opacity duration-300",
 						aspectClassName,
-						video.isPlaying ? "opacity-100" : "opacity-0",
+						videoOnTop ? "opacity-100" : "opacity-0",
 					)}
 					muted
 					loop

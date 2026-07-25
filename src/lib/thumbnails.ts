@@ -55,8 +55,8 @@ export const THUMBNAILS_4TH_SECTION: Thumbnail[] = [
 		alt: "AI Visual",
 	},
 	{
-		src: "/thumbnails-ranked/00007-8ef308e1-626b-4dcd-8c9e-2163b86b039e.jpg",
-		alt: "AI Visual",
+		src: "/thumbnails/00008-d4bfc7da-6c13-407e-b80b-ed8b91ac5b44.jpg",
+		alt: "AI Visual 9",
 	},
 ];
 
@@ -91,20 +91,12 @@ export const THUMBNAILS_6TH_SECTION: Thumbnail[] = [
 		alt: "Top Visual 7",
 	},
 	{
-		src: "/thumbnails-ranked/00007-8ef308e1-626b-4dcd-8c9e-2163b86b039e.jpg",
-		alt: "Top Visual 8",
-	},
-	{
 		src: "/thumbnails-ranked/00008-e2723fbb-c855-43db-bf63-3a74211277fd.jpg",
 		alt: "Top Visual 9",
 	},
 	{
 		src: "/thumbnails-ranked/00009-3641351b-10eb-4153-a8c4-cfa30fc57c16.jpg",
 		alt: "Top Visual 10",
-	},
-	{
-		src: "/thumbnails/00008-d4bfc7da-6c13-407e-b80b-ed8b91ac5b44.jpg",
-		alt: "AI Visual 9",
 	},
 	{
 		src: "/thumbnails/00006-9c352143-d163-4c1e-948d-836eda24392c.jpg",
