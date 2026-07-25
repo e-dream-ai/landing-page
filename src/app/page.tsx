@@ -5,12 +5,16 @@ import FeaturedDreamsSection from "@/sections/FeaturedDreamsSection/FeaturedDrea
 import GallerySection from "@/sections/GallerySection/GallerySection";
 import HeroSection from "@/sections/HeroSection/HeroSection";
 import RoadmapSection from "@/sections/RoadmapSection/RoadmapSection";
+import SheepSection from "@/sections/SheepSection/SheepSection";
+import SocialSection from "@/sections/SocialSection/SocialSection";
 
 export default function HomePage() {
 	return (
 		<main className="flex flex-col gap-8">
 			<HeroSection />
 			<ExperienceSection />
+			<SocialSection />
+			<SheepSection />
 			<ArtistsSection />
 			<FeaturedDreamsSection />
 			<RoadmapSection />

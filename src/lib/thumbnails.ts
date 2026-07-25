@@ -77,6 +77,35 @@ export const THUMBNAILS_5TH_SECTION: Thumbnail[] = [
 	},
 ];
 
+// Electric Sheep section — copies of gallery entries (the gallery remains the
+// complete index; sections duplicate it).
+export const THUMBNAILS_SHEEP_SECTION: Thumbnail[] = [
+	{
+		src: "/thumbnails-new/00037-f8324aff-cc3c-43b6-a3f1-fa43131270e7.jpg",
+		alt: "New AI Visual 63",
+	},
+	{
+		src: "/thumbnails-new/00038-8f332cd7-1e73-4a7f-b268-e381b7af45b7.jpg",
+		alt: "New AI Visual 64",
+	},
+	{
+		src: "/thumbnails-new/00039-6825567c-eae2-4ee7-91bb-25d0b5bf8d80.jpg",
+		alt: "New AI Visual 65",
+	},
+	{
+		src: "/thumbnails-new/00040-f5c0df29-8198-42b7-9381-eda73f325b90.jpg",
+		alt: "New AI Visual 66",
+	},
+	{
+		src: "/thumbnails-new/00041-2fc0d168-c261-4097-a930-1775efc05993.jpg",
+		alt: "New AI Visual 67",
+	},
+	{
+		src: "/thumbnails-new/00042-c8a1c7f4-a018-4f79-b45d-f21f7e3fce89.jpg",
+		alt: "New AI Visual 68",
+	},
+];
+
 export const THUMBNAILS_6TH_SECTION: Thumbnail[] = [
 	{
 		src: "/thumbnails-ranked/00003-c54b8e31-2a6a-4a5d-8bf0-16530bce7e58.jpg",
@@ -448,6 +477,7 @@ const THUMBNAIL_SECTIONS = [
 	HERO_THUMBNAILS,
 	THUMBNAILS_2ND_SECTION,
 	THUMBNAILS_3RD_SECTION,
+	THUMBNAILS_SHEEP_SECTION,
 	THUMBNAILS_4TH_SECTION,
 	THUMBNAILS_5TH_SECTION,
 	THUMBNAILS_6TH_SECTION,

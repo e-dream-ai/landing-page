@@ -1,7 +1,6 @@
 import type { ReactNode } from "react";
 import Card from "@/components/common/Card/Card";
 import { StaggerContainer } from "@/components/common/Stagger/Stagger";
-import TextLink from "@/components/common/TextLink/TextLink";
 import Container from "@/components/layout/Container/Container";
 import VideoImage from "@/components/VideoImage/VideoImage";
 import {
@@ -35,17 +34,6 @@ const INTRO_CARDS: { key: string; content: ReactNode }[] = [
 	{
 		key: "remote",
 		content: "Use your phone as a remote. Change visuals from across the room.",
-	},
-	{
-		key: "sheep",
-		content: (
-			<>
-				Infinidream is based on the{" "}
-				<TextLink href="https://scottdraves.com/sheep">Electric Sheep</TextLink>{" "}
-				screen saver — reborn and gone meta. And don’t worry, if you want only
-				Sheep and not AI, then it does that too.
-			</>
-		),
 	},
 ];
 
