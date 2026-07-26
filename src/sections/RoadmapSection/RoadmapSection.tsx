@@ -1,9 +1,8 @@
-import { ArrowRight } from "lucide-react";
+import Button from "@/components/common/Button/Button";
 import Card from "@/components/common/Card/Card";
 import FadeUp from "@/components/common/FadeUp/FadeUp";
 import SectionHeader from "@/components/common/SectionHeader/SectionHeader";
 import { StaggerContainer } from "@/components/common/Stagger/Stagger";
-import TextLink from "@/components/common/TextLink/TextLink";
 import Section from "@/components/layout/Section/Section";
 import { ROUTES } from "@/constants/routes";
 import { THUMBNAILS_5TH_SECTION } from "@/lib/thumbnails";
@@ -18,7 +17,7 @@ const ROADMAP_ITEMS = [
 	{
 		title: "Every Screen",
 		content:
-			"Linux, Android, iOS, tvOS, and native TV apps. Every screen you own.",
+			"We support macOS, Windows, and Linux. We plan for Android, iOS, tvOS, and native TV apps.",
 	},
 	{
 		title: "Multi-Screen Control",
@@ -33,7 +32,7 @@ const ROADMAP_ITEMS = [
 	{
 		title: "Audioreactive Mode",
 		content:
-			"A mic picks up the music, IDs the song, and the visuals respond in real time. Become an AI VJ.",
+			"A mic picks up the music, detects the vibe, and the visuals respond in real time. Infinidream becomes an AI VJ.",
 	},
 ];
 
@@ -57,16 +56,14 @@ export default function RoadmapSection() {
 				))}
 			</StaggerContainer>
 
-			<div className="mx-auto flex max-w-xl flex-col items-center gap-2 rounded-lg border border-white/10 px-8 py-6 text-center font-secondary text-base text-primary-light">
-				<p>Infinidream is free. Building it is not. If this matters to you,</p>
-				<TextLink
-					href={ROUTES.patreon}
-					tone="primary"
-					className="inline-flex items-center gap-1.5"
-				>
-					back us on Patreon
-					<ArrowRight className="size-4" />
-				</TextLink>
+			<div className="mx-auto flex max-w-xl flex-col items-center gap-2 rounded-lg border border-white/10 bg-neutral-800 px-8 py-6 text-center font-secondary text-base text-primary-light">
+				<p>
+					Infinidream is free to use, but building it and running it costs real
+					money. Please support our mission:
+				</p>
+				<Button href={ROUTES.patreon} variant="primary" className="mt-2">
+					Back us on Patreon
+				</Button>
 			</div>
 
 			<ThumbnailGrid thumbnails={THUMBNAILS_5TH_SECTION} />

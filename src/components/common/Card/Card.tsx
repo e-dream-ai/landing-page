@@ -19,7 +19,7 @@ export default function Card({
 	return (
 		<StaggerItem
 			className={cn(
-				"group relative min-h-44 overflow-hidden rounded-lg border border-white/10 bg-white/2 transition-all duration-500 hover:z-10 hover:border-primary/30 hover:bg-white/4",
+				"group relative min-h-44 overflow-hidden rounded-lg border border-white/10 bg-neutral-800 transition-all duration-500 hover:z-10 hover:border-primary/30 hover:bg-neutral-700",
 				className,
 			)}
 		>
