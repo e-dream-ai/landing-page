@@ -7,7 +7,7 @@ For each selected video (given as a UUID or a path to a master MP4) this script:
   2. Encodes the 10s large clip  -> public/processed-videos/processed_<uuid>.mp4 (1024x576)
   3. Encodes the 10s small clip  -> public/small-videos/processed_<uuid>.mp4    (384x216)
   4. Extracts the FIRST frame of the large clip as the thumbnail
-     -> public/thumbnails-new/NNNNN-<uuid>.jpg (JPEG quality 85, optimized)
+     -> public/thumbnails/<uuid>.jpg (JPEG quality 85, optimized)
   5. Appends entries to THUMBNAILS_6TH_SECTION in src/lib/thumbnails.ts
      (skipping any thumbnail already referenced; --no-update-ts to just print)
 
@@ -120,19 +120,9 @@ def make_thumbnail(large_clip, output):
         tmp_path.unlink(missing_ok=True)
 
 
-def next_thumbnail_index(thumb_dir):
-    """Continue numbering after the highest NNNNN- prefix already in the directory."""
-    indices = []
-    for jpg in thumb_dir.glob("*.jpg"):
-        prefix = jpg.name.split("-", 1)[0]
-        if prefix.isdigit():
-            indices.append(int(prefix))
-    return max(indices, default=-1) + 1
-
-
 def existing_thumbnail(thumb_dir, uuid):
-    matches = list(thumb_dir.glob(f"*-{uuid}.jpg"))
-    return matches[0] if matches else None
+    path = thumb_dir / f"{uuid}.jpg"
+    return path if path.exists() else None
 
 
 GALLERY_SECTION = "THUMBNAILS_6TH_SECTION"
@@ -189,8 +179,8 @@ def main():
                         help=f"Content library with master MP4s (default: {DEFAULT_MP4_SOURCE})")
     parser.add_argument("--site-root", default=str(REPO_ROOT),
                         help="Repo root containing public/ and video-thumb-masters/ (default: script location)")
-    parser.add_argument("--thumb-dir", default="thumbnails-new",
-                        help="Thumbnail directory under public/ (default: thumbnails-new)")
+    parser.add_argument("--thumb-dir", default="thumbnails",
+                        help="Thumbnail directory under public/ (default: thumbnails)")
     parser.add_argument("--duration", type=int, default=10, help="Clip duration in seconds (default: 10)")
     parser.add_argument("--force", action="store_true", help="Re-process even if outputs already exist")
     parser.add_argument("--no-update-ts", action="store_true",
@@ -214,7 +204,6 @@ def main():
     thumb_dir = site_root / "public" / args.thumb_dir
 
     thumb_dir.mkdir(parents=True, exist_ok=True)
-    next_index = next_thumbnail_index(thumb_dir)
 
     ts_entries = []
     failed = []
@@ -258,10 +247,9 @@ def main():
             thumb.unlink()
             thumb = None
         if not thumb:
-            thumb = thumb_dir / f"{next_index:05d}-{uuid}.jpg"
+            thumb = thumb_dir / f"{uuid}.jpg"
             if make_thumbnail(large, thumb):
                 print(f"  + thumbnail (first frame) -> {thumb.relative_to(site_root)}")
-                next_index += 1
             else:
                 print("  ✗ failed to extract thumbnail")
                 failed.append(item)

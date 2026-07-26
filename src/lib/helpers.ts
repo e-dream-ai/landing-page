@@ -3,7 +3,7 @@ import { uuidMapping } from "./mappings";
 function extractThumbnailId(thumbnailPath: string): string {
 	const filename = thumbnailPath.split("/").pop();
 	if (!filename) throw new Error("Invalid thumbnail path");
-	return filename.replace(/\.[^/.]+$/, "").substring(6);
+	return filename.replace(/\.[^/.]+$/, "");
 }
 
 function getVideoIdFromThumbnail(thumbnailPath: string): string {

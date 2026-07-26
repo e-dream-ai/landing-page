@@ -11,15 +11,15 @@ def create_social_preview():
     # Keep in sync with HERO_THUMBNAILS / THUMBNAILS_2ND_SECTION /
     # THUMBNAILS_3RD_SECTION in src/lib/thumbnails.ts.
     image_files = [
-        "thumbnails-new/00046-d780a5af-54ca-40db-bc78-e08a908bab07.jpg",
-        "thumbnails-new/00041-2fc0d168-c261-4097-a930-1775efc05993.jpg",
-        "thumbnails-ranked/00013-21b39e9f-fd09-481a-b7d5-cfd0c951bc94.jpg",
-        "thumbnails-ranked/00001-e45d0e8c-ac8d-47c4-b32b-c615066d3663.jpg",
-        "thumbnails-new/00043-36fbc33c-2ccc-4702-8337-4541d83d422e.jpg",
-        "thumbnails/00011-e8958970-501b-42e8-8005-e9768e951603.jpg",
-        "thumbnails-new/00030-5b927dd5-beba-48cc-ae25-8df1d030979a.jpg",
-        "thumbnails-ranked/00008-e2723fbb-c855-43db-bf63-3a74211277fd.jpg",
-        "thumbnails-ranked/00009-3641351b-10eb-4153-a8c4-cfa30fc57c16.jpg"
+        "thumbnails/d780a5af-54ca-40db-bc78-e08a908bab07.jpg",
+        "thumbnails/2fc0d168-c261-4097-a930-1775efc05993.jpg",
+        "thumbnails/21b39e9f-fd09-481a-b7d5-cfd0c951bc94.jpg",
+        "thumbnails/e45d0e8c-ac8d-47c4-b32b-c615066d3663.jpg",
+        "thumbnails/36fbc33c-2ccc-4702-8337-4541d83d422e.jpg",
+        "thumbnails/e8958970-501b-42e8-8005-e9768e951603.jpg",
+        "thumbnails/5b927dd5-beba-48cc-ae25-8df1d030979a.jpg",
+        "thumbnails/e2723fbb-c855-43db-bf63-3a74211277fd.jpg",
+        "thumbnails/3641351b-10eb-4153-a8c4-cfa30fc57c16.jpg"
     ]
     
     # Check that all images exist
