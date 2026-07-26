@@ -56,6 +56,16 @@ function getRegisteredContainers(): HTMLElement[] {
 	return containers;
 }
 
+function getViewportTopOffset(): number {
+	// The fixed NavBar overlays the top of the viewport, so rows are visually
+	// obscured before they reach the literal viewport top.
+	const header = document.querySelector("header");
+	if (!header) return 0;
+
+	const rect = header.getBoundingClientRect();
+	return rect.top <= 0 ? Math.max(0, rect.bottom) : 0;
+}
+
 function findActiveMobileContainers(): Set<HTMLElement> {
 	const containers = getRegisteredContainers();
 	if (containers.length === 0) return EMPTY_ACTIVE_CONTAINERS;
@@ -90,34 +100,52 @@ function findActiveMobileContainers(): Set<HTMLElement> {
 		return nextActiveContainers;
 	}
 
+	// A row is a candidate from the moment any part of it enters at the bottom
+	// until it starts sliding under the fixed header.
+	const viewportTop = getViewportTopOffset();
 	let topMostTop = Number.POSITIVE_INFINITY;
 	let topMostContainer: HTMLElement | null = null;
 
 	for (const container of containers) {
 		const rect = container.getBoundingClientRect();
-		const isFullyVisible = rect.top >= 0 && rect.bottom <= window.innerHeight;
+		const isVisible = rect.top >= viewportTop && rect.top < window.innerHeight;
 
-		if (isFullyVisible && rect.top < topMostTop) {
+		if (isVisible && rect.top < topMostTop) {
 			topMostTop = rect.top;
 			topMostContainer = container;
 		}
 	}
 
+	if (!topMostContainer) {
+		// No fully revealed row is on screen — e.g. the last row of a group is
+		// sliding under the header with nothing new below it. Keep that partly
+		// hidden row playing until it disappears completely.
+		let bottomMostTop = Number.NEGATIVE_INFINITY;
+
+		for (const container of containers) {
+			const rect = container.getBoundingClientRect();
+			const isPartlyHidden =
+				rect.top < viewportTop && rect.bottom > viewportTop;
+
+			if (isPartlyHidden && rect.top > bottomMostTop) {
+				bottomMostTop = rect.top;
+				topMostContainer = container;
+			}
+		}
+
+		topMostTop = bottomMostTop;
+	}
+
 	if (!topMostContainer) return EMPTY_ACTIVE_CONTAINERS;
 
-	// Activate every fully visible container in the same row as the topmost
-	// one, not just the topmost itself (which is the leftmost tile in
-	// multi-column rows).
+	// Activate every container in the same row as the topmost one, not just
+	// the topmost itself (which is the leftmost tile in multi-column rows).
 	const nextActiveContainers = new Set<HTMLElement>();
 
 	for (const container of containers) {
 		const rect = container.getBoundingClientRect();
-		const isFullyVisible = rect.top >= 0 && rect.bottom <= window.innerHeight;
 
-		if (
-			isFullyVisible &&
-			Math.abs(rect.top - topMostTop) < ACTIVE_ROW_TOLERANCE
-		) {
+		if (Math.abs(rect.top - topMostTop) < ACTIVE_ROW_TOLERANCE) {
 			nextActiveContainers.add(container);
 		}
 	}
