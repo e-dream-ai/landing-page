@@ -67,8 +67,8 @@ export default function ArtistsSection() {
 					title="Make Art That Never Stops Moving"
 				/>
 				<p className="font-secondary text-base text-primary-light">
-					A free platform for generative artists, programmers, prompt engineers,
-					and anyone who dreams in pixels.
+					A free platform for generative artists, programmers, prompters, and
+					anyone who dreams in pixels.
 				</p>
 				<Button href={ROUTES.creators} variant="primary" className="self-start">
 					Creators Program

@@ -14,7 +14,7 @@ const INTRO_CARDS: { key: string; content: ReactNode }[] = [
 	{
 		key: "discover",
 		content:
-			"Discover and experience animated AI visuals from a multitude of styles, tempos, and artists.",
+			"Discover and experience animated visuals from a multitude of styles, tempos, and artists.",
 	},
 	{
 		key: "tempo",
@@ -24,7 +24,7 @@ const INTRO_CARDS: { key: string; content: ReactNode }[] = [
 	{
 		key: "depth",
 		content:
-			"Slow it down for a digital painting that barely moves. Speed it up and fall down the rabbit hole. You control how deep it goes.",
+			"Slow it down for a digital painting that barely moves. Speed it up and rocket down the rabbit hole. You control how deep it goes.",
 	},
 	{
 		key: "apps",

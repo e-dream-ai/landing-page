@@ -17,16 +17,17 @@ const SHEEP_CARDS: { key: string; content: ReactNode }[] = [
 		key: "origin",
 		content: (
 			<>
-				Infinidream is based on the{" "}
+				Infinidream comes from the{" "}
 				<TextLink href="https://scottdraves.com/sheep">Electric Sheep</TextLink>{" "}
-				screen saver — reborn and gone meta.
+				screen saver — reborn and gone meta. The new Sheep are better than ever,
+				now in 1080p.
 			</>
 		),
 	},
 	{
 		key: "sheep-only",
 		content:
-			"And don’t worry, if you want only Sheep and not AI, then it does that too.",
+			"Infinidream is a platform for all kinds of visuals, but it's your choice what to play. So don’t worry, if you want only Sheep and not AI, then it does that fine.",
 	},
 	{
 		key: "team",
