@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Button from "@/components/common/Button/Button";
 import {
 	StaggerContainer,
@@ -15,26 +15,66 @@ const HERO_VIDEOS = HERO_THUMBNAILS.map((thumbnail) =>
 	getVideoPathFromThumbnail(thumbnail.src),
 );
 
+// Matches the duration-1000 opacity transition on the video elements.
+const CROSS_FADE_SECONDS = 1;
+
 export default function HeroSection() {
 	const [active, setActive] = useState(0);
+	const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
 	useEffect(() => {
-		const interval = setInterval(() => {
-			setActive((prev) => (prev + 1) % HERO_VIDEOS.length);
-		}, 8000);
-		return () => clearInterval(interval);
+		videoRefs.current[0]?.play().catch(() => {});
 	}, []);
+
+	// Play the active video to its end; start the next one just before it
+	// finishes so the cross-fade overlaps two playing videos.
+	useEffect(() => {
+		const video = videoRefs.current[active];
+		if (!video) return;
+
+		let advanced = false;
+		const advance = () => {
+			if (advanced) return;
+			advanced = true;
+
+			const nextIndex = (active + 1) % HERO_VIDEOS.length;
+			const next = videoRefs.current[nextIndex];
+			if (next) {
+				next.currentTime = 0;
+				next.play().catch(() => {});
+			}
+			setActive(nextIndex);
+		};
+
+		const handleTimeUpdate = () => {
+			if (
+				video.duration &&
+				video.duration - video.currentTime <= CROSS_FADE_SECONDS
+			) {
+				advance();
+			}
+		};
+
+		video.addEventListener("timeupdate", handleTimeUpdate);
+		video.addEventListener("ended", advance);
+		return () => {
+			video.removeEventListener("timeupdate", handleTimeUpdate);
+			video.removeEventListener("ended", advance);
+		};
+	}, [active]);
 
 	return (
 		<section className="relative flex min-h-125 h-[85vh] items-end overflow-hidden">
 			{HERO_VIDEOS.map((src, index) => (
 				<video
 					key={src}
+					ref={(el) => {
+						videoRefs.current[index] = el;
+					}}
 					src={src}
-					autoPlay
 					muted
-					loop
 					playsInline
+					preload="auto"
 					className={cn(
 						"absolute inset-0 h-full w-full object-cover transition-opacity duration-1000",
 						index === active ? "opacity-100" : "opacity-0",
@@ -62,7 +102,7 @@ export default function HeroSection() {
 					</h1>
 				</StaggerItem>
 				<StaggerItem>
-					<p className="text-base font-secondary text-primary-light sm:text-lg">
+					<p className="text-lg font-secondary text-primary-light sm:text-xl">
 						Animated AI art that breathes, shifts, and evolves — from dozens of
 						artists and styles. Pick one that fits your mood.
 					</p>
