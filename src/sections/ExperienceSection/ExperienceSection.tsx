@@ -47,7 +47,7 @@ export default function ExperienceSection() {
 			<StaggerContainer className="mx-auto grid max-w-7xl grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
 				{INTRO_CARDS.map((card) => (
 					<Card key={card.key} className="min-h-30">
-						<p className="font-secondary text-base leading-relaxed text-primary-light">
+						<p className="font-secondary text-lg leading-relaxed text-primary-light">
 							{card.content}
 						</p>
 					</Card>

@@ -49,14 +49,14 @@ export default function RoadmapSection() {
 						<p className="font-primary text-xl leading-snug text-primary">
 							{item.title}
 						</p>
-						<p className="font-secondary text-base leading-relaxed text-primary-light/60 transition-colors duration-300 group-hover:text-primary-light">
+						<p className="font-secondary text-lg leading-relaxed text-primary-light/60 transition-colors duration-300 group-hover:text-primary-light">
 							{item.content}
 						</p>
 					</Card>
 				))}
 			</StaggerContainer>
 
-			<div className="mx-auto flex max-w-xl flex-col items-center gap-2 rounded-lg border border-white/10 bg-neutral-800 px-8 py-6 text-center font-secondary text-base text-primary-light">
+			<div className="mx-auto flex max-w-xl flex-col items-center gap-2 rounded-lg border border-white/10 bg-neutral-800 px-8 py-6 text-center font-secondary text-lg text-primary-light">
 				<p>
 					Infinidream is free to use, but building it and running it costs real
 					money. Please support our mission:

@@ -5,11 +5,12 @@ export default function CreditsSection() {
 		<Section className="flex flex-col gap-6 text-center font-secondary">
 			<p className="text-sm text-primary-light">
 				Art on this page by Surrealism Today, Hueman Instrumentality, Safety
-				Marc, Jeremy Torman, and more.
+				Marc, Glenn Marshall, Jef Harris, Jeremy Torman, and more.
 			</p>
 			<p className="text-sm text-primary-light">
-				You might see the name 'e-dream' in a few places — emails, GitHub,
-				company filings. Same project, new name. We're updating everything.
+				You might see the name "e-dream" in a few places — emails, GitHub,
+				anything legal. It's the old name for Infinidream. We're updating
+				everything.
 			</p>
 		</Section>
 	);

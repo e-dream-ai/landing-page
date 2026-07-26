@@ -16,7 +16,7 @@ export default function GallerySection() {
 					align="center"
 					label="Gallery"
 					title="Endless Dreams"
-					description="A living library of animated visuals, from dozens of artists and AIs."
+					description="A living and growing library of animated visuals, from dozens of artists and AIs. Just a taste:"
 				/>
 			</FadeUp>
 

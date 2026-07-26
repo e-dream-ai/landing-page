@@ -32,7 +32,7 @@ export default function SectionHeader({
 				</h2>
 			)}
 			{description && (
-				<p className="max-w-xl font-secondary text-base text-primary-light">
+				<p className="max-w-xl font-secondary text-lg text-primary-light">
 					{description}
 				</p>
 			)}

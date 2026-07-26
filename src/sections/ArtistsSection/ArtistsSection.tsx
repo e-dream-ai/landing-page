@@ -33,12 +33,12 @@ const INFO_CARDS = [
 	},
 	{
 		num: "04",
-		title: "Open source",
+		title: "Open Source",
 		content: (
 			<>
-				Infinidream is <TextLink href={ROUTES.github}>open source</TextLink> —
-				fork it, build on it, share your art, or just{" "}
-				<TextLink href={ROUTES.issues}>report a bug</TextLink>.
+				Infinidream is <TextLink href={ROUTES.github}>open source</TextLink> and
+				we invite collaboration of all kinds. Fork it, build on it, share your
+				art, or just <TextLink href={ROUTES.issues}>report a bug</TextLink>.
 			</>
 		),
 	},
@@ -66,7 +66,7 @@ export default function ArtistsSection() {
 					label="Artists"
 					title="Make Art That Never Stops Moving"
 				/>
-				<p className="font-secondary text-base text-primary-light">
+				<p className="font-secondary text-lg text-primary-light">
 					A free platform for generative artists, programmers, prompters, and
 					anyone who dreams in pixels.
 				</p>
@@ -81,7 +81,7 @@ export default function ArtistsSection() {
 						<p className="font-primary text-xl leading-snug text-primary">
 							{card.title}
 						</p>
-						<p className="font-secondary text-base leading-relaxed text-primary-light/60 transition-colors duration-300 group-hover:text-primary-light">
+						<p className="font-secondary text-lg leading-relaxed text-primary-light/60 transition-colors duration-300 group-hover:text-primary-light">
 							{card.content}
 						</p>
 					</Card>
