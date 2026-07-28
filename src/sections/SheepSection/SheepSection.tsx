@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { ReactNode } from "react";
 import Card from "@/components/common/Card/Card";
 import FadeUp from "@/components/common/FadeUp/FadeUp";
@@ -48,6 +49,16 @@ const SHEEP_CARDS: { key: string; content: ReactNode }[] = [
 const FEATURED = THUMBNAILS_SHEEP_SECTION.slice(0, 2);
 const REST = THUMBNAILS_SHEEP_SECTION.slice(2);
 
+function TextCard({ card }: { card: (typeof SHEEP_CARDS)[number] }) {
+	return (
+		<Card className="min-h-30">
+			<p className="font-secondary text-lg leading-relaxed text-primary-light">
+				{card.content}
+			</p>
+		</Card>
+	);
+}
+
 export default function SheepSection() {
 	return (
 		<Section className="flex flex-col gap-10">
@@ -56,12 +67,23 @@ export default function SheepSection() {
 			</FadeUp>
 
 			<StaggerContainer className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-				{SHEEP_CARDS.map((card) => (
-					<Card key={card.key} className="min-h-30">
-						<p className="font-secondary text-lg leading-relaxed text-primary-light">
-							{card.content}
-						</p>
-					</Card>
+				<TextCard card={SHEEP_CARDS[0]} />
+
+				<Card
+					className="min-h-30"
+					contentClassName="items-center justify-center p-5"
+				>
+					<Image
+						src="/logos/sheep-plus-dream.png"
+						alt="Electric Sheep plus Infinidream"
+						width={1800}
+						height={700}
+						className="h-auto w-full max-w-xs"
+					/>
+				</Card>
+
+				{SHEEP_CARDS.slice(1).map((card) => (
+					<TextCard key={card.key} card={card} />
 				))}
 			</StaggerContainer>
 
