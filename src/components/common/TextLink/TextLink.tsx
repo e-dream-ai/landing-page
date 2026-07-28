@@ -7,9 +7,9 @@ const textLinkVariants = cva("underline underline-offset-2 transition-colors", {
 	variants: {
 		tone: {
 			white:
-				"text-white decoration-white/30 hover:text-primary hover:decoration-primary/60",
+				"text-white decoration-white/30 hover:text-button hover:decoration-button/60 active:text-button active:decoration-button/60",
 			primary:
-				"text-primary/80 decoration-primary/30 hover:text-primary hover:decoration-primary/60",
+				"text-primary/80 decoration-primary/30 hover:text-button hover:decoration-button/60 active:text-button active:decoration-button/60",
 		},
 	},
 	defaultVariants: {
