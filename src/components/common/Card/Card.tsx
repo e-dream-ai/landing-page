@@ -8,6 +8,7 @@ interface CardProps {
 	watermark?: ReactNode;
 	className?: string;
 	contentClassName?: string;
+	watermarkClassName?: string;
 }
 
 export default function Card({
@@ -15,6 +16,7 @@ export default function Card({
 	watermark,
 	className,
 	contentClassName,
+	watermarkClassName,
 }: CardProps) {
 	return (
 		<StaggerItem
@@ -23,7 +25,11 @@ export default function Card({
 				className,
 			)}
 		>
-			{watermark != null && <CardWatermark>{watermark}</CardWatermark>}
+			{watermark != null && (
+				<CardWatermark className={watermarkClassName}>
+					{watermark}
+				</CardWatermark>
+			)}
 			<div className={cn("flex h-full flex-col gap-2 p-5", contentClassName)}>
 				{children}
 			</div>
