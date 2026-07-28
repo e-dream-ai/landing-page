@@ -42,7 +42,7 @@ export default function SocialSection() {
 							key={link.label}
 							href={link.href}
 							aria-label={link.label}
-							className="flex items-center"
+							className="flex items-center text-primary-light"
 						>
 							<FontAwesomeIcon icon={link.icon} className="size-[41px]!" />
 						</TextLink>

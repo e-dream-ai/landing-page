@@ -9,6 +9,7 @@ import {
 	THUMBNAILS_2ND_SECTION,
 	THUMBNAILS_3RD_SECTION,
 } from "@/lib/thumbnails";
+import { cn } from "@/lib/utils";
 
 const INTRO_CARDS: { key: string; content: ReactNode }[] = [
 	{
@@ -44,9 +45,17 @@ const REST = GALLERY.slice(2);
 export default function ExperienceSection() {
 	return (
 		<Container className="flex flex-col gap-10">
-			<StaggerContainer className="mx-auto grid max-w-7xl grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-				{INTRO_CARDS.map((card) => (
-					<Card key={card.key} className="min-h-30">
+			{/* Five cards: a row of three, then two wider ones filling the second
+			    row so the grid never shows a hole (see issue #31). */}
+			<StaggerContainer className="mx-auto grid max-w-7xl grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-6">
+				{INTRO_CARDS.map((card, index) => (
+					<Card
+						key={card.key}
+						className={cn(
+							index < 3 ? "lg:col-span-2" : "lg:col-span-3",
+							index === 4 && "sm:col-span-2 lg:col-span-3",
+						)}
+					>
 						<p className="font-secondary text-lg leading-relaxed text-primary-light">
 							{card.content}
 						</p>

@@ -51,7 +51,7 @@ const REST = THUMBNAILS_SHEEP_SECTION.slice(2);
 
 function TextCard({ card }: { card: (typeof SHEEP_CARDS)[number] }) {
 	return (
-		<Card className="min-h-30">
+		<Card>
 			<p className="font-secondary text-lg leading-relaxed text-primary-light">
 				{card.content}
 			</p>
@@ -66,18 +66,17 @@ export default function SheepSection() {
 				<SectionHeader label="Heritage" title="Electric Sheep" />
 			</FadeUp>
 
-			<StaggerContainer className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+			{/* Four cards: 2x2 from the sm breakpoint up, so the grid never
+			    shows a hole (see issue #31). */}
+			<StaggerContainer className="grid grid-cols-1 gap-4 sm:grid-cols-2">
 				<TextCard card={SHEEP_CARDS[0]} />
 
-				<Card
-					className="min-h-30"
-					contentClassName="items-center justify-center p-5"
-				>
+				<Card contentClassName="items-center justify-center p-5">
 					<Image
 						src="/logos/sheep-plus-dream.png"
 						alt="Electric Sheep plus Infinidream"
-						width={1800}
-						height={700}
+						width={1377}
+						height={450}
 						className="h-auto w-full max-w-xs"
 					/>
 				</Card>

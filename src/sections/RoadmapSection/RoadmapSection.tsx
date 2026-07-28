@@ -4,6 +4,7 @@ import SectionHeader from "@/components/common/SectionHeader/SectionHeader";
 import { StaggerContainer } from "@/components/common/Stagger/Stagger";
 import Section from "@/components/layout/Section/Section";
 import { THUMBNAILS_5TH_SECTION } from "@/lib/thumbnails";
+import { cn } from "@/lib/utils";
 import ThumbnailGrid from "@/sections/ThumbnailGrid/ThumbnailGrid";
 
 const ROADMAP_ITEMS = [
@@ -41,9 +42,17 @@ export default function RoadmapSection() {
 				<SectionHeader label="Roadmap" title="What's Next" />
 			</FadeUp>
 
-			<StaggerContainer className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-				{ROADMAP_ITEMS.map((item) => (
-					<Card key={item.title} className="min-h-30">
+			{/* Five cards: a row of three, then two wider ones filling the second
+			    row so the grid never shows a hole (see issue #31). */}
+			<StaggerContainer className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-6">
+				{ROADMAP_ITEMS.map((item, index) => (
+					<Card
+						key={item.title}
+						className={cn(
+							index < 3 ? "lg:col-span-2" : "lg:col-span-3",
+							index === 4 && "sm:col-span-2 lg:col-span-3",
+						)}
+					>
 						<p className="font-primary text-xl leading-snug text-primary">
 							{item.title}
 						</p>
