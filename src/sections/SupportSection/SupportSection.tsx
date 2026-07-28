@@ -36,10 +36,10 @@ export default function SupportSection() {
 					</Card>
 				</StaggerContainer>
 
-				<FadeUp className="flex items-center justify-center gap-20 opacity-60">
+				<FadeUp className="flex flex-wrap items-center justify-center gap-8 opacity-60 sm:gap-20">
 					<FontAwesomeIcon
 						icon={faPatreon}
-						className="size-18! text-primary-light"
+						className="size-14! text-primary-light sm:size-18!"
 						title="Patreon"
 					/>
 					<Image
@@ -47,14 +47,14 @@ export default function SupportSection() {
 						alt="Infinidream"
 						width={80}
 						height={80}
-						className="size-18"
+						className="size-14 sm:size-18"
 					/>
 					<Image
 						src="/logos/electric-sheep.svg"
 						alt="Electric Sheep"
 						width={53}
 						height={43}
-						className="h-18 w-auto"
+						className="h-14 w-auto sm:h-18"
 					/>
 				</FadeUp>
 			</div>
