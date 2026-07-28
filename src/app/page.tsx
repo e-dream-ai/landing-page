@@ -7,6 +7,7 @@ import HeroSection from "@/sections/HeroSection/HeroSection";
 import RoadmapSection from "@/sections/RoadmapSection/RoadmapSection";
 import SheepSection from "@/sections/SheepSection/SheepSection";
 import SocialSection from "@/sections/SocialSection/SocialSection";
+import SupportSection from "@/sections/SupportSection/SupportSection";
 
 export default function HomePage() {
 	return (
@@ -18,6 +19,7 @@ export default function HomePage() {
 			<ArtistsSection />
 			<FeaturedDreamsSection />
 			<RoadmapSection />
+			<SupportSection />
 			<GallerySection />
 			<CreditsSection />
 		</main>

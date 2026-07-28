@@ -10,26 +10,28 @@ import { ROUTES } from "@/constants/routes";
 const INFO_CARDS = [
 	{
 		num: "01",
-		title: "Interactive audience",
+		title: "Interactive Ambience",
 		content:
-			"Upload your work the way you would to YouTube or Instagram — except your audience can actually interact with it. Speed it up, slow it down, mix it with other dreams.",
+			"Upload your work the way you would to YouTube or Instagram, but your audience gets higher bitrate and smoother playback, and interactive ambient controls, like slow motion speed control.",
 	},
 	{
 		num: "02",
-		title: "AI collaboration",
+		title: "Access AI",
 		content: (
 			<>
-				Collaborate with AI by using our{" "}
-				<TextLink href={ROUTES.api}>Python API</TextLink> to generate art that
-				never repeats.
+				Use our Studio web apps to access AI models and workflows to create
+				videos in a fully hosted environment — no GPU required! Collaborate with
+				AI by using our <TextLink href={ROUTES.api}>Python API</TextLink> to
+				realize your own algorithms and even generate art that evolves
+				infinitely.
 			</>
 		),
 	},
 	{
 		num: "03",
-		title: "Participatory art",
+		title: "Participatory Art",
 		content:
-			"Build participatory pieces. Let crowds steer your art. Turn viewers into collaborators.",
+			"Use our API to build participatory pieces. Let your audience influence or steer your art. Turn viewers into collaborators. Allow any group of like-minded individuals to coordinate and run the show.",
 	},
 	{
 		num: "04",
@@ -37,20 +39,21 @@ const INFO_CARDS = [
 		content: (
 			<>
 				Infinidream is <TextLink href={ROUTES.github}>open source</TextLink> and
-				we invite collaboration of all kinds. Fork it, build on it, share your
-				art, or just <TextLink href={ROUTES.issues}>report a bug</TextLink>.
+				we invite collaboration of all kinds. Fix it, build on it, share your
+				art, or just report a bug. Run your own server or run privately without
+				a server.
 			</>
 		),
 	},
 	{
 		num: "05",
-		title: "Collective intelligence",
+		title: "Collective Intelligence",
 		content:
-			"This is an experiment in collective intelligence — human artists and AIs building on each other's strengths.",
+			"Infinidream is an experiment in collective intelligence — human artists, AI, and the audience building on each other's strengths.",
 	},
 	{
 		num: "06",
-		title: "Get paid",
+		title: "Get Paid",
 		content: "Join the creators program. Make art, get paid.",
 	},
 ];
@@ -81,7 +84,7 @@ export default function ArtistsSection() {
 						<p className="font-primary text-xl leading-snug text-primary">
 							{card.title}
 						</p>
-						<p className="font-secondary text-lg leading-relaxed text-primary-light/60 transition-colors duration-300 group-hover:text-primary-light">
+						<p className="font-secondary text-lg leading-relaxed text-primary-light">
 							{card.content}
 						</p>
 					</Card>

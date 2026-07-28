@@ -1,10 +1,8 @@
-import Button from "@/components/common/Button/Button";
 import Card from "@/components/common/Card/Card";
 import FadeUp from "@/components/common/FadeUp/FadeUp";
 import SectionHeader from "@/components/common/SectionHeader/SectionHeader";
 import { StaggerContainer } from "@/components/common/Stagger/Stagger";
 import Section from "@/components/layout/Section/Section";
-import { ROUTES } from "@/constants/routes";
 import { THUMBNAILS_5TH_SECTION } from "@/lib/thumbnails";
 import ThumbnailGrid from "@/sections/ThumbnailGrid/ThumbnailGrid";
 
@@ -49,22 +47,12 @@ export default function RoadmapSection() {
 						<p className="font-primary text-xl leading-snug text-primary">
 							{item.title}
 						</p>
-						<p className="font-secondary text-lg leading-relaxed text-primary-light/60 transition-colors duration-300 group-hover:text-primary-light">
+						<p className="font-secondary text-lg leading-relaxed text-primary-light">
 							{item.content}
 						</p>
 					</Card>
 				))}
 			</StaggerContainer>
-
-			<div className="mx-auto flex max-w-xl flex-col items-center gap-2 rounded-lg border border-white/10 bg-neutral-800 px-8 py-6 text-center font-secondary text-lg text-primary-light">
-				<p>
-					Infinidream is free to use, but building it and running it costs real
-					money. Please support our mission:
-				</p>
-				<Button href={ROUTES.patreon} variant="primary" className="mt-2">
-					Back us on Patreon
-				</Button>
-			</div>
 
 			<ThumbnailGrid thumbnails={THUMBNAILS_5TH_SECTION} />
 		</Section>

@@ -228,11 +228,11 @@ export function useVideoInteraction({
 	enabled,
 	containerRef,
 }: UseVideoInteractionOptions) {
-	const { isMobile, isLandscape, isPointerCoarse } = useViewport();
-	const isMobileMode =
-		isMobile ||
-		isPointerCoarse ||
-		(typeof window !== "undefined" && "ontouchstart" in window);
+	const { isLandscape, isPointerCoarse } = useViewport();
+	// Scroll-driven autoplay only applies when the primary pointer can't
+	// hover (touch devices) — never based on viewport width, so a narrow
+	// desktop window keeps hover-to-play behavior.
+	const isMobileMode = isPointerCoarse;
 
 	const [isHovered, setIsHovered] = useState(false);
 	const [isPaused, setIsPaused] = useState(false);
