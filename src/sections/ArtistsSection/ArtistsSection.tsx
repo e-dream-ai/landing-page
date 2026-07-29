@@ -20,7 +20,7 @@ const INFO_CARDS = [
 		content: (
 			<>
 				Use our Studio web apps to access AI models and workflows to create
-				videos in a fully hosted environment — no GPU required! Collaborate with
+				videos in a fully hosted environment—no GPU required! Collaborate with
 				AI by using our <TextLink href={ROUTES.api}>Python API</TextLink> to
 				realize your own algorithms and even generate art that evolves
 				infinitely.
@@ -49,7 +49,7 @@ const INFO_CARDS = [
 		num: "05",
 		title: "Collective Intelligence",
 		content:
-			"Infinidream is an experiment in collective intelligence — human artists, AI, and the audience building on each other's strengths.",
+			"Infinidream is an experiment in collective intelligence—human artists, AI, and the audience building on each other's strengths.",
 	},
 	{
 		num: "06",

@@ -11,7 +11,7 @@ const ROADMAP_ITEMS = [
 	{
 		title: "Cloud Generation",
 		content:
-			'Cloud generation powered by AI and crowd signals. Hit "edit" on any dream — change the prompts, restyle it, make it yours.',
+			'Cloud generation powered by AI and crowd signals. Hit "edit" on any dream—change the prompts, restyle it, make it yours.',
 	},
 	{
 		title: "Every Screen",
@@ -21,7 +21,7 @@ const ROADMAP_ITEMS = [
 	{
 		title: "Multi-Screen Control",
 		content:
-			"Turn your home into a gallery that responds to the room — synced across every display.",
+			"Turn your home into a gallery that responds to the room—synced across every display.",
 	},
 	{
 		title: "Social Control",

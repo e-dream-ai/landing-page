@@ -8,7 +8,7 @@ export default function CreditsSection() {
 				Marc, Glenn Marshall, Jef Harris, Jeremy Torman, and more.
 			</p>
 			<p className="text-sm text-primary-light">
-				You might see the name "e-dream" in a few places — emails, GitHub,
+				You might see the name "e-dream" in a few places—emails, GitHub,
 				anything legal. It's the old name for Infinidream. We're updating
 				everything.
 			</p>

@@ -20,7 +20,7 @@ const SHEEP_CARDS: { key: string; content: ReactNode }[] = [
 			<>
 				Infinidream comes from the{" "}
 				<TextLink href="https://scottdraves.com/sheep">Electric Sheep</TextLink>{" "}
-				screen saver — reborn and gone meta. The new Sheep are better than ever,
+				screen saver—reborn and gone meta. The new Sheep are better than ever,
 				now in 1080p.
 			</>
 		),
