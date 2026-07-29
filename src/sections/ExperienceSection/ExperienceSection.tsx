@@ -45,7 +45,7 @@ const REST = GALLERY.slice(2);
 
 export default function ExperienceSection() {
 	return (
-		<Container className="flex flex-col gap-10">
+		<Container className="flex flex-col gap-10 pt-0 md:pt-0">
 			{/* Five cards: a row of three, then two wider ones filling the second
 			    row so the grid never shows a hole (see issue #31). */}
 			<StaggerContainer className="mx-auto grid max-w-7xl grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-6">
