@@ -352,10 +352,6 @@ export const THUMBNAILS_6TH_SECTION: Thumbnail[] = [
 		alt: "Top Visual 3",
 	},
 	{
-		src: "/thumbnails/2d0a0ba5-22ca-4d99-bb47-9765f7084fa0.jpg",
-		alt: "Top Visual 5",
-	},
-	{
 		src: "/thumbnails/5d41d3c5-da1f-4040-884a-4f1c5bf3c0a1.jpg",
 		alt: "AI Visual 3",
 	},
@@ -426,6 +422,10 @@ export const THUMBNAILS_6TH_SECTION: Thumbnail[] = [
 	{
 		src: "/thumbnails/83449f7c-3497-427a-abc6-179163b7dd32.jpg",
 		alt: "New AI Visual 76",
+	},
+	{
+		src: "/thumbnails/5ee69ea9-64b3-4e6f-aba9-3d332df71992.jpg",
+		alt: "New AI Visual 77",
 	},
 ];
 
