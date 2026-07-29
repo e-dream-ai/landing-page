@@ -81,7 +81,7 @@ def run_ffmpeg(args_list):
     return True
 
 
-def encode_clip(master, output, scale, duration):
+def encode_clip(master, output, scale, duration, start=0.0):
     """10s cut, rescale, x264 CRF 25, no audio — same settings as process_mp4_files.py.
 
     Anamorphic masters (non-square SAR) are normalized to square pixels and
@@ -90,6 +90,7 @@ def encode_clip(master, output, scale, duration):
     """
     output.parent.mkdir(parents=True, exist_ok=True)
     return run_ffmpeg([
+        *(["-ss", str(start)] if start else []),
         "-i", str(master),
         "-vf",
         f"scale=iw*sar:ih,crop='min(iw,ih*16/9)':'min(ih,iw*9/16)',scale={scale},setsar=1",
@@ -182,6 +183,8 @@ def main():
     parser.add_argument("--thumb-dir", default="thumbnails",
                         help="Thumbnail directory under public/ (default: thumbnails)")
     parser.add_argument("--duration", type=int, default=10, help="Clip duration in seconds (default: 10)")
+    parser.add_argument("--start", type=float, default=0.0,
+                        help="Timecode in the master to start the clip at, in seconds (default: 0)")
     parser.add_argument("--force", action="store_true", help="Re-process even if outputs already exist")
     parser.add_argument("--no-update-ts", action="store_true",
                         help="Print thumbnails.ts entries instead of editing the file")
@@ -233,7 +236,7 @@ def main():
         ok = True
         for output, scale, label in ((large, LARGE_SCALE, "large"), (small, SMALL_SCALE, "small")):
             if args.force or not output.exists():
-                if encode_clip(master, output, scale, args.duration):
+                if encode_clip(master, output, scale, args.duration, args.start):
                     print(f"  + {label} clip -> {output.relative_to(site_root)}")
                 else:
                     print(f"  ✗ failed to encode {label} clip")
