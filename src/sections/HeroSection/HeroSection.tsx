@@ -1,5 +1,6 @@
 "use client";
 
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import Button from "@/components/common/Button/Button";
 import {
@@ -18,9 +19,27 @@ const HERO_VIDEOS = HERO_THUMBNAILS.map((thumbnail) =>
 // Matches the duration-1000 opacity transition on the video elements.
 const CROSS_FADE_SECONDS = 1;
 
+const HERO_PHRASES = [
+	"a Living Painting",
+	"an Ambience Enhancer",
+	"a Meditation Machine",
+	"an Interactive Installation",
+];
+
+const PHRASE_INTERVAL_MS = 2600;
+
 export default function HeroSection() {
 	const [active, setActive] = useState(0);
+	const [phraseIndex, setPhraseIndex] = useState(0);
+	const reducedMotion = useReducedMotion();
 	const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+
+	useEffect(() => {
+		const interval = setInterval(() => {
+			setPhraseIndex((index) => (index + 1) % HERO_PHRASES.length);
+		}, PHRASE_INTERVAL_MS);
+		return () => clearInterval(interval);
+	}, []);
 
 	useEffect(() => {
 		videoRefs.current[0]?.play().catch(() => {});
@@ -97,14 +116,32 @@ export default function HeroSection() {
 				className="z-10 flex max-w-3xl flex-col gap-6 px-6 pb-12 sm:px-16 sm:pb-20"
 			>
 				<StaggerItem>
-					<h1 className="font-primary text-4xl font-light text-primary sm:text-5xl lg:text-6xl">
-						Turn Any Screen Into a Living Painting
+					<h1 className="font-primary text-[clamp(1.375rem,6.5vw,3rem)] font-light text-primary sm:text-5xl lg:text-6xl">
+						Turn Any Screen Into{" "}
+						<span className="relative mt-[0.2em] block whitespace-nowrap">
+							<AnimatePresence mode="popLayout" initial={false}>
+								<motion.span
+									key={HERO_PHRASES[phraseIndex]}
+									className="inline-block"
+									initial={
+										reducedMotion ? { opacity: 0 } : { opacity: 0, x: "4em" }
+									}
+									animate={{ opacity: 1, x: 0 }}
+									exit={
+										reducedMotion ? { opacity: 0 } : { opacity: 0, x: "-4em" }
+									}
+									transition={{ duration: 0.4, ease: "easeInOut" }}
+								>
+									{HERO_PHRASES[phraseIndex]}
+								</motion.span>
+							</AnimatePresence>
+						</span>
 					</h1>
 				</StaggerItem>
 				<StaggerItem>
 					<p className="text-lg font-secondary text-primary-light sm:text-xl">
-						Animated AI art that breathes, shifts, and evolves — from dozens of
-						artists and styles. Pick one that fits your mood.
+						Animated visuals that breathe, shift, and evolve—from dozens of
+						artists and styles.
 					</p>
 				</StaggerItem>
 				<StaggerItem className="flex flex-wrap gap-4">

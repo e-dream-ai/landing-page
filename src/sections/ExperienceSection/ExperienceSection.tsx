@@ -34,7 +34,8 @@ const INTRO_CARDS: { key: string; content: ReactNode }[] = [
 	},
 	{
 		key: "remote",
-		content: "Use your phone as a remote. Change visuals from across the room.",
+		content:
+			"Use your phone as a remote control. Change the visuals from across the room.",
 	},
 ];
 
