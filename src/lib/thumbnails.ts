@@ -36,11 +36,11 @@ export const THUMBNAILS_2ND_SECTION: Thumbnail[] = [
 
 export const THUMBNAILS_3RD_SECTION: Thumbnail[] = [
 	{
-		src: "/thumbnails/e2723fbb-c855-43db-bf63-3a74211277fd.jpg",
-		alt: "AI Visual",
+		src: "/thumbnails/45a9c05e-d984-4d66-83f3-53404d8ce049.jpg",
+		alt: "New AI Visual 74",
 	},
 	{
-		src: "/thumbnails/3641351b-10eb-4153-a8c4-cfa30fc57c16.jpg",
+		src: "/thumbnails/919ce239-31be-43e3-9e0a-436352be8f03.jpg",
 		alt: "AI Visual",
 	},
 	{
@@ -51,7 +51,7 @@ export const THUMBNAILS_3RD_SECTION: Thumbnail[] = [
 
 export const THUMBNAILS_4TH_SECTION: Thumbnail[] = [
 	{
-		src: "/thumbnails/13489b20-cc0b-4923-8ea8-3f64015fe389.jpg",
+		src: "/thumbnails/09907ea2-4ec8-49ac-bed6-4a439b236d3c.jpg",
 		alt: "AI Visual",
 	},
 	{
@@ -116,14 +116,6 @@ export const THUMBNAILS_6TH_SECTION: Thumbnail[] = [
 		alt: "Top Visual 4",
 	},
 	{
-		src: "/thumbnails/8d9cc836-23c3-4b6e-8ab6-45833231695f.jpg",
-		alt: "AI Visual 10",
-	},
-	{
-		src: "/thumbnails/2b88ba6a-0e70-4b76-8cd1-69268d785daf.jpg",
-		alt: "AI Visual 13",
-	},
-	{
 		src: "/thumbnails/531907ed-74ac-4149-a20f-e91fad5d70a6.jpg",
 		alt: "Top Visual 16",
 	},
@@ -148,10 +140,6 @@ export const THUMBNAILS_6TH_SECTION: Thumbnail[] = [
 		alt: "Top Visual 24",
 	},
 	{
-		src: "/thumbnails/1a9f05ee-655e-4bb2-a664-395c90f8e99d.jpg",
-		alt: "Top Visual 25",
-	},
-	{
 		src: "/thumbnails/a510ab54-6ac6-4c72-985f-527a7643400c.jpg",
 		alt: "Top Visual 26",
 	},
@@ -160,20 +148,8 @@ export const THUMBNAILS_6TH_SECTION: Thumbnail[] = [
 		alt: "Top Visual 30",
 	},
 	{
-		src: "/thumbnails/2936f37a-8ee6-4d29-be97-928d61cc1d3d.jpg",
-		alt: "AI Visual 2",
-	},
-	{
-		src: "/thumbnails/d7154de6-d570-4ade-97dc-1e463ba07f8c.jpg",
-		alt: "AI Visual 4",
-	},
-	{
 		src: "/thumbnails/f25d3d38-b700-4f13-898f-e294836c84c4.jpg",
 		alt: "AI Visual 5",
-	},
-	{
-		src: "/thumbnails/5e75cd59-fb2d-4926-95df-622d9680937a.jpg",
-		alt: "AI Visual 8",
 	},
 	{
 		src: "/thumbnails/322bf289-4a93-4789-ba29-6541149aa82c.jpg",
@@ -192,10 +168,6 @@ export const THUMBNAILS_6TH_SECTION: Thumbnail[] = [
 		alt: "New AI Visual 5",
 	},
 	{
-		src: "/thumbnails/4c4f60e1-00df-45a2-8a4c-bff282a05204.jpg",
-		alt: "New AI Visual 6",
-	},
-	{
 		src: "/thumbnails/981509d8-2171-4b08-b58a-c9d5f6bcd988.jpg",
 		alt: "New AI Visual 7",
 	},
@@ -208,16 +180,8 @@ export const THUMBNAILS_6TH_SECTION: Thumbnail[] = [
 		alt: "New AI Visual 10",
 	},
 	{
-		src: "/thumbnails/e27977a7-a205-4ba3-9cb5-5aa2eab6954c.jpg",
-		alt: "New AI Visual 11",
-	},
-	{
 		src: "/thumbnails/8ef308e1-626b-4dcd-8c9e-2163b86b039e.jpg",
 		alt: "New AI Visual 2",
-	},
-	{
-		src: "/thumbnails/919ce239-31be-43e3-9e0a-436352be8f03.jpg",
-		alt: "New AI Visual 3",
 	},
 	{
 		src: "/thumbnails/159e328b-6a16-4dd5-89a8-bbaeb26c2a76.jpg",
@@ -226,14 +190,6 @@ export const THUMBNAILS_6TH_SECTION: Thumbnail[] = [
 	{
 		src: "/thumbnails/253cac01-c0eb-4050-a643-686533208b1c.jpg",
 		alt: "New AI Visual 14",
-	},
-	{
-		src: "/thumbnails/4dd6509c-a683-457d-97f4-151b820a3850.jpg",
-		alt: "New AI Visual 15",
-	},
-	{
-		src: "/thumbnails/02a2030e-f7bc-4e9c-be05-50df68701cb7.jpg",
-		alt: "New AI Visual 16",
 	},
 	{
 		src: "/thumbnails/0d07e5c0-75d6-408d-a90f-ef015e05bd6a.jpg",
@@ -256,10 +212,6 @@ export const THUMBNAILS_6TH_SECTION: Thumbnail[] = [
 		alt: "New AI Visual 23",
 	},
 	{
-		src: "/thumbnails/26c58639-1e7f-4e51-80f3-a17b7c66d64c.jpg",
-		alt: "New AI Visual 24",
-	},
-	{
 		src: "/thumbnails/6ddeddc6-7000-42da-9b17-9f2ac75e8abb.jpg",
 		alt: "New AI Visual 25",
 	},
@@ -272,20 +224,12 @@ export const THUMBNAILS_6TH_SECTION: Thumbnail[] = [
 		alt: "New AI Visual 28",
 	},
 	{
-		src: "/thumbnails/3e8ab9ac-2088-4f32-bbad-5ef56d372d91.jpg",
-		alt: "New AI Visual 29",
-	},
-	{
 		src: "/thumbnails/c0b34fcb-706a-4e83-8704-55ec7aaadbfb.jpg",
 		alt: "New AI Visual 30",
 	},
 	{
 		src: "/thumbnails/f7285f38-feb3-484b-957f-5cbc9703e701.jpg",
 		alt: "New AI Visual 32",
-	},
-	{
-		src: "/thumbnails/0ae36464-30e4-41bb-8318-b051791c7752.jpg",
-		alt: "New AI Visual 34",
 	},
 	{
 		src: "/thumbnails/e38b86e2-eaf9-4fab-b60c-410775305472.jpg",
@@ -306,10 +250,6 @@ export const THUMBNAILS_6TH_SECTION: Thumbnail[] = [
 	{
 		src: "/thumbnails/440197ed-d861-4960-bde6-c252c23c61ce.jpg",
 		alt: "New AI Visual 42",
-	},
-	{
-		src: "/thumbnails/48d40ae3-dd73-4c86-ac38-56aa7ea8bb1c.jpg",
-		alt: "New AI Visual 43",
 	},
 	{
 		src: "/thumbnails/19f4dd5b-a9a0-4c94-bbd8-651a7d00b070.jpg",
@@ -416,10 +356,6 @@ export const THUMBNAILS_6TH_SECTION: Thumbnail[] = [
 		alt: "Top Visual 5",
 	},
 	{
-		src: "/thumbnails/41e402e7-f4ed-49c1-ab6c-611ff1e07d18.jpg",
-		alt: "New AI Visual 8",
-	},
-	{
 		src: "/thumbnails/5d41d3c5-da1f-4040-884a-4f1c5bf3c0a1.jpg",
 		alt: "AI Visual 3",
 	},
@@ -434,10 +370,6 @@ export const THUMBNAILS_6TH_SECTION: Thumbnail[] = [
 	{
 		src: "/thumbnails/e8958970-501b-42e8-8005-e9768e951603.jpg",
 		alt: "AI Visual 12",
-	},
-	{
-		src: "/thumbnails/9c352143-d163-4c1e-948d-836eda24392c.jpg",
-		alt: "AI Visual 7",
 	},
 	{
 		src: "/thumbnails/d4bfc7da-6c13-407e-b80b-ed8b91ac5b44.jpg",
@@ -464,10 +396,6 @@ export const THUMBNAILS_6TH_SECTION: Thumbnail[] = [
 		alt: "Top Visual 9",
 	},
 	{
-		src: "/thumbnails/09907ea2-4ec8-49ac-bed6-4a439b236d3c.jpg",
-		alt: "Top Visual 15",
-	},
-	{
 		src: "/thumbnails/9c460739-c92a-4e86-8b19-4ceaa7fc52f3.jpg",
 		alt: "Top Visual 17",
 	},
@@ -478,6 +406,26 @@ export const THUMBNAILS_6TH_SECTION: Thumbnail[] = [
 	{
 		src: "/thumbnails/23802459-58f0-43d8-9b2e-d1804e31e117.jpg",
 		alt: "New AI Visual 20",
+	},
+	{
+		src: "/thumbnails/09907ea2-4ec8-49ac-bed6-4a439b236d3c.jpg",
+		alt: "Top Visual 15",
+	},
+	{
+		src: "/thumbnails/919ce239-31be-43e3-9e0a-436352be8f03.jpg",
+		alt: "New AI Visual 3",
+	},
+	{
+		src: "/thumbnails/e1befbec-9cf4-466c-a3a8-d77a23b69437.jpg",
+		alt: "New AI Visual 73",
+	},
+	{
+		src: "/thumbnails/1b634729-6458-4e63-b2e0-b5443311adb1.jpg",
+		alt: "New AI Visual 75",
+	},
+	{
+		src: "/thumbnails/83449f7c-3497-427a-abc6-179163b7dd32.jpg",
+		alt: "New AI Visual 76",
 	},
 ];
 
