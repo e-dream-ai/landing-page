@@ -120,10 +120,12 @@ export default function VideoImage({
 				/>
 			)}
 
-			{/* Dev-only tile number, used to reference videos when curating thumbnails.ts */}
+			{/* Dev-only tile number, used to reference videos when curating
+			    thumbnails.ts. Hovering the badge reveals the full alt text. */}
 			{process.env.NODE_ENV === "development" && (
-				<span className="absolute top-1.5 left-1.5 z-20 rounded bg-black/75 px-2 py-0.5 font-mono text-sm text-white pointer-events-none">
+				<span className="group/badge absolute top-1.5 left-1.5 z-20 rounded bg-black/75 px-2 py-0.5 text-left font-mono text-sm text-white">
 					{videoIndex}
+					<span className="hidden group-hover/badge:inline"> {alt}</span>
 				</span>
 			)}
 		</button>
