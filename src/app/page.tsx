@@ -1,45 +1,27 @@
-import {
-	getSectionStartIndex,
-	THUMBNAILS_2ND_SECTION,
-	THUMBNAILS_3RD_SECTION,
-	THUMBNAILS_4TH_SECTION,
-	THUMBNAILS_5TH_SECTION,
-} from "@/lib/thumbnails";
-import CollaborationSection from "@/sections/CollaborationSection/CollaborationSection";
-import ContactSection from "@/sections/ContactSection/ContactSection";
-import ContentSection from "@/sections/ContentSection/ContentSection";
+import ArtistsSection from "@/sections/ArtistsSection/ArtistsSection";
+import CreditsSection from "@/sections/CreditsSection/CreditsSection";
+import ExperienceSection from "@/sections/ExperienceSection/ExperienceSection";
+import FeaturedDreamsSection from "@/sections/FeaturedDreamsSection/FeaturedDreamsSection";
 import GallerySection from "@/sections/GallerySection/GallerySection";
 import HeroSection from "@/sections/HeroSection/HeroSection";
-import RoadMapSection from "@/sections/RoadMapSection/RoadMapSection";
-import TeamSection from "@/sections/TeamSection/TeamSection";
-import ThumbnailSection from "@/sections/ThumbnailSection/ThumbnailSection";
+import RoadmapSection from "@/sections/RoadmapSection/RoadmapSection";
+import SheepSection from "@/sections/SheepSection/SheepSection";
+import SocialSection from "@/sections/SocialSection/SocialSection";
+import SupportSection from "@/sections/SupportSection/SupportSection";
 
 export default function HomePage() {
 	return (
-		<main className="flex flex-col gap-14">
+		<main className="flex flex-col gap-8">
 			<HeroSection />
-			<ContentSection />
-			<ThumbnailSection
-				thumbnails={THUMBNAILS_2ND_SECTION}
-				startIndex={getSectionStartIndex(THUMBNAILS_2ND_SECTION)}
-			/>
-			<ContactSection />
-			<ThumbnailSection
-				thumbnails={THUMBNAILS_3RD_SECTION}
-				startIndex={getSectionStartIndex(THUMBNAILS_3RD_SECTION)}
-			/>
-			<CollaborationSection />
-			<ThumbnailSection
-				thumbnails={THUMBNAILS_4TH_SECTION}
-				startIndex={getSectionStartIndex(THUMBNAILS_4TH_SECTION)}
-			/>
-			<RoadMapSection />
-			<ThumbnailSection
-				thumbnails={THUMBNAILS_5TH_SECTION}
-				startIndex={getSectionStartIndex(THUMBNAILS_5TH_SECTION)}
-			/>
-			<TeamSection />
+			<ExperienceSection />
+			<SocialSection />
+			<SheepSection />
+			<ArtistsSection />
+			<FeaturedDreamsSection />
+			<RoadmapSection />
+			<SupportSection />
 			<GallerySection />
+			<CreditsSection />
 		</main>
 	);
 }

@@ -1,0 +1,117 @@
+import Image from "next/image";
+import type { ReactNode } from "react";
+import Card from "@/components/common/Card/Card";
+import FadeUp from "@/components/common/FadeUp/FadeUp";
+import SectionHeader from "@/components/common/SectionHeader/SectionHeader";
+import { StaggerContainer } from "@/components/common/Stagger/Stagger";
+import TextLink from "@/components/common/TextLink/TextLink";
+import Section from "@/components/layout/Section/Section";
+import VideoImage from "@/components/VideoImage/VideoImage";
+import {
+	ALL_THUMBNAILS,
+	getThumbnailIndex,
+	THUMBNAILS_SHEEP_SECTION,
+} from "@/lib/thumbnails";
+
+const SHEEP_CARDS: { key: string; content: ReactNode }[] = [
+	{
+		key: "origin",
+		content: (
+			<>
+				Infinidream comes from the{" "}
+				<TextLink href="https://scottdraves.com/sheep">Electric Sheep</TextLink>{" "}
+				screen saver, reborn and gone meta. The new Sheep are better than ever,
+				now in 1080p and super slow motion.
+			</>
+		),
+	},
+	{
+		key: "sheep-only",
+		content:
+			"Infinidream is a platform for all kinds of visuals, but it’s your choice what to play. So don’t worry: if you want only Sheep and not AI, it does that fine.",
+	},
+	{
+		key: "team",
+		content: (
+			<>
+				Created by <TextLink href="https://draves.ai">Scott Draves</TextLink>{" "}
+				and a team including{" "}
+				<TextLink href="https://www.linkedin.com/in/max-carlson-8959531/">
+					Max Carlson
+				</TextLink>
+				, <TextLink href="https://github.com/glouel">Guillaume Louel</TextLink>,
+				and <TextLink href="https://github.com/alansley">Al Lansley</TextLink>.
+			</>
+		),
+	},
+];
+
+const FEATURED = THUMBNAILS_SHEEP_SECTION.slice(0, 2);
+const REST = THUMBNAILS_SHEEP_SECTION.slice(2);
+
+function TextCard({ card }: { card: (typeof SHEEP_CARDS)[number] }) {
+	return (
+		<Card>
+			<p className="font-secondary text-lg leading-relaxed text-primary-light">
+				{card.content}
+			</p>
+		</Card>
+	);
+}
+
+export default function SheepSection() {
+	return (
+		<Section className="flex flex-col gap-10">
+			<FadeUp>
+				<SectionHeader label="Heritage" title="Electric Sheep" />
+			</FadeUp>
+
+			{/* Four cards: 2x2 from the sm breakpoint up, so the grid never
+			    shows a hole (see issue #31). */}
+			<StaggerContainer className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+				<TextCard card={SHEEP_CARDS[0]} />
+
+				<Card contentClassName="items-center justify-center p-5">
+					<Image
+						src="/logos/sheep-plus-dream.png"
+						alt="Electric Sheep plus Infinidream"
+						width={1377}
+						height={450}
+						className="h-auto w-full max-w-xs"
+					/>
+				</Card>
+
+				{SHEEP_CARDS.slice(1).map((card) => (
+					<TextCard key={card.key} card={card} />
+				))}
+			</StaggerContainer>
+
+			<div className="flex flex-col gap-5">
+				<div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+					{FEATURED.map((thumbnail) => (
+						<VideoImage
+							key={thumbnail.src}
+							thumbnailSrc={thumbnail.src}
+							alt={thumbnail.alt}
+							allVideos={ALL_THUMBNAILS}
+							videoIndex={getThumbnailIndex(thumbnail)}
+							largeVideo
+						/>
+					))}
+				</div>
+
+				<div className="grid grid-cols-2 gap-5 md:grid-cols-4">
+					{REST.map((thumbnail) => (
+						<VideoImage
+							key={thumbnail.src}
+							thumbnailSrc={thumbnail.src}
+							alt={thumbnail.alt}
+							allVideos={ALL_THUMBNAILS}
+							videoIndex={getThumbnailIndex(thumbnail)}
+						/>
+					))}
+				</div>
+			</div>
+		</Section>
+	);
+}

@@ -1,0 +1,47 @@
+import { cva, type VariantProps } from "class-variance-authority";
+import Link from "next/link";
+import type { ReactNode } from "react";
+import { cn, isExternalHref } from "@/lib/utils";
+
+const textLinkVariants = cva(
+	"font-bold underline underline-offset-2 transition-colors",
+	{
+		variants: {
+			tone: {
+				white:
+					"text-white decoration-white/30 hover:text-link-hover hover:decoration-link-hover/60 active:text-link-hover active:decoration-link-hover/60",
+				primary:
+					"text-primary/80 decoration-primary/30 hover:text-link-hover hover:decoration-link-hover/60 active:text-link-hover active:decoration-link-hover/60",
+			},
+		},
+		defaultVariants: {
+			tone: "primary",
+		},
+	},
+);
+
+type TextLinkProps = VariantProps<typeof textLinkVariants> & {
+	href: string;
+	children: ReactNode;
+	className?: string;
+	external?: boolean;
+};
+
+export default function TextLink({
+	href,
+	children,
+	className,
+	tone,
+	external,
+}: TextLinkProps) {
+	const openExternal = external ?? isExternalHref(href);
+	return (
+		<Link
+			href={href}
+			className={cn(textLinkVariants({ tone }), className)}
+			{...(openExternal && { target: "_blank", rel: "noopener noreferrer" })}
+		>
+			{children}
+		</Link>
+	);
+}
