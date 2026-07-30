@@ -29,9 +29,9 @@ const ROADMAP_ITEMS = [
 			"Let anyone you choose drive the screen within limits set by you. Drop a QR code next to a display and it becomes a visual jukebox.",
 	},
 	{
-		title: "Audioreactive Mode",
+		title: "Audio Reactive",
 		content:
-			"A mic picks up the music, detects the vibe, and the visuals respond in real time. Infinidream becomes an AI VJ.",
+			"A mic picks up the music, detects the vibe, and the visuals respond in real time. Infinidream becomes an AI VJ, mixing and scratching on the beats.",
 	},
 ];
 
