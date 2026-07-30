@@ -8,6 +8,7 @@
 	--primary-muted: #c9a079;
 	--primary-light: #f7e8d8;
 	--button: #00b8db;
+	--link-hover: #45defc;
 	--radius: 0.625rem;
 	--background: #000;
 	--foreground: oklch(0.985 0 0);
@@ -22,6 +23,7 @@
 	--color-primary-muted: var(--primary-muted);
 	--color-primary-light: var(--primary-light);
 	--color-button: var(--button);
+	--color-link-hover: var(--link-hover);
 	--color-border: var(--border);
 	--color-ring: var(--ring);
 	--font-primary: var(--font-comfortaa);

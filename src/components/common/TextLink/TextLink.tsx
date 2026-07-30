@@ -3,19 +3,22 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { cn, isExternalHref } from "@/lib/utils";
 
-const textLinkVariants = cva("underline underline-offset-2 transition-colors", {
-	variants: {
-		tone: {
-			white:
-				"text-white decoration-white/30 hover:text-button hover:decoration-button/60 active:text-button active:decoration-button/60",
-			primary:
-				"text-primary/80 decoration-primary/30 hover:text-button hover:decoration-button/60 active:text-button active:decoration-button/60",
+const textLinkVariants = cva(
+	"font-bold underline underline-offset-2 transition-colors",
+	{
+		variants: {
+			tone: {
+				white:
+					"text-white decoration-white/30 hover:text-link-hover hover:decoration-link-hover/60 active:text-link-hover active:decoration-link-hover/60",
+				primary:
+					"text-primary/80 decoration-primary/30 hover:text-link-hover hover:decoration-link-hover/60 active:text-link-hover active:decoration-link-hover/60",
+			},
+		},
+		defaultVariants: {
+			tone: "primary",
 		},
 	},
-	defaultVariants: {
-		tone: "primary",
-	},
-});
+);
 
 type TextLinkProps = VariantProps<typeof textLinkVariants> & {
 	href: string;
