@@ -28,7 +28,7 @@ export default function GallerySection() {
 					align="center"
 					label="Gallery"
 					title="Endless Dreams"
-					description="A living and growing library of animated visuals, from dozens of artists and AIs. Just a taste:"
+					description="A taste of our living and growing library from dozens of artists and AIs including Surrealism Today, Hueman Instrumentality, Safety Marc, Glenn Marshall, Jef Harris, and Jeremy Torman:"
 				/>
 			</FadeUp>
 

@@ -11,4 +11,5 @@ export const ROUTES = {
 	api: "https://github.com/e-dream-ai/python-api",
 	creators: "https://forms.gle/JsZb4TRdw3jq65Bc8",
 	patreon: "https://www.patreon.com/c/Infinidream",
+	tos: "https://alpha.infinidream.ai/tos",
 };
