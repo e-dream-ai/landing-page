@@ -8,7 +8,7 @@ import { ROUTES } from "@/constants/routes";
 export default function NavBar() {
 	return (
 		<header className="fixed top-0 right-0 left-0 z-50 border-b border-white/10 bg-black/50 backdrop-blur-xl backdrop-saturate-150">
-			<Container className="flex items-center justify-between gap-2 sm:gap-4 py-3 md:py-5">
+			<Container className="flex items-center justify-between gap-2 sm:gap-4 py-3 md:py-3.5">
 				<Logo />
 
 				<nav className="flex items-center gap-2 sm:gap-3 shrink-0">

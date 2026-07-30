@@ -20,7 +20,7 @@ const INTRO_CARDS: { key: string; content: ReactNode }[] = [
 	{
 		key: "tempo",
 		content:
-			"Adjust the tempo to match the music you already have playing. Or let it drift in silence—your call.",
+			"Adjust the tempo to match the music you already have playing. Or let it drift. Your call.",
 	},
 	{
 		key: "depth",
@@ -30,7 +30,7 @@ const INTRO_CARDS: { key: string; content: ReactNode }[] = [
 	{
 		key: "apps",
 		content:
-			"Mac and PC apps for the full experience. Any web browser for instant access—no install required.",
+			"Get Mac, PC, and Linux apps for the full experience. Or Any web browser gives instant access, no install required.",
 	},
 	{
 		key: "remote",
