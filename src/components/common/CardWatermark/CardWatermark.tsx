@@ -14,7 +14,7 @@ export default function CardWatermark({
 		<span
 			aria-hidden
 			className={cn(
-				"pointer-events-none absolute -bottom-6 -right-2 origin-bottom-right select-none font-primary text-[7rem] font-bold uppercase leading-none text-primary opacity-[0.03] transition-all duration-500 group-hover:scale-105 group-hover:opacity-[0.07]",
+				"pointer-events-none absolute -bottom-6 -right-2 origin-bottom-right select-none font-primary text-[7rem] font-bold uppercase leading-none text-primary opacity-[0.03] transition-[transform,opacity] duration-500 group-hover:scale-105 group-hover:opacity-[0.07]",
 				className,
 			)}
 		>

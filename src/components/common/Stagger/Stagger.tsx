@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from "motion/react";
 import type { ReactNode } from "react";
+import { cn } from "@/lib/utils";
 
 const itemVariants = {
 	hidden: { opacity: 0, y: 16 },
@@ -71,7 +72,7 @@ export function StaggerItem({ children, className }: StaggerItemProps) {
 	const shouldReduce = useReducedMotion();
 	return (
 		<motion.div
-			className={className}
+			className={cn("backface-hidden", className)}
 			variants={shouldReduce ? itemVariantsReduced : itemVariants}
 		>
 			{children}

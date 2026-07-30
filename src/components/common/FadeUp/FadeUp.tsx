@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from "motion/react";
 import type { ReactNode } from "react";
+import { cn } from "@/lib/utils";
 
 interface FadeUpProps {
 	children: ReactNode;
@@ -18,7 +19,7 @@ export default function FadeUp({
 
 	return (
 		<motion.div
-			className={className}
+			className={cn("backface-hidden", className)}
 			initial={{ opacity: 0, y: shouldReduce ? 0 : 20 }}
 			whileInView={{ opacity: 1, y: 0 }}
 			viewport={{ once: true, margin: "-80px" }}
