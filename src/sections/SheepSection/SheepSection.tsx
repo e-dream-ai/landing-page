@@ -28,7 +28,7 @@ const SHEEP_CARDS: { key: string; content: ReactNode }[] = [
 	{
 		key: "sheep-only",
 		content:
-			"Infinidream is a platform for all kinds of visuals, but it's your choice what to play. So don't worry—if you want only Sheep and not AI, it does that fine.",
+			"Infinidream is a platform for all kinds of visuals, but it's your choice what to play. So don’t worry, if you want only Sheep and not AI, then it does that fine.",
 	},
 	{
 		key: "team",
