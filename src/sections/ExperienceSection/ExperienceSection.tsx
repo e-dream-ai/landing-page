@@ -20,12 +20,12 @@ const INTRO_CARDS: { key: string; content: ReactNode }[] = [
 	{
 		key: "tempo",
 		content:
-			"Adjust the tempo to match the music you already have playing. Or let it drift. Your call.",
+			"Adjust the tempo to match the music you already have playing. Infinidream is designed for ambient enjoyment.",
 	},
 	{
 		key: "depth",
 		content:
-			"Slow it down for a digital painting that barely moves. Speed it up and rocket down the rabbit hole. You control how deep it goes.",
+			"Slow it down to chill out. Speed it up and rocket down the rabbit hole. You control how deep it goes.",
 	},
 	{
 		key: "apps",
@@ -35,7 +35,7 @@ const INTRO_CARDS: { key: string; content: ReactNode }[] = [
 	{
 		key: "remote",
 		content:
-			"Use your phone as a remote control. Change the visuals from across the room.",
+			"Use your phone as a remote control. Change the visuals from across the room or anywhere. Interact and influence what everyone sees. Infinidream learns from its audience.",
 	},
 ];
 

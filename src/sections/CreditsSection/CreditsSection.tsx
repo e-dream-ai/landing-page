@@ -6,9 +6,7 @@ export default function CreditsSection() {
 			<p className="text-sm text-primary-light">
 				Infinidream was previously named “e-dream” and the old name still shows
 				up in a few places, like the email address, GitHub project, and the
-				company name.
-				<br />
-				We’re working to update everything.
+				company name. We’re working to update everything.
 			</p>
 		</Section>
 	);
