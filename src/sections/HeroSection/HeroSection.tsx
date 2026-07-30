@@ -83,7 +83,7 @@ export default function HeroSection() {
 	}, [active]);
 
 	return (
-		<section className="relative flex min-h-125 h-[85svh] items-end overflow-hidden">
+		<section className="relative flex min-h-125 h-[85svh] items-end overflow-hidden short-landscape:min-h-0">
 			{HERO_VIDEOS.map((src, index) => (
 				<video
 					key={src}
@@ -113,7 +113,7 @@ export default function HeroSection() {
 			<StaggerContainer
 				trigger="mount"
 				staggerDelay={0.15}
-				className="z-10 flex max-w-3xl flex-col gap-7 px-6 pb-6 sm:px-16 sm:pb-12"
+				className="z-10 flex max-w-3xl flex-col gap-7 px-6 pb-6 sm:px-16 sm:pb-12 short-landscape:gap-4 short-landscape:pb-4!"
 			>
 				<StaggerItem>
 					<h1 className="font-primary text-[clamp(1.375rem,6.5vw,3rem)] font-light text-primary sm:text-5xl lg:text-6xl">

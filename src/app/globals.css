@@ -3,6 +3,9 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Phones held sideways: very little vertical room to work with. */
+@custom-variant short-landscape (@media (orientation: landscape) and (max-height: 480px));
+
 :root {
 	--primary: #fcd9b7;
 	--primary-muted: #c9a079;

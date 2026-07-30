@@ -10,9 +10,9 @@ export default function Logo() {
 				height={80}
 				quality={100}
 				priority
-				className="size-[38px] sm:size-12 md:size-[58px]"
+				className="size-[38px] sm:size-12 md:size-[58px] short-landscape:size-7!"
 			/>
-			<span className="text-[28px] font-primary text-primary sm:text-4xl md:text-[43px]">
+			<span className="text-[28px] font-primary text-primary sm:text-4xl md:text-[43px] short-landscape:text-xl!">
 				infinidream
 			</span>
 		</div>
