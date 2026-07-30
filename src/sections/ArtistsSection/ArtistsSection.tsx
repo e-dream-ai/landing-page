@@ -48,7 +48,7 @@ const INFO_CARDS = [
 		num: "05",
 		title: "Collective Intelligence",
 		content:
-			"Infinidream is an experiment in collective intelligence: unleashing the complementary strengths of human artists, AI, and the audience.",
+			"Infinidream is an experiment in collective intelligence. How can we weave together the complementary strengths of human artists, AI, and the audience?",
 	},
 	{
 		num: "06",
