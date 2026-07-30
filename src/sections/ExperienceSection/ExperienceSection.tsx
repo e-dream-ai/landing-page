@@ -15,7 +15,7 @@ const INTRO_CARDS: { key: string; content: ReactNode }[] = [
 	{
 		key: "discover",
 		content:
-			"Discover and experience animated visuals from a multitude of styles, tempos, and artists.",
+			"Discover and experience animated visuals from a multitude of styles and artists.",
 	},
 	{
 		key: "tempo",
@@ -30,12 +30,12 @@ const INTRO_CARDS: { key: string; content: ReactNode }[] = [
 	{
 		key: "apps",
 		content:
-			"Get Mac, PC, and Linux apps for the full experience. Or get basic access with any web browser, no install required.",
+			"Get a Mac, PC, or Linux app for the full experience. Or get basic access with any web browser, no install required.",
 	},
 	{
 		key: "remote",
 		content:
-			"Use your phone as a remote control. Change the visuals from across the room or anywhere. Interact and influence what everyone sees. Infinidream learns from its audience.",
+			"Use your phone as a remote control. Change the visuals from across the room or anywhere. Interact and Infinidream learns from you, and may even influence what everyone sees.",
 	},
 ];
 
