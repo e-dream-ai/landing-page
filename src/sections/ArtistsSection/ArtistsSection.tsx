@@ -12,7 +12,7 @@ const INFO_CARDS = [
 		num: "01",
 		title: "Interactive Ambience",
 		content:
-			"Upload your work the way you would to YouTube or Instagram, but your audience gets higher bitrate and smoother playback, and interactive ambient controls, like slow motion speed control.",
+			"Upload your work the way you would to YouTube or Instagram, but your audience gets higher bitrate, smoother playback, and interactive ambient controls like slow-motion speed control.",
 	},
 	{
 		num: "02",
