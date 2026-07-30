@@ -27,7 +27,7 @@ export default function SupportSection() {
 						contentClassName="items-center gap-4 p-8 text-center"
 					>
 						<p className="font-secondary text-lg leading-relaxed text-primary-light">
-							Infinidream is free to use, but building it and running it costs
+							Infinidream is free to use, but building it and running it cost
 							real money. Please support our mission:
 						</p>
 						<Button href={ROUTES.patreon} variant="primary" className="mt-2">

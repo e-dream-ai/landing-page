@@ -30,7 +30,7 @@ const INTRO_CARDS: { key: string; content: ReactNode }[] = [
 	{
 		key: "apps",
 		content:
-			"Get Mac, PC, and Linux apps for the full experience. Or Any web browser gives instant access, no install required.",
+			"Get Mac, PC, and Linux apps for the full experience. Or get basic access with any web browser, no install required.",
 	},
 	{
 		key: "remote",

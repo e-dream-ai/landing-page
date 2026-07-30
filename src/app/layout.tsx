@@ -22,7 +22,7 @@ const lato = Lato({
 export const metadata: Metadata = {
 	title: "infinidream",
 	description:
-		"Discover and experience animated AI visuals from a multitude of styles, tempos, and artists. Infinidream can be a digital painting, alive and slowly evolving.",
+		"Discover and experience animated visuals from a multitude of styles, tempos, and artists. Turn any screen into a digital painting, an ambience enhancer, a meditation machine, or an interactive installation.",
 	icons: {
 		icon: "/logo.png",
 	},
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
 	openGraph: {
 		title: "infinidream - visuals for your vibe",
 		description:
-			"Discover and experience animated AI visuals from a multitude of styles, tempos, and artists. Infinidream can be a digital painting, alive and slowly evolving.",
+			"Discover and experience animated visuals from a multitude of styles, tempos, and artists. Turn any screen into a digital painting, an ambience enhancer, a meditation machine, or an interactive installation.",
 		url: "https://infinidream.ai",
 		siteName: "infinidream",
 		images: [
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
 		card: "summary_large_image",
 		title: "infinidream - visuals for your vibe",
 		description:
-			"Discover and experience animated AI visuals from a multitude of styles, tempos, and artists.",
+			"Discover and experience animated visuals from a multitude of styles, tempos, and artists.",
 		images: ["/social_preview.jpg"],
 	},
 };

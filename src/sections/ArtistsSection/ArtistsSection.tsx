@@ -12,11 +12,11 @@ const INFO_CARDS = [
 		num: "01",
 		title: "Interactive Ambience",
 		content:
-			"Upload your work the way you would to YouTube or Instagram, but your audience gets higher bitrate and smoother playback, and interactive ambient controls, like slow motion speed control.",
+			"Upload your already completed work the way you would to YouTube or Instagram. Your audience gets higher bitrate, smoother playback, and interactive ambient controls.",
 	},
 	{
 		num: "02",
-		title: "Access AI",
+		title: "Create with AI",
 		content: (
 			<>
 				Use our Studio web apps to access AI models and workflows to create
@@ -31,7 +31,7 @@ const INFO_CARDS = [
 		num: "03",
 		title: "Participatory Art",
 		content:
-			"Use our API to build participatory pieces. Let your audience influence or steer your art. Turn viewers into collaborators. Allow any group of like-minded individuals to coordinate and run the show.",
+			"Use our API to build participatory pieces. Let your audience influence or steer your art. Engage your fans and turn them into collaborators. Allow any group of like-minded individuals to coordinate and run the show.",
 	},
 	{
 		num: "04",
@@ -49,12 +49,12 @@ const INFO_CARDS = [
 		num: "05",
 		title: "Collective Intelligence",
 		content:
-			"Infinidream is an experiment in collective intelligence—human artists, AI, and the audience building on each other's strengths.",
+			"Infinidream is an experiment in collective intelligence—human artists, AI, and the audience building on each other’s strengths.",
 	},
 	{
 		num: "06",
 		title: "Get Paid",
-		content: "Join the creators program. Make art, get paid.",
+		content: "Join the Creators Program. Make art, get paid.",
 	},
 ];
 

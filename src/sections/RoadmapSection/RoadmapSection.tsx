@@ -9,9 +9,9 @@ import ThumbnailGrid from "@/sections/ThumbnailGrid/ThumbnailGrid";
 
 const ROADMAP_ITEMS = [
 	{
-		title: "Cloud Generation",
+		title: "Edit Any Dream",
 		content:
-			'Cloud generation powered by AI and crowd signals. Hit "edit" on any dream—change the prompts, restyle it, make it yours.',
+			"Change the prompts, restyle it, make it yours. Infinidream has an expanding ecosystem of AI algorithms, editors, and interfaces.",
 	},
 	{
 		title: "Every Screen",
@@ -19,14 +19,14 @@ const ROADMAP_ITEMS = [
 			"We support macOS, Windows, and Linux. We plan for Android, iOS, tvOS, and native TV apps.",
 	},
 	{
-		title: "Multi-Screen Control",
+		title: "Multi-Screen",
 		content:
-			"Turn your home into a gallery that responds to the room—synced across every display.",
+			"Turn your home or venue into a gallery that you control all from one place.",
 	},
 	{
-		title: "Social Control",
+		title: "Social Interaction",
 		content:
-			"Let anyone nearby drive the screen. Drop a QR code next to a display and it becomes a visual jukebox.",
+			"Let anyone you choose drive the screen within limits set by you. Drop a QR code next to a display and it becomes a visual jukebox.",
 	},
 	{
 		title: "Audioreactive Mode",
@@ -39,7 +39,7 @@ export default function RoadmapSection() {
 	return (
 		<Section className="flex flex-col gap-10">
 			<FadeUp>
-				<SectionHeader label="Roadmap" title="What's Next" />
+				<SectionHeader label="Roadmap" title="What’s Next" />
 			</FadeUp>
 
 			{/* Five cards: a row of three, then two wider ones filling the second

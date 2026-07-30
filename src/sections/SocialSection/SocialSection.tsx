@@ -17,7 +17,7 @@ import { ROUTES } from "@/constants/routes";
 const SOCIAL_LINKS = [
 	{ icon: faDiscord, href: ROUTES.discord, label: "Discord" },
 	{ icon: faEnvelope, href: "mailto:support@e-dream.ai", label: "Email" },
-	{ icon: faXTwitter, href: ROUTES.x, label: "Twitter" },
+	{ icon: faXTwitter, href: ROUTES.x, label: "X" },
 	{ icon: faInstagram, href: ROUTES.instagram, label: "Instagram" },
 	{ icon: faBluesky, href: ROUTES.bluesky, label: "Bluesky" },
 	{ icon: faFacebook, href: ROUTES.facebook, label: "Facebook" },
