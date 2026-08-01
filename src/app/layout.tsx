@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Comfortaa, Lato } from "next/font/google";
 import "./globals.css";
+import Analytics from "@/components/Analytics/Analytics";
 import VideoModal from "@/components/VideoModal/VideoModal";
 import { VideoModalProvider } from "@/contexts/VideoModalContext";
 import Container from "@/components/layout/Container/Container";
@@ -62,6 +63,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Analytics />
       <body className={`${comfortaa.variable} ${lato.variable} antialiased`}>
         <VideoModalProvider>
           <NavBar />

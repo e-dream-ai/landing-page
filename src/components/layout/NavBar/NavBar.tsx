@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from "motion/react";
 import Logo from "@/components/common/Logo/Logo";
 import NavLink from "@/components/common/NavLink/NavLink";
 import { ROUTES } from "@/constants/routes";
+import { trackSignUpClick } from "@/lib/analytics";
 
 export default function NavBar() {
   const { scrollY } = useScroll();
@@ -39,7 +40,11 @@ export default function NavBar() {
         <Logo />
 
         <nav className="flex flex-col sm:flex-row gap-2 sm:gap-2.5 w-auto justify-end">
-          <NavLink href={ROUTES.createAccount} external>
+          <NavLink
+            href={ROUTES.createAccount}
+            external
+            onClick={() => trackSignUpClick("nav")}
+          >
             Create an account
           </NavLink>
           <NavLink href={ROUTES.app}>Open the app</NavLink>

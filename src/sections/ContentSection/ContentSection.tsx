@@ -1,8 +1,11 @@
+"use client";
+
 import type { ReactNode } from "react";
 import Link from "next/link";
 import ContentBox from "@/components/common/ContentBox/ContextBox";
 import { Button } from "@/components/ui/button";
 import { ROUTES } from "@/constants/routes";
+import { trackSignUpClick } from "@/lib/analytics";
 
 // Types
 interface ContentItem {
@@ -57,7 +60,10 @@ export default function ContentSection() {
 			))}
 
 			<ContentBox className="flex items-center justify-center">
-				<Link href={ROUTES.createAccount}>
+				<Link
+					href={ROUTES.createAccount}
+					onClick={() => trackSignUpClick("content")}
+				>
 					<Button size="reusable" variant="reusable">
 						Create an account
 					</Button>
