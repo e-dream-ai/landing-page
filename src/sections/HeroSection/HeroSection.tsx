@@ -8,6 +8,7 @@ import {
 	StaggerItem,
 } from "@/components/common/Stagger/Stagger";
 import { ROUTES } from "@/constants/routes";
+import { trackSignUpClick } from "@/lib/analytics";
 import { getVideoPathFromThumbnail } from "@/lib/helpers";
 import { HERO_THUMBNAILS } from "@/lib/thumbnails";
 import { cn } from "@/lib/utils";
@@ -139,7 +140,11 @@ export default function HeroSection() {
 					</h1>
 				</StaggerItem>
 				<StaggerItem className="flex flex-wrap gap-4 pl-8">
-					<Button href={ROUTES.createAccount} variant="primary">
+					<Button
+						href={ROUTES.createAccount}
+						variant="primary"
+						onClick={() => trackSignUpClick("hero")}
+					>
 						Start Free
 					</Button>
 					<Button href={ROUTES.app} variant="outline">
