@@ -4,6 +4,7 @@ import Button from "@/components/common/Button/Button";
 import Logo from "@/components/common/Logo/Logo";
 import Container from "@/components/layout/Container/Container";
 import { ROUTES } from "@/constants/routes";
+import { trackSignUpClick } from "@/lib/analytics";
 
 export default function NavBar() {
 	return (
@@ -25,6 +26,7 @@ export default function NavBar() {
 						variant="primary"
 						size="sm"
 						className="px-3.5 py-1.5 text-xs whitespace-nowrap sm:px-5 sm:py-2 sm:text-sm short-landscape:px-3! short-landscape:py-1! short-landscape:text-xs!"
+						onClick={() => trackSignUpClick("nav")}
 					>
 						Start Free
 					</Button>
