@@ -18,7 +18,8 @@ export default function Analytics() {
 					window.dataLayer = window.dataLayer || [];
 					function gtag(){dataLayer.push(arguments);}
 					gtag('js', new Date());
-					gtag('config', '${GA_MEASUREMENT_ID}');
+					function getVariant(){return document.cookie.match(/(?:^|;\\s*)variant=([^;]+)/)?.[1] ?? 'unknown';}
+					gtag('config', '${GA_MEASUREMENT_ID}', { variant: getVariant() });
 				`}
 			</Script>
 		</>

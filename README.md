@@ -33,34 +33,43 @@ pnpm biome:check    # run all checks
 [`src/components/Analytics/Analytics.tsx`](src/components/Analytics/Analytics.tsx) /
 [`src/lib/analytics.ts`](src/lib/analytics.ts)
 
-- `trackSignUpClick(location)` fires a `sign_up_click` event (`{ location }`) when a visitor
-  clicks a "Start Free" / "Create an account" CTA. `location` identifies which CTA
+- `getVariant()` reads the `variant` cookie (see A/B test below) and is always sent as an
+  event parameter, including on the automatic `page_view`. With the A/B test off this is just
+  `"unknown"` for everyone.
+- `trackSignUpClick(location)` fires a `sign_up_click` event (`{ variant, location }`) when a
+  visitor clicks a "Start Free" / "Create an account" CTA. `location` identifies which CTA
   (e.g. `"hero"`, `"nav"`, `"content"`) so conversion can be broken down per button.
-- Sign-up itself completes on `alpha.infinidream.ai`, a different app the landing page can't observe, so there's no `sign_up` (completion) event here, only `sign_up_click`.
+- Sign-up itself completes on `alpha.infinidream.ai`, a different app the landing page can't
+  observe, so there's no `sign_up` (completion) event here, only `sign_up_click`.
 
-`location` is registered in GA4 as an **event-scoped custom dimension** (Admin → Custom
-definitions) so it can be used as a report dimension/filter.
+`variant` and `location` are already registered in GA4 as **event-scoped custom
+dimensions** (Admin → Custom definitions), this is a one-time setup and is done. Nothing in
+GA needs to change to start or stop an A/B test.
 
-### Running an A/B test again
+### A/B testing
 
-An A/B test that was ran comparing this design (`main`) against the
-previous one (`old-design` branch) and has since been turned off, `infinidream.ai` now just serves `main` directly, no cookie, no router, no variant tagging. To run another one:
+`infinidream.ai` can run a 50/50 A/B test between `main` (production) and any other deployed
+branch, controlled entirely by **one Cloudflare Pages environment variable**,
+`VARIANT_B_ORIGIN`.
 
-1. **Deploy the challenger as its own branch.** Push it to this repo; Cloudflare Pages
-   auto-builds every branch and gives it a stable alias:
-   `https://<branch-name>.landing-page-d44.pages.dev`. Confirm that URL loads correctly (and
-   isn't gated behind Cloudflare Access, check the Pages project's branch-deployment
-   settings) before wiring anything up.
-2. **Restore the router.** The A/B logic lived at `functions/_middleware.js` and was removed
-   in the commit that turned the experiment off. Recover it with:
-    ```bash
-    git log --all --oneline -- functions/_middleware.js   # find the last commit that had it
-    git show <that-commit>:functions/_middleware.js > functions/_middleware.js
-    ```
-    Update `VARIANT_B_ORIGIN` at the top of the file to point at the new branch's alias from step 1.
-3. **Re-add variant tagging to analytics**, on _both_ branches: a `getVariant()` cookie
-   reader in `src/lib/analytics.ts`, `variant` set on `gtag('config', ...)` in
-   `Analytics.tsx`, and `variant` included in the `sign_up_click` event payload. (`git show`
-   the same pre-removal commit for the exact code)
-4. **Register `variant` as an event-scoped custom dimension** in GA4 (Admin → Custom
-   definitions), parameter name `variant`, scope Event.
+- **Set** (Cloudflare dashboard → Workers & Pages → `landing-page` → Settings → Environment
+  variables → Production → add `VARIANT_B_ORIGIN` = the challenger branch alias, e.g.
+  `https://old-design.landing-page-d44.pages.dev`) → **the test is live.**
+- **Delete that variable** (or clear its value) → the test is off, `main` is served directly
+  to everyone, no cookie gets set. This is the current/default state.
+
+[`functions/_middleware.js`](functions/_middleware.js) is the Cloudflare Pages Function that
+implements this, and it is always present in the repo (on or off is just whether the env var
+is set):
+
+1. If `VARIANT_B_ORIGIN` isnt set, the Function immediately gets out of the way
+   (`return next()`), production behaves exactly as if this file didnt exist.
+2. Otherwise, it reads the `variant` cookie from the request.
+3. **No cookie (first visit):** rolls 50/50 → assigns `A` or `B`, then sets
+   `Set-Cookie: variant=A|B` (`Path=/`, 1-year `Max-Age`, `SameSite=Lax`, `Secure`, **not**
+   `HttpOnly`, the client needs to read it).
+4. **`variant=A`** → served normally by this deployment.
+5. **`variant=B`** → transparently `fetch()`es the same path from `VARIANT_B_ORIGIN` and
+   returns that response. The browser URL stays `infinidream.ai` throughout.
+6. **QA override:** visiting with `?variant=A` or `?variant=B` forces that variant and
+   (re)pins the cookie, for manually testing each side.
