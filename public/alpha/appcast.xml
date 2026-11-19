@@ -3,36 +3,129 @@
     <channel>
         <title>infinidream</title>
         <item>
-            <title>0.16.1</title>
-            <pubDate>Thu, 18 Jun 2026 13:01:22 -0400</pubDate>
-            <sparkle:version>0.16.1</sparkle:version>
-            <sparkle:shortVersionString>0.16.1</sparkle:shortVersionString>
+            <title>0.17.2</title>
+            <pubDate>Tue, 17 Nov 2026 21:48:36 -0500</pubDate>
+            <sparkle:version>0.17.2</sparkle:version>
+            <sparkle:shortVersionString>0.17.2</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>12.4</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/e-dream-ai/client/releases/download/0.16.1/infinidream-0.16.1.zip" length="54794319" type="application/octet-stream" sparkle:edSignature="eH49XiWj120Z8ZULGhi0Pa43Q/ny4Cgyw0P/pbJT9+onZsAd1mjgcW5pNqFvDvKyaBAJTmtEHAwX0qAKRm1ABw=="/>
-                    <description sparkle:format="markdown">This release is mostly bug and crash fixing, plus a new portrait-display option.
+            <enclosure url="https://github.com/e-dream-ai/client/releases/download/0.17.2/infinidream-0.17.2.dmg" length="26846734" type="application/octet-stream" sparkle:edSignature="lPA7uX2sWLXINh595rBDJ6cVpovrSTi5og6vgFnasZ1NCfvHdPNbSB7MkOvK8sUntwuv2gujW5upnnERPSnrBQ=="/>
+                    <description sparkle:format="markdown">These are the cumulative notes since 0.16.1, the last release.
+
+Highlights:
+* Rebuilds the render loop to go beyond 60Hz screens and provide smoother playback especially on Windows and Linux.
+* Fixes the hung legacy process on mac screensavers with recent macOS.
+* Slows down playback when streaming playback is buffering, instead of of stopping and starting over and over.
+* Fantastic moon phase spinner and thematic UI.
+* Adds Syphon and Spout video sharing to interoperate with VJ and streamer ecosystems.
+* Brings signed executables to Windows, and rework installers with branding. 
+* Supports hardware video decoding for Linux.
 
 ## Cross-platform
 
-- Add a "Rotate On Portrait Displays" option ([#623](https://github.com/e-dream-ai/client/issues/623))
-- Don't crash at launch when the disk is full ([#664](https://github.com/e-dream-ai/client/issues/664))
-- Fix a crash on large playlists by making the dream cache thread-safe and requesting metadata in batches ([#522](https://github.com/e-dream-ai/client/issues/522))
-- Fix a startup crash when the first uncached dream has no metadata
-- Avoid random sign-outs by persisting the sessions in all cases ([#656](https://github.com/e-dream-ai/client/issues/656))
-- Randomize download order in shuffle mode ([#521](https://github.com/e-dream-ai/client/issues/521))
-- Truncate long credits-overlay titles so they don't overlap the playlist index ([#520](https://github.com/e-dream-ai/client/issues/520))
-- Spell out the comma in the settings shortcut shown in the help overlay ([#653](https://github.com/e-dream-ai/client/issues/653))
+### Playback and streaming
+- Slow streaming playback to match the link instead of stopping ([#770](https://github.com/e-dream-ai/client/issues/770))
+- Hold a crossfade when the incoming dream rebuffers; adaptive speed floor is now 10% ([#770](https://github.com/e-dream-ai/client/issues/770))
+- Don't wait forever to resume from a rebuffer above 21 fps
+- Resume and speed-up no longer jump the timeline ([#747](https://github.com/e-dream-ai/client/issues/747))
+- Keep every frame in the blend when the video outpaces the display
+- Pace the render loop to the display and detect the refresh rate, support 120Hz screens ([#749](https://github.com/e-dream-ai/client/issues/749))
+- Count dropped frames; opt-in step timing for frame hitches (`INFINIDREAM_STEP_TIMING_MS`)
+- Use each playlist's crossfade length (`transitionTime`) ([#729](https://github.com/e-dream-ai/client/issues/729))
+- Apply a playlist switch when its transition completes
+- A playlist switch crossfade no longer snaps back at the old dream's end ([#826](https://github.com/e-dream-ai/client/issues/826))
+- A playlist switch mid-crossfade fades from whichever clip is more on screen
+- Share prefetch downloads with the player, for consistent playback on a low quota ([#706](https://github.com/e-dream-ai/client/issues/706), [#710](https://github.com/e-dream-ai/client/issues/710))
+- Redownload dreams whose video changed on the server (md5 cache invalidation) ([#682](https://github.com/e-dream-ai/client/issues/682))
+- Keep the play history when next starts a dream that isn't cached yet ([#771](https://github.com/e-dream-ai/client/issues/771))
+- Fix seeks past the end of a dream, and previous after a playlist wrap ([#775](https://github.com/e-dream-ai/client/issues/775), [#776](https://github.com/e-dream-ai/client/issues/776))
+- A speed change also applies to the preloaded next clip ([#833](https://github.com/e-dream-ai/client/issues/833))
+- Don't replay the first dream after switching to an uncached playlist ([#835](https://github.com/e-dream-ai/client/issues/835))
+- Harden resume and settings against bad values; drop the end-of-dream streaming fallback ([#666](https://github.com/e-dream-ai/client/issues/666))
+
+### Networking and server
+- Replace socket.io with Boost.Beast for the remote-control WebSocket ([#557](https://github.com/e-dream-ai/client/issues/557))
+- Refresh the session when the server rejects a WebSocket reconnect
+- Report end of playback to the server ([#691](https://github.com/e-dream-ai/client/issues/691))
+- Report CPU architecture and OS version in the platform name, and log it at startup ([#720](https://github.com/e-dream-ai/client/issues/720), [#727](https://github.com/e-dream-ai/client/issues/727))
+- Log error replies from the server on the remote-control socket, and which download stream did what ([#728](https://github.com/e-dream-ai/client/issues/728))
+- Fix crashes on malformed server messages, and two dangling pointers found by AddressSanitizer ([#733](https://github.com/e-dream-ai/client/issues/733))
+
+### On-screen display
+- One buffering indicator: a moon in the lower-right ([#732](https://github.com/e-dream-ai/client/issues/732))
+- A one-frame stall no longer flashes the buffering moon ([#823](https://github.com/e-dream-ai/client/issues/823))
+- Feedback when you play a dream or playlist, with the moon shown until new content appears ([#474](https://github.com/e-dream-ai/client/issues/474))
+- HUD text is the OSD peach instead of white ([#784](https://github.com/e-dream-ai/client/issues/784))
+- OSD popups fade in fast and fade out more slowly ([#782](https://github.com/e-dream-ai/client/issues/782))
+- Stop the speed OSD's FPS number flickering on repeated A/D ([#783](https://github.com/e-dream-ai/client/issues/783))
+- Speed and brightness OSD no longer drops frames
+- HUD shows transfers and downloader status in one download block
+- Regenerate OSD icons from SVG and remove unused images
+- Remove the unused server-message overlay, quiet mode and attribution overlay ([#742](https://github.com/e-dream-ai/client/issues/742))
+
+### Settings and app
+- Settings: Close is the default button once you're signed in
+- Logs roll over at midnight and old ones are deleted ([#740](https://github.com/e-dream-ai/client/issues/740))
+- `--fullscreen` command line option starts the app fullscreen
+- About box shows the git revision without repeating the tag
+- Drop the Linux-only path and --cached hint from the shared auth warning ([#675](https://github.com/e-dream-ai/client/issues/675))
 
 ## Windows
 
-- Fix an SSL connect error caused by a Schannel revocation hard-fail ([#655](https://github.com/e-dream-ai/client/issues/655))
-- Restore keyboard control for the fullscreen app on a secondary monitor ([#617](https://github.com/e-dream-ai/client/issues/617))
-- Fix the filtering of the text overlays for smoother font rendering ([#652](https://github.com/e-dream-ai/client/issues/652))
+- Video sharing with Spout, plus a "Share video with Spout" setting ([#59](https://github.com/e-dream-ai/client/issues/59))
+- Sign the exe, scr, uninstaller and setup with Azure Artifact Signing ([#722](https://github.com/e-dream-ai/client/issues/722))
+- Installer: launch the app as the user, install the VC++ runtime, clean up the screensaver, stamp the version ([#722](https://github.com/e-dream-ai/client/issues/722), [#633](https://github.com/e-dream-ai/client/issues/633))
+- Installer: crisp text, Segoe UI and infinidream artwork
+- Uninstaller resets the screensaver for every signed-in user, not only the current one ([#722](https://github.com/e-dream-ai/client/issues/722))
+- No missed refresh at dream changes (shader cache, skip the GPU wait on an empty queue) ([#798](https://github.com/e-dream-ai/client/issues/798))
+- The windowed back buffer matches the window size, so video and logo map 1:1 ([#750](https://github.com/e-dream-ai/client/issues/750))
+- Per-monitor DPI awareness, with crisp HUD text and title bar
+- Fix oversized HUD and OSD FPS text, and F1 column alignment
+- Follow the system light/dark theme ([#723](https://github.com/e-dream-ai/client/issues/723))
+- Title-bar menu items work again
+- Fix a hang on exit when the watchdog races atexit destructors
+- Account Not Found alert drops the invite wording and offers the signup page ([#667](https://github.com/e-dream-ai/client/issues/667))
 
 ## Mac
 
-- Move the Help menu item into the Help menu and rename it "Infinidream Help" ([#641](https://github.com/e-dream-ai/client/issues/641))
+- Video sharing with Syphon, built from pinned upstream source and capturing only while a client is connected; adds a "Share video with Syphon" setting ([#59](https://github.com/e-dream-ai/client/issues/59))
+- Ship as a .dmg instead of a .zip ([#616](https://github.com/e-dream-ai/client/issues/616)), with a round volume icon ([#842](https://github.com/e-dream-ai/client/issues/842))
+- The screensaver plays offline while the app runs, and the Settings thumbnail no longer flashes ([#756](https://github.com/e-dream-ai/client/issues/756))
+- Relaunched screensavers exit properly: the orphan watchdog checks the window level ([#755](https://github.com/e-dream-ai/client/issues/755))
+- Fix a stuck legacy screensaver process ([#690](https://github.com/e-dream-ai/client/issues/690))
+- The screensaver overlay follows a shown display ([#690](https://github.com/e-dream-ai/client/issues/690))
+- The app holds the instance lock on a clean install and across a player restart
+- Full-bleed app icon with a sky-color background
+- Render text at the window's backing scale for sharper overlays
+- Hide the OSD FPS text when the OSD is hidden ([#697](https://github.com/e-dream-ai/client/issues/697))
+- Theme-aware header icon in the sign-in wizard
+- Account Not Found alert drops the invite wording and offers Create Account ([#667](https://github.com/e-dream-ai/client/issues/667))
+- The stage app bundles and installs the stage screensaver
+- Smaller build: trim the vcpkg FFmpeg ([#556](https://github.com/e-dream-ai/client/issues/556)), and builds no longer rewrite tracked Info.plists or re-sign the vendored Sparkle.framework ([#662](https://github.com/e-dream-ai/client/issues/662))
+- build.py tags the release before building
 
-**Full Changelog**: https://github.com/e-dream-ai/client/compare/0.16.0...0.16.1</description>
+## Linux
+
+- Settings GUI ([#622](https://github.com/e-dream-ai/client/issues/622)), showing the full version (revision and build time)
+- Hardware video decoding via Vulkan Video ([#704](https://github.com/e-dream-ai/client/issues/704))
+- Wayland: render at the monitor's resolution under fractional scaling
+- Blend in sRGB-encoded values like Mac and Windows ([#820](https://github.com/e-dream-ai/client/issues/820))
+- Overlay text shadow matches Mac ([#816](https://github.com/e-dream-ai/client/issues/816))
+- "Rotate On Portrait Displays" option ([#623](https://github.com/e-dream-ai/client/issues/623))
+- Follow the system light/dark theme ([#723](https://github.com/e-dream-ai/client/issues/723))
+- Dialog images, a solid wizard, fixed-size HUD text with a soft shadow
+- The internet check no longer blocks the render loop ([#757](https://github.com/e-dream-ai/client/issues/757))
+- Quit keys: Esc leaves fullscreen, Ctrl-Q quits
+- AppImage runs on glibc 2.35 again: minimal libcurl, static libstdc++ ([#807](https://github.com/e-dream-ai/client/issues/807))
+- AppImage build takes a version (`-v`) and uploads to the GitHub release (`-g`) ([#813](https://github.com/e-dream-ai/client/issues/813))
+- Fix the AppImage link on Ubuntu without ICU dev libraries ([#738](https://github.com/e-dream-ai/client/issues/738))
+- Fix an x86_64 link error
+
+## Testing
+
+- New mock server test harness covering throttled and slow links, chaos runs, crashes and hangs, keyframes and remote commands, with recorded fixture sets; runs on Mac, Windows and Linux ([#733](https://github.com/e-dream-ai/client/issues/733), [#770](https://github.com/e-dream-ai/client/issues/770), [#795](https://github.com/e-dream-ai/client/issues/795))
+- Chaos tests finish on Windows, and `run_all.py` runs all 13 tests
+
+**Full Changelog**: https://github.com/e-dream-ai/client/compare/0.16.1...0.17.2</description>
         </item>
     </channel>
 </rss>
